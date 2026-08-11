@@ -5,6 +5,8 @@ on Pop!_OS. This repo is a subset of `~/.config` — only the `cosmic/` director
 tracked (see `.gitignore`); everything else under `~/.config` (browser profiles, app
 caches, unrelated app settings) is deliberately left out.
 
+![Final desktop](screenshots/final-desktop.png)
+
 ## System
 
 - Pop!_OS 24.04 LTS, `apt`

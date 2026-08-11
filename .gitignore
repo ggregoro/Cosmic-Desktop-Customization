@@ -13,3 +13,7 @@
 # ...and the cosmic/ directory, tracked in full
 !/cosmic/
 !/cosmic/**
+
+# ...and the screenshots/ directory
+!/screenshots/
+!/screenshots/**
