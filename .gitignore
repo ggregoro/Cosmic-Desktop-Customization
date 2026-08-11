@@ -1,0 +1,14 @@
+# This repo tracks only the COSMIC desktop config touched by the
+# desktop-redesign project (see ~/PLAN.md). Everything else under
+# ~/.config (browser profiles, app caches, unrelated app settings,
+# etc.) is deliberately left untracked.
+
+# Ignore everything by default
+*
+
+# ...except this file itself
+!/.gitignore
+
+# ...and the cosmic/ directory, tracked in full
+!/cosmic/
+!/cosmic/**

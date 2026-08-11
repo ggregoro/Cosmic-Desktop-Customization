@@ -1,0 +1,74 @@
+[
+    (
+        name: "cosmic-office",
+        icon: "folder-symbolic",
+        filter: Categories(
+            categories: [
+                "Office",
+            ],
+            exclude: [
+                "thunderbird",
+                "org.gnome.eog",
+                "simple-scan",
+            ],
+            include: [
+                "org.gnome.Totem",
+            ],
+        ),
+    ),
+    (
+        name: "cosmic-system",
+        icon: "folder-symbolic",
+        filter: Categories(
+            categories: [
+                "System",
+            ],
+            exclude: [
+                "com.system76.CosmicStore",
+                "com.system76.CosmicTerm",
+                "org.wezfurlong.wezterm",
+            ],
+            include: [
+                "gnome-language-selector",
+                "im-config",
+                "org.freedesktop.IBus.Setup",
+                "system76-driver",
+            ],
+        ),
+    ),
+    (
+        name: "cosmic-utilities",
+        icon: "folder-symbolic",
+        filter: Categories(
+            categories: [
+                "Utility",
+            ],
+            exclude: [
+                "com.system76.CosmicEdit",
+                "com.system76.CosmicFiles",
+                "org.wezfurlong.wezterm",
+                "com.system76.CosmicScreenshot",
+                "fresh",
+                "com.anthropic.Claude",
+                "cmatrix",
+            ],
+            include: [
+                "nm-connection-editor",
+                "qt5ct",
+                "qt6ct",
+                "org.gnome.eog",
+                "simple-scan",
+            ],
+        ),
+    ),
+    (
+        name: "Media",
+        icon: "folder-symbolic",
+        filter: AppIds([
+            "org.videolan.VLC",
+            "de.haeckerfelix.Shortwave",
+            "org.audacityteam.Audacity",
+            "cmatrix",
+        ]),
+    ),
+]
