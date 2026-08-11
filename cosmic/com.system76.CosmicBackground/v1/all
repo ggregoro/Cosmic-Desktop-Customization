@@ -1,6 +1,6 @@
 (
     output: "all",
-    source: Path("/home/grego/Pictures/Dark Street Light.jpeg"),
+    source: Path("/home/grego/Pictures/milky-way-core-jeremy-thomas-unsplash.jpg"),
     filter_by_theme: true,
     rotation_frequency: 300,
     filter_method: Lanczos,
