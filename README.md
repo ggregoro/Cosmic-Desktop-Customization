@@ -62,6 +62,40 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Yaru'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru'
 ```
 
+## Trying this on your own machine
+
+Requires COSMIC already running (Pop!_OS or any distro that ships it).
+
+1. **Back up your own config first** — this will overwrite files under
+   `~/.config/cosmic/`:
+   ```bash
+   cp -r ~/.config/cosmic ~/.config/cosmic.bak
+   ```
+2. **Install the theme packages** (`apt` on Pop!_OS/Ubuntu-based distros;
+   substitute your distro's package manager otherwise):
+   ```bash
+   sudo apt install yaru-theme-gtk yaru-theme-icon
+   ```
+3. **Clone this repo and copy its config in:**
+   ```bash
+   git clone https://github.com/ggregoro/Cosmic-Desktop-Customization.git /tmp/cosmic-setup
+   cp -r /tmp/cosmic-setup/cosmic/. ~/.config/cosmic/
+   ```
+4. **Select the Yaru theme/icons** (not a file, so cloning alone won't set it):
+   ```bash
+   gsettings set org.gnome.desktop.interface gtk-theme 'Yaru'
+   gsettings set org.gnome.desktop.interface icon-theme 'Yaru'
+   ```
+5. **Set the wallpaper.** The tracked config points at
+   `/home/grego/Pictures/milky-way-core-jeremy-thomas-unsplash.jpg` — that
+   absolute path won't exist on your machine. Download the image from
+   [Jeremy Thomas on Unsplash](https://unsplash.com/photos/blue-and-purple-galaxy-digital-wallpaper-E0AHdsENmDg),
+   save it anywhere under your own `$HOME`, then edit the `source:` path in
+   `~/.config/cosmic/com.system76.CosmicBackground/v1/all` to match.
+
+COSMIC's settings daemon watches these files live, so changes should appear
+within a second or two — no reload or logout needed.
+
 ## Restoring / reverting
 
 - `git log` shows the full history from `pre-claude-baseline` (the state of
