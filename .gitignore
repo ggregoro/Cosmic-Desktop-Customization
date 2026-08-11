@@ -14,6 +14,11 @@
 !/cosmic/
 !/cosmic/**
 
+# ...except these two, which are personal (Files sidebar bookmarks,
+# wallpaper history) rather than part of the actual redesign
+/cosmic/com.system76.CosmicFiles/v1/favorites
+/cosmic/com.system76.CosmicSettings.Wallpaper/v1/custom-images
+
 # ...and the screenshots/ directory
 !/screenshots/
 !/screenshots/**
