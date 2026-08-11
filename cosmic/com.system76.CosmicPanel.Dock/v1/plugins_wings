@@ -1,1 +1,12 @@
-Some(([], []))
+Some(([
+    "com.system76.CosmicAppletWorkspaces",
+    "io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager",
+], [
+    "com.vintagetechie.CosmicExtAppletTempest",
+    "com.system76.CosmicAppletAudio",
+    "com.system76.CosmicAppletBluetooth",
+    "com.system76.CosmicAppletNetwork",
+    "com.system76.CosmicAppletBattery",
+    "com.system76.CosmicAppletPower",
+    "com.system76.CosmicAppletTime",
+]))
