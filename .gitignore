@@ -6,8 +6,9 @@
 # Ignore everything by default
 *
 
-# ...except this file itself
+# ...except this file itself, and the README
 !/.gitignore
+!/README.md
 
 # ...and the cosmic/ directory, tracked in full
 !/cosmic/
