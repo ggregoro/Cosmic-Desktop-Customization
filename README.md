@@ -1,17 +1,24 @@
 # Cosmic Desktop Customization
 
-Tracked configuration for a redesigned [COSMIC](https://system76.com/cosmic) desktop
-on Pop!_OS. This repo is a subset of `~/.config` — only the `cosmic/` directory is
-tracked (see `.gitignore`); everything else under `~/.config` (browser profiles, app
-caches, unrelated app settings) is deliberately left out.
+Tracked configuration for a redesigned [COSMIC](https://system76.com/cosmic) desktop.
+Originally built on Pop!_OS/apt; reapplied and confirmed working on Arch Linux/pacman
+(2026-08-18) after the same laptop was reinstalled. This repo is a subset of
+`~/.config` — only the `cosmic/` directory is tracked (see `.gitignore`); everything
+else under `~/.config` (browser profiles, app caches, unrelated app settings) is
+deliberately left out.
 
 ![Final desktop](screenshots/final-desktop.png)
 
 ## System
 
-- Pop!_OS 24.04 LTS, `apt`
-- COSMIC desktop environment, `cosmic-comp` compositor, Wayland
-- Intel HD Graphics 5500 (`i915`)
+Confirmed working on:
+
+- **Pop!_OS 24.04 LTS**, `apt` — original build
+- **Arch Linux**, `pacman` + an AUR helper (e.g. [`yay`](https://github.com/Jguer/yay)) —
+  reapplied 2026-08-18 on the same laptop after a reinstall
+
+Either way: COSMIC desktop environment, `cosmic-comp` compositor, Wayland, Intel HD
+Graphics 5500 (`i915`).
 
 ## What changed from stock COSMIC
 
@@ -47,15 +54,23 @@ width of `2`), tracked under `cosmic/com.system76.CosmicTheme.{Dark,Light}{,.Bui
 
 ## Packages required
 
-| Package | Reason |
-|---|---|
-| `yaru-theme-gtk` | Yaru GTK theme |
-| `yaru-theme-icon` | Yaru icon set |
+| Distro | Package | Reason | Source |
+|---|---|---|---|
+| Pop!_OS/Ubuntu-based (`apt`) | `yaru-theme-gtk` | Yaru GTK theme | official repos, no PPA needed |
+| Pop!_OS/Ubuntu-based (`apt`) | `yaru-theme-icon` | Yaru icon set | official repos, no PPA needed |
+| Arch (`pacman`) | `yaru-gtk-theme` | Yaru GTK theme | **AUR** — not in the official repos |
+| Arch (`pacman`) | `yaru-icon-theme` | Yaru icon set | **AUR** — not in the official repos |
 
-Both install via `apt` on Pop!_OS/Ubuntu-based distros — no PPA needed.
+```bash
+# apt (Pop!_OS/Ubuntu-based)
+sudo apt install yaru-theme-gtk yaru-theme-icon
+
+# pacman + an AUR helper (Arch)
+yay -S yaru-gtk-theme yaru-icon-theme
+```
 
 After installing, the GTK/icon theme still needs to be selected (not tracked here,
-since it's `dconf` state, not a file):
+since it's `dconf` state, not a file) — same command on either distro:
 
 ```bash
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru'
@@ -64,17 +79,22 @@ gsettings set org.gnome.desktop.interface icon-theme 'Yaru'
 
 ## Trying this on your own machine
 
-Requires COSMIC already running (Pop!_OS or any distro that ships it).
+Requires COSMIC already running — confirmed on Pop!_OS and Arch Linux (see
+"System" above), likely fine on any distro that ships it.
 
 1. **Back up your own config first** — this will overwrite files under
    `~/.config/cosmic/`:
    ```bash
    cp -r ~/.config/cosmic ~/.config/cosmic.bak
    ```
-2. **Install the theme packages** (`apt` on Pop!_OS/Ubuntu-based distros;
-   substitute your distro's package manager otherwise):
+2. **Install the theme packages** — see "Packages required" above for the exact
+   names per distro:
    ```bash
+   # apt (Pop!_OS/Ubuntu-based)
    sudo apt install yaru-theme-gtk yaru-theme-icon
+
+   # pacman + an AUR helper (Arch) — these are AUR-only, not in the official repos
+   yay -S yaru-gtk-theme yaru-icon-theme
    ```
 3. **Clone this repo and copy its config in:**
    ```bash
@@ -101,7 +121,11 @@ within a second or two — no reload or logout needed.
 - `git log` shows the full history from `pre-claude-baseline` (the state of
   `~/.config/cosmic` before this project started) through every change since.
 - Full revert: `git checkout pre-claude-baseline -- cosmic/`
-- Package removal: `sudo apt remove yaru-theme-gtk yaru-theme-icon`
+- Package removal:
+  ```bash
+  sudo apt remove yaru-theme-gtk yaru-theme-icon   # apt (Pop!_OS/Ubuntu-based)
+  yay -R yaru-gtk-theme yaru-icon-theme             # pacman + AUR helper (Arch)
+  ```
 
 COSMIC's settings daemon watches these config files live — most changes apply
 within a second or two of a file being written, no reload or logout needed.
