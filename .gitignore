@@ -1,24 +1,20 @@
-# This repo tracks only the COSMIC desktop config touched by the
-# desktop-redesign project (see ~/PLAN.md). Everything else under
-# ~/.config (browser profiles, app caches, unrelated app settings,
-# etc.) is deliberately left untracked.
+# This repo tracks COSMIC desktop configs for multiple named "rices"
+# (see rices/<name>/), each a snapshot of ~/.config/cosmic on Greg's
+# Dell E7450 at a point in time. Everything else under ~/.config
+# (browser profiles, app caches, unrelated app settings, etc.) is
+# deliberately left untracked.
 
 # Ignore everything by default
 *
 
-# ...except this file itself, and the README
+# ...except this file itself, the top-level README, and the rices dir
 !/.gitignore
 !/README.md
+!/rices/
+!/rices/**
 
-# ...and the cosmic/ directory, tracked in full
-!/cosmic/
-!/cosmic/**
-
-# ...except these two, which are personal (Files sidebar bookmarks,
-# wallpaper history) rather than part of the actual redesign
-/cosmic/com.system76.CosmicFiles/v1/favorites
-/cosmic/com.system76.CosmicSettings.Wallpaper/v1/custom-images
-
-# ...and the screenshots/ directory
-!/screenshots/
-!/screenshots/**
+# ...except these personal files inside any rice's cosmic/ snapshot
+# (Files sidebar bookmarks, wallpaper history) rather than part of the
+# actual redesign
+**/cosmic/com.system76.CosmicFiles/v1/favorites
+**/cosmic/com.system76.CosmicSettings.Wallpaper/v1/custom-images
