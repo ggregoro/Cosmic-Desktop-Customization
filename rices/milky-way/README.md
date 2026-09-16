@@ -123,8 +123,9 @@ within a second or two — no reload or logout needed.
 
 - `git log` shows the full history from `pre-claude-baseline` (the state of
   `~/.config/cosmic` before this project started) through every change since.
-- Full revert: `git checkout pre-claude-baseline -- cosmic/` (the old pre-restructure
-  path — this tag predates the move to `rices/milky-way/cosmic/`)
+- Full revert: `git checkout pre-claude-baseline -- cosmic/ && rm -rf rices/milky-way/cosmic && mv cosmic rices/milky-way/cosmic`
+  (the tag predates the move to `rices/milky-way/cosmic/`, so its `cosmic/` path
+  has to replace the current one after checkout, not sit alongside it)
 - Package removal:
   ```bash
   sudo apt remove yaru-theme-gtk yaru-theme-icon   # apt (Pop!_OS/Ubuntu-based)

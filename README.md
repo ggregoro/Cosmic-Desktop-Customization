@@ -28,16 +28,14 @@ It backs up your current config to a timestamped folder under
 mode, and restarts the panel/background so the change actually shows up
 (see "If it doesn't visibly apply" below for why that restart matters).
 
-**Known gap:** window border/focus-highlight colors are drawn by
-`cosmic-comp` (the compositor), which the script does not restart —
+**Known gap, confirmed permanent:** window border/focus-highlight colors are
+drawn by `cosmic-comp` (the compositor), which the script does not restart —
 killing it in place would crash the whole graphical session the same as a
-logout would, so there's no safe way to force it from a script. If a
-switch leaves window borders showing the *previous* rice's accent color
-after everything else has updated, log out and back in to pick up the new
-border color. Whether this is needed on every switch or was a one-time
-side effect of `cosmic-comp` being in a stale state (see the git history
-around 2026-09-16) is still being confirmed — see if it happens again on
-your next switch before assuming it's permanent.
+logout would, so there's no safe way to force it from a script. A switch
+always leaves window borders showing the *previous* rice's accent color
+until you log out and back in — confirmed to happen on every switch, not a
+one-time side effect of `cosmic-comp` being in a stale state. Log out and
+back in after every `switch-rice.sh` run to pick up the new border color.
 
 ## Trying one on a different machine
 
