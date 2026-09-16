@@ -26,16 +26,22 @@ Use `./switch-rice.sh <rice-name>` (or `--list` to see available rices).
 It backs up your current config to a timestamped folder under
 `~/.config/cosmic-backups/`, copies the chosen rice's config in, forces dark
 mode, and restarts the panel/background so the change actually shows up
-(see "If it doesn't visibly apply" below for why that restart matters).
+(see "If it doesn't visibly apply" below for why that restart matters). No
+logout is needed — panel, dock, wallpaper, and window border/focus-highlight
+colors (drawn by `cosmic-comp`, which the script doesn't touch) all update
+live.
 
-**Known gap, confirmed permanent:** window border/focus-highlight colors are
-drawn by `cosmic-comp` (the compositor), which the script does not restart —
-killing it in place would crash the whole graphical session the same as a
-logout would, so there's no safe way to force it from a script. A switch
-always leaves window borders showing the *previous* rice's accent color
-until you log out and back in — confirmed to happen on every switch, not a
-one-time side effect of `cosmic-comp` being in a stale state. Log out and
-back in after every `switch-rice.sh` run to pick up the new border color.
+The script never restarts `cosmic-comp` itself — killing it in place would
+crash the whole graphical session the same as a logout would. Earlier
+testing (2026-09-16) saw window borders get stuck on the previous rice's
+accent after a switch, but that traced back to `cosmic-comp` being left in a
+stale state by an unrelated `rm -rf`-on-a-live-config incident earlier that
+same session, not a limitation of the script — a round-trip switch
+(`osaka-jade` → `onyx` → back) confirmed via real screenshots that borders
+update live on every switch once `cosmic-comp` itself is healthy. If a
+switch ever does leave borders stuck again, that's a sign `cosmic-comp` is
+in a bad state (not something `switch-rice.sh` can fix) — log out and back
+in to clear it.
 
 ## Trying one on a different machine
 
