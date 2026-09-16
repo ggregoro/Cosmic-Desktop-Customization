@@ -14,9 +14,11 @@ deliberately left out.
 |---|---|---|---|
 | [`milky-way`](rices/milky-way/README.md) | Milky Way core wallpaper, squared-off corners, persistent full-width dock, Yaru theme | Pop!_OS 24.04 / Arch Linux | Live snapshot |
 | [`osaka-jade`](rices/osaka-jade/README.md) | Green/jade neon cityscape wallpaper, jade accent color, floating auto-hide dock, stock COSMIC theme | Fedora Linux 44 (COSMIC Spin) | Live snapshot |
-| [`onyx`](rices/onyx/README.md) | Pure-black/grey [Onyx](https://github.com/ggregoro/onyx) palette ported from Omarchy, `Dark Street Light` wallpaper | Any COSMIC distro (untested live) | ⚠️ Hand-derived, not yet verified live — see its README |
+| [`onyx`](rices/onyx/README.md) | Pure-black/grey [Onyx](https://github.com/ggregoro/onyx) palette ported from Omarchy, `Dark Street Light` wallpaper | Fedora Linux 44 (COSMIC Spin) | Hand-derived config, applied live and confirmed rendering correctly — see its README for the one remaining caveat |
 
-![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png)
+| Milky Way | Osaka Jade | Onyx |
+|---|---|---|
+| ![Milky Way desktop](rices/milky-way/screenshots/final-desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) |
 
 ## Trying one on your own machine
 
