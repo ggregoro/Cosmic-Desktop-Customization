@@ -7,9 +7,11 @@
 # Ignore everything by default
 *
 
-# ...except this file itself, the top-level README, and the rices dir
+# ...except this file itself, the top-level README, the local rice
+# switcher script, and the rices dir
 !/.gitignore
 !/README.md
+!/switch-rice.sh
 !/rices/
 !/rices/**
 

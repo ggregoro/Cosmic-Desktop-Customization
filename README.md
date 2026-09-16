@@ -20,7 +20,26 @@ deliberately left out.
 |---|---|---|
 | ![Milky Way desktop](rices/milky-way/screenshots/final-desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) |
 
-## Trying one on your own machine
+## Switching rices on this machine
+
+Use `./switch-rice.sh <rice-name>` (or `--list` to see available rices).
+It backs up your current config to a timestamped folder under
+`~/.config/cosmic-backups/`, copies the chosen rice's config in, forces dark
+mode, and restarts the panel/background so the change actually shows up
+(see "If it doesn't visibly apply" below for why that restart matters).
+
+**Known gap:** window border/focus-highlight colors are drawn by
+`cosmic-comp` (the compositor), which the script does not restart —
+killing it in place would crash the whole graphical session the same as a
+logout would, so there's no safe way to force it from a script. If a
+switch leaves window borders showing the *previous* rice's accent color
+after everything else has updated, log out and back in to pick up the new
+border color. Whether this is needed on every switch or was a one-time
+side effect of `cosmic-comp` being in a stale state (see the git history
+around 2026-09-16) is still being confirmed — see if it happens again on
+your next switch before assuming it's permanent.
+
+## Trying one on a different machine
 
 Each rice's own README has the full walkthrough (packages required, exact
 `cp`/`git checkout` commands, wallpaper caveats). In short, for any rice:
@@ -48,8 +67,10 @@ pkill -x cosmic-bg
 ```
 
 `cosmic-session` supervises both and restarts them within about a second,
-picking up whatever's actually on disk. If that doesn't fix it, log out and
-back in — that guarantees every COSMIC component reloads from disk fresh.
+picking up whatever's actually on disk (`switch-rice.sh` already does this
+for you). If that doesn't fix it — or if it's specifically window borders
+that are wrong — log out and back in; that guarantees every COSMIC
+component, including the compositor, reloads from disk fresh.
 
 ## Restoring / reverting
 
