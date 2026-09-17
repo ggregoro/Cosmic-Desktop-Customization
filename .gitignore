@@ -1,19 +1,21 @@
 # This repo tracks COSMIC desktop configs for multiple named "rices"
 # (see rices/<name>/), each a snapshot of ~/.config/cosmic on Greg's
-# Dell E7450 at a point in time. Everything else under ~/.config
-# (browser profiles, app caches, unrelated app settings, etc.) is
-# deliberately left untracked.
+# Dell E7450 at a point in time, plus a dotfiles/ dir for tracked shell
+# config. Everything else under ~/.config (browser profiles, app
+# caches, unrelated app settings, etc.) is deliberately left untracked.
 
 # Ignore everything by default
 *
 
 # ...except this file itself, the top-level README, the local rice
-# switcher script, and the rices dir
+# switcher script, the rices dir, and the dotfiles dir
 !/.gitignore
 !/README.md
 !/switch-rice.sh
 !/rices/
 !/rices/**
+!/dotfiles/
+!/dotfiles/**
 
 # ...except these personal files inside any rice's cosmic/ snapshot
 # (Files sidebar bookmarks, wallpaper history) rather than part of the

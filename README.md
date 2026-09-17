@@ -3,10 +3,11 @@
 Tracked configuration for a redesigned [COSMIC](https://system76.com/cosmic)
 desktop, on Greg's Dell E7450 laptop. Each subdirectory under `rices/` is a
 self-contained rice — its own `cosmic/` config, its own README, and (where
-the rice was captured live rather than hand-built) its own screenshots. Only
-`rices/` and this file are tracked (see `.gitignore`); everything else under
-`~/.config` (browser profiles, app caches, unrelated app settings) is
-deliberately left out.
+the rice was captured live rather than hand-built) its own screenshots.
+`dotfiles/` holds tracked shell/tool config (e.g. `.tmux.conf`) unrelated to
+the COSMIC rices themselves. Only `rices/`, `dotfiles/`, and this file are
+tracked (see `.gitignore`); everything else under `~/.config` (browser
+profiles, app caches, unrelated app settings) is deliberately left out.
 
 ## Rices
 
