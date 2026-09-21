@@ -23,6 +23,10 @@ working with no stops or errors straight through the switch.
   Fedora's COSMIC Spin
 - COSMIC desktop environment, `cosmic-comp` compositor, Wayland, same Dell E7450
   hardware (Intel HD Graphics 5500) as the [Milky Way rice](../milky-way/README.md)
+- **Arch Linux + COSMIC** (installed via `archinstall`, `pacman`) — **applied and
+  confirmed working 2026-09-21** on the same laptop after it was reinstalled from
+  Fedora, using `./switch-rice.sh osaka-jade` and confirmed by screenshot. The
+  wallpaper path (`~/Pictures/1-glowing-city.jpg`) resolved unchanged.
 
 ## What this rice looks like
 

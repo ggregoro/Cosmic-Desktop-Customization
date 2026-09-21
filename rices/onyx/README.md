@@ -15,6 +15,12 @@ from a live session, unlike [`milky-way`](../milky-way/README.md) and
 COSMIC session (screenshots above/below) and rendered cleanly — no glitches,
 correct pure-black background, dock/panel styling intact.
 
+**Also confirmed on Arch Linux + COSMIC (2026-09-21)** — applied with
+`./switch-rice.sh onyx` on the same laptop after it was reinstalled from Fedora
+to Arch, confirmed by screenshot: pure-black background, grey accent borders,
+wallpaper path (`~/Pictures/Dark Street Light.jpeg`) resolved unchanged. The
+optional `Yaru-blue` icon theme is still unverified on Arch.
+
 > **One remaining caveat:** the config was applied by copying the files
 > directly rather than through COSMIC Settings' color picker, so the ~15
 > interdependent derived shades per UI role (button hover/pressed states,
