@@ -4,7 +4,5 @@
     "com.system76.CosmicStore",
     "com.system76.CosmicSettings",
     "com.google.Chrome",
-    "thunderbird",
-    "com.anthropic.Claude",
     "com.system76.CosmicTerm",
 ]
