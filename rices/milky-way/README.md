@@ -12,9 +12,6 @@ deliberately left out.
 
 ![Final desktop](screenshots/final-desktop.png)
 
-*(Screenshot predates the 2026-09-21 dock/appearance update described below —
-squarer corners and a smaller, fully-opaque dock than the config now produces.)*
-
 ## System
 
 Confirmed working on:
