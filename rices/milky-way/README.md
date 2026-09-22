@@ -12,6 +12,9 @@ deliberately left out.
 
 ![Final desktop](screenshots/final-desktop.png)
 
+*(Screenshot predates the 2026-09-21 dock/appearance update described below —
+squarer corners and a smaller, fully-opaque dock than the config now produces.)*
+
 ## System
 
 Confirmed working on:
@@ -41,19 +44,33 @@ lives at `~/Pictures/milky-way-core-jeremy-thomas-unsplash.jpg`, outside this re
 (`cosmic/com.system76.CosmicPanel/v1/entries`); every applet it used to carry now
 lives in the bottom dock instead (`cosmic/com.system76.CosmicPanel.Dock/v1/`):
 
-- Left side: app launcher, workspace overview, pinned/running apps, window minimize
-- Right side: workspace switcher, clipboard manager, weather (Tempest applet),
-  volume, Bluetooth, network, battery, power/shutdown, clock — in that order
+- Left wing: app launcher, workspace overview, pinned/running apps, window minimize
+- Center: workspace-icons applet (per-workspace app icon overview)
+- Right wing, in order: weather (Tempest applet), clipboard manager, tiling toggle,
+  volume, Bluetooth, status area (tray icons for background/legacy apps), network,
+  battery, notifications, clock, power/shutdown
 - Persistent (`autohide: Never`) and reserves screen space (`exclusive_zone: true`)
   so windows never render underneath it
 - Spans the full width of the screen (`expand_to_edges: true`), flush against the
-  bottom edge (`anchor_gap: false`, `margin: 0`), square corners (`border_radius: 0`)
-- Size `XS` (smallest step on COSMIC's XS/S/M/L/XL scale)
+  bottom edge (`anchor_gap: false`, `margin: 0`), square dock corners
+  (`border_radius: 0`)
+- Size `S`, `padding: 4`, `opacity: 0.5` — a half-transparent, moderately-sized dock
+  (updated 2026-09-21 from the original size-`XS`/fully-opaque/no-padding look; the
+  applet set was also expanded this same update to carry over a status-area tray
+  icon and notifications applet that had drifted into daily use on the panel before
+  this rice was reapplied)
 
 **Appearance style** — set via COSMIC Settings' Desktop > Appearance > Style panel
-(not hand-edited): square window corners (`corner_radii`, all tiers at `2.0`) and a
-small tiling gap (`gaps`, `(0, 3)` — `3` is the minimum allowed above the hint-frame
-width of `2`), tracked under `cosmic/com.system76.CosmicTheme.{Dark,Light}{,.Builder}/`.
+(not hand-edited): moderately rounded corners (`corner_radii`, S/M/L/XL tiers at
+`8.0`, XS tier unchanged at `2.0`), a slightly wider tiling gap (`gaps`, `(0, 5)`),
+and a thinner active-window focus border (`active_hint: 1`, down from COSMIC's
+default `2`) — tracked under `cosmic/com.system76.CosmicTheme.{Dark,Light}{,.Builder}/`.
+Updated 2026-09-21 from the original square-corners (`2.0` on every tier)/tighter-gap
+(`(0, 3)`)/default-focus-border (`2`) look.
+
+**Terminal** — `cosmic/com.system76.CosmicTerm/v1/opacity` set to `100` (fully
+opaque; COSMIC's terminal defaults to a slightly transparent background). Updated
+2026-09-21 from `80`.
 
 ## Packages required
 

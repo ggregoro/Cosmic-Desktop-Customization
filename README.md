@@ -13,7 +13,7 @@ profiles, app caches, unrelated app settings) is deliberately left out.
 
 | Rice | Look | Base system | Source |
 |---|---|---|---|
-| [`milky-way`](rices/milky-way/README.md) | Milky Way core wallpaper, squared-off corners, persistent full-width dock, Yaru theme | Pop!_OS 24.04 / Arch Linux | Live snapshot |
+| [`milky-way`](rices/milky-way/README.md) | Milky Way core wallpaper, rounded corners, persistent full-width dock, Yaru theme | Pop!_OS 24.04 / Arch Linux | Live snapshot |
 | [`osaka-jade`](rices/osaka-jade/README.md) | Green/jade neon cityscape wallpaper, jade accent color, floating auto-hide dock, stock COSMIC theme | Fedora Linux 44 (COSMIC Spin) / Arch Linux | Live snapshot |
 | [`onyx`](rices/onyx/README.md) | Pure-black/grey [Onyx](https://github.com/ggregoro/onyx) palette ported from Omarchy, `Dark Street Light` wallpaper | Fedora Linux 44 (COSMIC Spin) / Arch Linux | Hand-derived config, applied live and confirmed rendering correctly — see its README for the one remaining caveat |
 
