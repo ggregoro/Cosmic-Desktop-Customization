@@ -26,11 +26,20 @@ profiles, app caches, unrelated app settings) is deliberately left out.
 Use `./switch-rice.sh <rice-name>` (or `--list` to see available rices).
 It backs up your current config to a timestamped folder under
 `~/.config/cosmic-backups/`, copies the chosen rice's config in, forces dark
-mode, and restarts the panel/background so the change actually shows up
+mode, sets the GTK3 theme (below), and restarts the panel/background so the change actually shows up
 (see "If it doesn't visibly apply" below for why that restart matters). No
 logout is needed — panel, dock, wallpaper, and window border/focus-highlight
 colors (drawn by `cosmic-comp`, which the script doesn't touch) all update
 live.
+
+GTK3 apps (e.g. the AisleRiot Flatpak) ignore COSMIC's dark mode and only
+follow `gsettings` `gtk-theme`, so the script sets that too. A rice can name
+its theme in an optional `rices/<name>/gtk-theme` file (Milky Way uses
+`Yaru`); otherwise it defaults to `adw-gtk3-dark`. If the named theme isn't
+installed, the script warns and falls back to the default instead of
+setting a name GTK can't find (which would silently turn GTK3 apps light).
+Flatpak apps also need the matching theme runtime — the script prints the
+`flatpak install flathub org.gtk.Gtk3theme.<theme>` command if it's missing.
 
 The script never restarts `cosmic-comp` itself — killing it in place would
 crash the whole graphical session the same as a logout would. Earlier
