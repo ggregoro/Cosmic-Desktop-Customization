@@ -18,9 +18,9 @@ profiles, app caches, unrelated app settings) is deliberately left out.
 | [`onyx`](rices/onyx/README.md) | Pure-black/grey [Onyx](https://github.com/ggregoro/onyx) palette ported from Omarchy, `Dark Street Light` wallpaper | Fedora Linux 44 (COSMIC Spin) / Arch Linux | Hand-derived config, applied live and confirmed rendering correctly — see its README for the one remaining caveat |
 | [`glowing-city`](rices/glowing-city/README.md) | onyx's black/grey palette with COSMIC-regenerated shades, blue glowing-city wallpaper | Arch Linux | Live snapshot |
 
-| Milky Way | Osaka Jade | Onyx |
-|---|---|---|
-| ![Milky Way desktop](rices/milky-way/screenshots/final-desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) |
+| Milky Way | Osaka Jade | Onyx | Glowing City |
+|---|---|---|---|
+| ![Milky Way desktop](rices/milky-way/screenshots/final-desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) | ![Glowing City desktop](rices/glowing-city/screenshots/desktop.png) |
 
 ## Switching rices on this machine
 

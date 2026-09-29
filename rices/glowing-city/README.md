@@ -3,6 +3,8 @@
 One of several rices in this repo — see the [top-level README](../../README.md) for
 the full list.
 
+![Desktop](screenshots/desktop.png)
+
 **Live snapshot, 2026-09-29, Arch Linux + COSMIC.** This is what the
 [`onyx`](../onyx/README.md) rice turned into after daily use: the same
 pure-black background and grey (`#8D8D8D`) accent, but with every derived
@@ -13,8 +15,9 @@ osaka-jade's glowing-city wallpaper.
 ## What this rice looks like
 
 **Wallpaper** — `cosmic/com.system76.CosmicBackground/v1/all`, points at
-`~/Pictures/1-glowing-city-blue-h60.jpg`, a blue-tinted copy of
-[`osaka-jade`](../osaka-jade/README.md)'s neon cityscape.
+`~/Pictures/1-glowing-city-blue-h60.jpg`, our own blue-tinted edit of
+[`osaka-jade`](../osaka-jade/README.md)'s green neon cityscape (`1-glowing-city.jpg`),
+made for this rice.
 
 **Theme** — dark mode, pure-black/grey palette from onyx; COSMIC-generated
 hover/pressed/selected shades in `cosmic/com.system76.CosmicTheme.Dark/v2/`.
