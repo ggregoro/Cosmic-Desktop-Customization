@@ -31,7 +31,9 @@ working with no stops or errors straight through the switch.
 ## What this rice looks like
 
 **Wallpaper** — `cosmic/com.system76.CosmicBackground/v1/all`, points at
-`~/Pictures/1-glowing-city.jpg`, a green/jade neon cyberpunk cityscape (Zoom
+`~/Pictures/1-glowing-city.jpg`, a green/jade neon cyberpunk cityscape from
+[Omarchy](https://github.com/omacom/omarchy)'s Osaka Jade theme
+(`themes/osaka-jade/backgrounds/`, MIT-licensed repo) (Zoom
 scaling, Lanczos filtering) — this is the "Osaka Jade" look the rice is named
 for.
 
