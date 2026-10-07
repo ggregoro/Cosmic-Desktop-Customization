@@ -1,22 +1,22 @@
-# This repo tracks COSMIC desktop configs for multiple named "rices"
-# (see rices/<name>/), each a snapshot of ~/.config/cosmic on Greg's
-# Dell E7450 at a point in time. Shell/tool dotfiles (e.g. .tmux.conf)
-# live in GLB (github.com/ggregoro/GLB), not here. Everything else under ~/.config (browser profiles, app
-# caches, unrelated app settings, etc.) is deliberately left untracked.
+# Only the rices, the switcher script and the top-level README are tracked.
+# Each rice's cosmic/ folder holds a subset of ~/.config/cosmic.
 
 # Ignore everything by default
 *
 
-# ...except this file itself, the top-level README, the local rice
-# switcher script, and the rices dir
+# ...except these
 !/.gitignore
 !/README.md
 !/switch-rice.sh
 !/rices/
 !/rices/**
 
-# ...except these personal files inside any rice's cosmic/ snapshot
-# (Files sidebar bookmarks, wallpaper history) rather than part of the
-# actual redesign
+# Personal settings that are not part of a rice's look: Files sidebar
+# bookmarks, wallpaper history, weather location, clock format, keyboard
+# layout and screenshot preferences
 **/cosmic/com.system76.CosmicFiles/v1/favorites
 **/cosmic/com.system76.CosmicSettings.Wallpaper/v1/custom-images
+**/cosmic/com.vintagetechie.CosmicExtAppletTempest/
+**/cosmic/com.system76.CosmicAppletTime/
+**/cosmic/com.system76.CosmicPortal/
+**/cosmic/com.system76.CosmicComp/v1/xkb_config
