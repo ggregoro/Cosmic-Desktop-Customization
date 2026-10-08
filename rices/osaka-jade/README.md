@@ -15,7 +15,7 @@
 - **Terminal:** COSMIC Terminal in JetBrainsMono Nerd Font if it is
   installed.
 
-Tested on Fedora (COSMIC Spin) and Arch Linux. Not tested on Pop!_OS.
+Tested on Pop!_OS, Fedora (COSMIC Spin) and Arch Linux.
 
 ## Extras
 

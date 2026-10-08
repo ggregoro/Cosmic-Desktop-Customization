@@ -9,7 +9,7 @@
 - **Layout:** unchanged. This rice sets colors and wallpaper only, so your
   panel and dock stay as they are.
 
-Tested on Arch Linux. Not tested on Pop!_OS or Fedora.
+Tested on Pop!_OS and Arch Linux. Not tested on Fedora.
 
 ## Extras
 

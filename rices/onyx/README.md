@@ -14,7 +14,7 @@ COSMIC work them out itself, open Settings > Desktop > Appearance after
 applying and pick the accent color once. [`glowing-city`](../glowing-city/README.md)
 is the same palette with COSMIC's own shades.
 
-Tested on Fedora (COSMIC Spin) and Arch Linux. Not tested on Pop!_OS.
+Tested on Pop!_OS, Fedora (COSMIC Spin) and Arch Linux.
 
 ## Extras
 

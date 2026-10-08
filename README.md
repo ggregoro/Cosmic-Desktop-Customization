@@ -25,9 +25,9 @@ desktop, and one script that installs or removes any of them.
 | Rice | Pop!_OS (`apt`) | Arch (`pacman`) | Fedora (`dnf`) |
 |---|---|---|---|
 | `milky-way` | tested | tested | not tested |
-| `osaka-jade` | not tested | tested | tested |
-| `onyx` | not tested | tested | tested |
-| `glowing-city` | not tested | tested | not tested |
+| `osaka-jade` | tested | tested | tested |
+| `onyx` | tested | tested | tested |
+| `glowing-city` | tested | tested | not tested |
 | `violet-tide` | tested | not tested | not tested |
 
 ## Install
