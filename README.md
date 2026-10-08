@@ -13,6 +13,7 @@ desktop, and one script that installs or removes any of them.
 | [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent, top panel plus a floating dock that hides itself | Colors, wallpaper, panel and dock layout |
 | [`onyx`](rices/onyx/README.md) | Pure black with grey accents, dark street wallpaper | Colors and wallpaper only |
 | [`glowing-city`](rices/glowing-city/README.md) | Pure black with grey accents, blue neon city wallpaper | Colors and wallpaper only |
+| [`violet-tide`](rices/violet-tide/README.md) | Dark slate-purple with a pink-lavender accent, purple sunset-over-water wallpaper, square corners, see-through terminal | Colors, corners, wallpaper and terminal opacity |
 
 ## Requirements
 
@@ -27,6 +28,7 @@ desktop, and one script that installs or removes any of them.
 | `osaka-jade` | not tested | tested | tested |
 | `onyx` | not tested | tested | tested |
 | `glowing-city` | not tested | tested | not tested |
+| `violet-tide` | not tested | not tested | not tested |
 
 ## Install
 
@@ -84,6 +86,8 @@ also uses the Yaru theme. The commands are in each rice's own README:
 [`milky-way`](rices/milky-way/README.md#extras),
 [`osaka-jade`](rices/osaka-jade/README.md#extras).
 `onyx` and `glowing-city` need nothing extra.
+[`violet-tide`](rices/violet-tide/README.md#extras) has optional terminal
+colors to import by hand.
 
 ### 4. Apply the rice
 
@@ -103,8 +107,8 @@ The script:
 5. Restarts the panel and the wallpaper so the change shows at once. No
    logout is needed.
 
-Run it again with another name to switch rices. `onyx` and `glowing-city`
-leave the panel and dock as they are, so apply them on top of whichever
+Run it again with another name to switch rices. `onyx`, `glowing-city` and
+`violet-tide` leave the panel and dock as they are, so apply them on top of whichever
 layout you want to keep.
 
 ## Uninstall
@@ -157,3 +161,5 @@ in place.
   [Omarchy](https://github.com/omacom/omarchy) (MIT License).
 - `onyx`: from the [Onyx](https://github.com/ggregoro/onyx) theme.
 - `glowing-city`: a blue-tinted edit of the `osaka-jade` wallpaper.
+- `violet-tide`: four photos from Unsplash (Unsplash License), by Engin
+  Yapici, Artiom Vallat, Loris Boulinguez and Vishnu K R.
