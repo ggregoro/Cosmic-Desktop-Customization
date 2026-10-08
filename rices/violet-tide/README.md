@@ -20,8 +20,8 @@ The color shades were worked out by script from the palette, not
 produced by COSMIC. To have COSMIC work them out itself, open Settings >
 Desktop > Appearance after applying and pick the accent color once.
 
-Tested on Pop!_OS, including the terminal colors import. Not tested on
-Arch Linux or Fedora.
+Tested on Pop!_OS, Arch Linux and Fedora. The terminal colors import
+was tried on Pop!_OS only.
 
 COSMIC Terminal at 60% opacity, with the accent color on the window
 border:

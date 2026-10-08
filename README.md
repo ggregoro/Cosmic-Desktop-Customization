@@ -28,7 +28,7 @@ desktop, and one script that installs or removes any of them.
 | `osaka-jade` | tested | tested | tested |
 | `onyx` | tested | tested | tested |
 | `glowing-city` | tested | tested | not tested |
-| `violet-tide` | tested | not tested | not tested |
+| `violet-tide` | tested | tested | tested |
 
 ## Install
 
