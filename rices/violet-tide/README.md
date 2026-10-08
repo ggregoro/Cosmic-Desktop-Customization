@@ -1,5 +1,7 @@
 # Violet Tide
 
+![Desktop](screenshots/desktop.png)
+
 - **Wallpaper:** a purple and blue sunset over rippled water, with three
   more sea-and-sky wallpapers copied to `~/Pictures` for switching to
   later (a dark purple dusk, islands at twilight, pink and purple surf).
@@ -18,7 +20,18 @@ The color shades were worked out by script from the palette, not
 produced by COSMIC. To have COSMIC work them out itself, open Settings >
 Desktop > Appearance after applying and pick the accent color once.
 
-Not yet tested on Arch Linux, Fedora or Pop!_OS.
+Tested on Pop!_OS, including the terminal colors import. Not tested on
+Arch Linux or Fedora.
+
+COSMIC Terminal at 60% opacity, with the accent color on the window
+border:
+
+![COSMIC Terminal](screenshots/terminal.png)
+
+Tiled windows (Ghostty and Neovim here, which keep their own colors and
+opacity):
+
+![Tiled windows](screenshots/tiled.png)
 
 The wallpapers are photos from [Unsplash](https://unsplash.com/), used
 under the Unsplash License and cropped to 16:9: by Engin Yapici, Artiom

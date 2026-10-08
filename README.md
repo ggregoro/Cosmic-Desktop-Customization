@@ -3,9 +3,9 @@
 Five ready-made looks ("rices") for the [COSMIC](https://system76.com/cosmic)
 desktop, and one script that installs or removes any of them.
 
-| Milky Way | Osaka Jade | Onyx | Glowing City |
-|---|---|---|---|
-| ![Milky Way desktop](rices/milky-way/screenshots/desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) | ![Glowing City desktop](rices/glowing-city/screenshots/desktop.png) |
+| Milky Way | Osaka Jade | Onyx | Glowing City | Violet Tide |
+|---|---|---|---|---|
+| ![Milky Way desktop](rices/milky-way/screenshots/desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) | ![Glowing City desktop](rices/glowing-city/screenshots/desktop.png) | ![Violet Tide desktop](rices/violet-tide/screenshots/desktop.png) |
 
 | Rice | Look | Changes |
 |---|---|---|
@@ -28,7 +28,7 @@ desktop, and one script that installs or removes any of them.
 | `osaka-jade` | not tested | tested | tested |
 | `onyx` | not tested | tested | tested |
 | `glowing-city` | not tested | tested | not tested |
-| `violet-tide` | not tested | not tested | not tested |
+| `violet-tide` | tested | not tested | not tested |
 
 ## Install
 
