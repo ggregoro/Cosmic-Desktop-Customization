@@ -1,6 +1,6 @@
 # Cosmic Desktop Customization
 
-Four ready-made looks ("rices") for the [COSMIC](https://system76.com/cosmic)
+Five ready-made looks ("rices") for the [COSMIC](https://system76.com/cosmic)
 desktop, and one script that installs or removes any of them.
 
 | Milky Way | Osaka Jade | Onyx | Glowing City |
