@@ -8,6 +8,8 @@ Usage: ./rice-picker.py             open the picker
 
 Pick a rice on the left to see it large on the right; Apply (or Enter,
 or a double-click) runs switch-rice.sh, and Undo runs its --restore.
+The Layout menu picks a panel layout to apply with the rice; "Keep mine"
+leaves the panel and dock alone. The choice is remembered.
 """
 
 import os
@@ -18,6 +20,10 @@ from pathlib import Path
 
 REPO_DIR = Path(__file__).resolve().parent
 RICES_DIR = REPO_DIR / "rices"
+LAYOUTS_DIR = REPO_DIR / "layouts"
+# Menu order; any other layout folder is listed after these.
+LAYOUT_ORDER = ["top-bar-dock", "floating-dock", "one-dock"]
+LAYOUT_FILE = Path.home() / ".config/rice-picker/layout"
 SWITCH = REPO_DIR / "switch-rice.sh"
 CURRENT_FILE = Path.home() / ".config/cosmic-backups/current-rice"
 BIN_LINK = Path.home() / ".local/bin/rice-picker"
@@ -78,14 +84,48 @@ def read_rices():
         if not (d / "cosmic").is_dir():
             continue
         look, changes = table.get(d.name, ("", ""))
+        try:
+            layout = (d / "layout").read_text().strip()
+        except OSError:
+            layout = ""
         rices.append({
             "name": d.name,
             "title": d.name.replace("-", " ").title(),
             "shot": d / "screenshots" / "desktop.png",
             "look": look,
             "changes": changes,
+            "layout": layout,
         })
     return rices
+
+
+def read_layouts():
+    """(folder name, title) for each panel layout, in menu order."""
+    found = {}
+    if LAYOUTS_DIR.is_dir():
+        for d in LAYOUTS_DIR.iterdir():
+            if (d / "cosmic").is_dir():
+                try:
+                    found[d.name] = (d / "title").read_text().strip()
+                except OSError:
+                    found[d.name] = d.name
+    order = [n for n in LAYOUT_ORDER if n in found] + sorted(n for n in found if n not in LAYOUT_ORDER)
+    return [(n, found[n]) for n in order]
+
+
+def saved_layout():
+    try:
+        return LAYOUT_FILE.read_text().strip()
+    except OSError:
+        return ""
+
+
+def save_layout(name):
+    try:
+        LAYOUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+        LAYOUT_FILE.write_text(name + "\n")
+    except OSError:
+        pass
 
 
 def current_rice():
@@ -133,6 +173,7 @@ def run_app():
             super().__init__(application=app, title="Rice Picker")
             self.set_default_size(1100, 640)
             self.rices = read_rices()
+            self.layouts = read_layouts()
             self.busy = False
 
             keys = Gtk.EventControllerKey()
@@ -185,6 +226,21 @@ def run_app():
             self.changes.add_css_class("dim-label")
             self.status = Gtk.Label(xalign=0, wrap=True, selectable=True)
 
+            # Panel layout to apply with the rice; "Keep mine" first.
+            layout_row = Gtk.Box(spacing=8)
+            layout_row.append(Gtk.Label(label="Layout:"))
+            self.layout_menu = Gtk.DropDown.new_from_strings(
+                ["Keep mine"] + [t for _, t in self.layouts])
+            names = [n for n, _ in self.layouts]
+            keep = saved_layout()
+            if keep in names:
+                self.layout_menu.set_selected(names.index(keep) + 1)
+            self.layout_menu.connect("notify::selected", lambda *_: save_layout(self.layout_name() or "keep"))
+            self.layout_hint = Gtk.Label(xalign=0)
+            self.layout_hint.add_css_class("dim-label")
+            layout_row.append(self.layout_menu)
+            layout_row.append(self.layout_hint)
+
             buttons = Gtk.Box(spacing=8)
             self.apply_btn = Gtk.Button(label="Apply")
             self.apply_btn.add_css_class("suggested-action")
@@ -202,7 +258,7 @@ def run_app():
             status_scroll.set_min_content_height(70)
             status_scroll.set_max_content_height(110)
             status_scroll.set_propagate_natural_height(True)
-            for w in (self.preview, self.title, self.look, self.changes, buttons, status_scroll):
+            for w in (self.preview, self.title, self.look, self.changes, layout_row, buttons, status_scroll):
                 side.append(w)
             paned.set_end_child(side)
             paned.set_shrink_end_child(False)
@@ -217,6 +273,10 @@ def run_app():
                 # Focus the card once the window is up, so the arrow keys
                 # move between rices straight away.
                 self.connect("map", lambda *_: GLib.idle_add(lambda: first.grab_focus() and False))
+
+        def layout_name(self):
+            i = self.layout_menu.get_selected()
+            return self.layouts[i - 1][0] if 0 < i <= len(self.layouts) else ""
 
         def selected(self):
             kids = self.flow.get_selected_children()
@@ -240,9 +300,10 @@ def run_app():
             self.title.set_markup(f"<big><b>{esc(r['title'])}</b></big>")
             self.look.set_text(r["look"])
             note = r["changes"]
-            if "panel" in note.lower():
-                note += ". The applets on your panel and dock stay as they are."
             self.changes.set_text(f"Changes: {note}" if note else "")
+            titles = dict(self.layouts)
+            hint = titles.get(r["layout"], "")
+            self.layout_hint.set_text(f"(suggested: {hint})" if hint else "")
 
         def on_key(self, _ctrl, keyval, _code, _state):
             if keyval == Gdk.KEY_Escape:
@@ -285,7 +346,12 @@ def run_app():
         def apply(self):
             r = self.selected()
             if r:
-                self.run_switch([r["name"]], f"{r['title']} applied.")
+                layout = self.layout_name()
+                args = [r["name"]] + (["--layout", layout] if layout else [])
+                done = f"{r['title']} applied"
+                if layout:
+                    done += f" with the {dict(self.layouts)[layout]} layout"
+                self.run_switch(args, done + ".")
 
         def undo(self):
             self.run_switch(["--restore"], "Went back to the settings from before the last switch.")

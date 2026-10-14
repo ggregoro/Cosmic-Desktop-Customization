@@ -9,8 +9,8 @@ desktop, and one script that installs or removes any of them.
 
 | Rice | Look | Changes |
 |---|---|---|
-| [`milky-way`](rices/milky-way/README.md) | Milky Way wallpaper, blue accent, a half-transparent dock across the full width, Yaru theme and icons | Colors, wallpaper, panel and dock look |
-| [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent, slim top panel plus a floating dock that hides itself | Colors, wallpaper, panel and dock look |
+| [`milky-way`](rices/milky-way/README.md) | Milky Way wallpaper, blue accent, Yaru theme and icons; made for the One dock layout | Colors, wallpaper, theme and icons |
+| [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent; made for the Floating dock layout | Colors and wallpaper |
 | [`onyx`](rices/onyx/README.md) | Pure black with grey accents, dark street wallpaper | Colors and wallpaper only |
 | [`glowing-city`](rices/glowing-city/README.md) | Pure black with grey accents, blue neon city wallpaper | Colors and wallpaper only |
 | [`violet-tide`](rices/violet-tide/README.md) | Dark slate-purple with a pink-lavender accent, purple sunset-over-water wallpaper, square corners, see-through terminal | Colors, corners, wallpaper and terminal opacity |
@@ -83,11 +83,8 @@ flatpak install flathub org.gtk.Gtk3theme.adw-gtk3-dark
 
 ### 3. Install the extras your rice needs
 
-`milky-way` also uses the Yaru theme, and `milky-way` and `osaka-jade`
-suggest three optional panel applets. The commands are in each rice's own README:
-[`milky-way`](rices/milky-way/README.md#extras),
-[`osaka-jade`](rices/osaka-jade/README.md#extras).
-`onyx` and `glowing-city` need nothing extra.
+`milky-way` uses the Yaru theme ([commands](rices/milky-way/README.md#extras)).
+`osaka-jade`, `onyx` and `glowing-city` need nothing extra.
 [`violet-tide`](rices/violet-tide/README.md#extras) and
 [`downtown`](rices/downtown/README.md#extras) have optional terminal
 colors to import by hand.
@@ -112,10 +109,44 @@ The script:
    (such as the accent color, corners or icons) may only show after
    logging out and back in.
 
-Run it again with another name to switch rices. No rice changes which
-applets are on your panel and dock. `milky-way` and `osaka-jade` change how
-the panel and dock look (size, transparency, corners, hiding); the other
-four leave them as they are.
+Run it again with another name to switch rices. A rice never touches your
+panel, dock, applets or pinned apps; for those, see Panel layouts below.
+
+## Panel layouts (optional)
+
+Any rice can be combined with a panel layout. Without one, your panel and
+dock stay exactly as they are.
+
+| Layout | What you get |
+|---|---|
+| `top-bar-dock` | Top bar + dock: a thin top bar and COSMIC's usual dock at the bottom (75% opacity) |
+| `floating-dock` | Floating dock: the same top bar, and a see-through dock that floats and hides when a window overlaps it (made for `osaka-jade`) |
+| `one-dock` | One dock: no top bar; one half-transparent dock across the full width holds everything (made for `milky-way`) |
+
+Every layout puts the applets in the same order: workspaces and clipboard
+on the left, the clock and calendar in the middle, and weather, tray,
+tiling, sound, Bluetooth, network, battery, notifications and power on the
+right. On the docks the launcher and your pinned apps follow the clipboard
+(One dock) or sit in the middle of the dock (the other two). Your pinned
+apps themselves are never changed.
+
+```bash
+./switch-rice.sh milky-way --layout one-dock   # rice and layout together
+./switch-rice.sh --layout top-bar-dock         # layout only
+./switch-rice.sh --restore                     # undo either
+```
+
+A layout replaces the applets on your panel and dock, so `--restore` is the
+way back to your own. The clipboard and weather applets come from Flathub;
+any that are not installed are simply left out:
+
+```bash
+flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install --user flathub io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
+flatpak install --user flathub com.vintagetechie.CosmicExtAppletTempest
+```
+
+On Arch, install Flatpak first with `sudo pacman -S flatpak`.
 
 ## Uninstall
 
@@ -143,9 +174,14 @@ removal commands are in each rice's README.
 
 A window for choosing a rice, like Omarchy's theme menu: the rices are
 shown as cards with a screenshot; pick one to see it large with what it
-changes, then Apply. "Undo last switch" goes back to the settings from
-before the last switch (`./switch-rice.sh --restore`). Keys: arrows to
-move, Enter to apply, Esc to close.
+changes, then Apply (or Enter, or a double-click; a single click only
+shows it). The Layout menu next to Apply picks a
+[panel layout](#panel-layouts-optional) to apply with the rice; it starts
+on "Keep mine", which leaves your panel and dock alone, remembers your
+last choice, and shows the layout each rice was made for. "Undo last
+switch" goes back to the settings from before the last switch
+(`./switch-rice.sh --restore`). Keys: arrows to move, Enter to apply, Esc
+to close.
 
 It needs GTK 4 for Python:
 
@@ -173,7 +209,7 @@ repo where it is (or run `--install` again after moving it). The
 screenshots are previews: on Pop!_OS and Fedora some parts only show
 after logging out and back in, and the picker reminds you.
 
-Tried so far only outside COSMIC; not yet tested on a COSMIC desktop.
+Tested on Arch Linux (COSMIC); the Layout menu not yet.
 
 ## Omarchy-style keys (optional)
 
@@ -223,9 +259,9 @@ clears a saved window border color so the border follows the accent;
 log out and back in for it to show. `--restore` brings your old border
 color back.
 
-**A panel applet is missing.** If you used a rice's original panel
-layout (see its README), it lists an applet that is not installed. Install
-it (see the rice's README) and restart the panel as above.
+**A panel applet is missing.** The panel layout lists an applet that is
+not installed. Install it (see [Panel layouts](#panel-layouts-optional))
+and restart the panel as above.
 
 **Do not delete or move `~/.config/cosmic` while COSMIC is running.** COSMIC
 rewrites the folder as you remove it and the result is a mix of old and

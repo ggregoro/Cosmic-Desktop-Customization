@@ -3,7 +3,11 @@
 # desktop, or undo the last one applied.
 #
 # Usage: ./switch-rice.sh <rice-name>   apply a rice
-#        ./switch-rice.sh --list        list the rices
+#        ./switch-rice.sh <rice-name> --layout <layout>
+#                                       apply a rice and a panel layout
+#        ./switch-rice.sh --layout <layout>
+#                                       change only the panel layout
+#        ./switch-rice.sh --list        list the rices and layouts
 #        ./switch-rice.sh --restore     undo the most recent switch
 #        ./switch-rice.sh --restore <backup-folder-name>
 
@@ -11,6 +15,7 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RICES_DIR="$REPO_DIR/rices"
+LAYOUTS_DIR="$REPO_DIR/layouts"
 COSMIC_DIR="$HOME/.config/cosmic"
 BACKUPS_DIR="$HOME/.config/cosmic-backups"
 WALLPAPER_DIR="$HOME/Pictures"
@@ -23,13 +28,19 @@ CURRENT_FILE="$BACKUPS_DIR/current-rice"
 KEEP_BACKUPS=10
 
 usage() {
-    echo "Usage: $0 <rice-name>"
+    echo "Usage: $0 <rice-name> [--layout <layout>]"
+    echo "       $0 --layout <layout>"
     echo "       $0 --list"
     echo "       $0 --restore [backup-folder-name]"
     echo
     echo "Available rices:"
     for d in "$RICES_DIR"/*/; do
         echo "  - $(basename "$d")"
+    done
+    echo
+    echo "Panel layouts (without --layout, your panel and dock are left as they are):"
+    for d in "$LAYOUTS_DIR"/*/; do
+        echo "  - $(basename "$d")  ($(cat "$d/title"))"
     done
 }
 
@@ -130,12 +141,30 @@ case "$1" in
     --restore) restore "${2:-}"; exit 0 ;;
 esac
 
-RICE="$1"
+RICE=""
+LAYOUT=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --layout)
+            [[ -n "${2:-}" ]] || { usage; exit 1; }
+            LAYOUT="$2"; shift 2 ;;
+        -*) usage; exit 1 ;;
+        *)  [[ -z "$RICE" ]] || { usage; exit 1; }
+            RICE="$1"; shift ;;
+    esac
+done
+
 RICE_DIR="$RICES_DIR/$RICE"
 RICE_COSMIC_DIR="$RICE_DIR/cosmic"
+LAYOUT_COSMIC_DIR="$LAYOUTS_DIR/$LAYOUT/cosmic"
 
-if [[ ! -d "$RICE_COSMIC_DIR" ]]; then
+if [[ -n "$RICE" && ! -d "$RICE_COSMIC_DIR" ]]; then
     echo "error: no rice named '$RICE' (looked for $RICE_COSMIC_DIR)" >&2
+    usage
+    exit 1
+fi
+if [[ -n "$LAYOUT" && ! -d "$LAYOUT_COSMIC_DIR" ]]; then
+    echo "error: no layout named '$LAYOUT' (looked for $LAYOUT_COSMIC_DIR)" >&2
     usage
     exit 1
 fi
@@ -149,12 +178,29 @@ echo "Backing up current config to $BACKUP_DIR ..."
 mkdir -p "$BACKUP_DIR/cosmic" "$COSMIC_DIR"
 cp -r "$COSMIC_DIR/." "$BACKUP_DIR/cosmic/"
 [[ -f "$CURRENT_FILE" ]] && cp "$CURRENT_FILE" "$BACKUP_DIR/previous-rice"
-(cd "$RICE_COSMIC_DIR" && find . -type f | sed 's|^\./||') > "$BACKUP_DIR/applied-files"
-echo "com.system76.CosmicTheme.Mode/v1/is_dark" >> "$BACKUP_DIR/applied-files"
+: > "$BACKUP_DIR/applied-files"
+for d in ${RICE:+"$RICE_COSMIC_DIR"} ${LAYOUT:+"$LAYOUT_COSMIC_DIR"}; do
+    (cd "$d" && find . -type f | sed 's|^\./||') >> "$BACKUP_DIR/applied-files"
+done
+[[ -z "$RICE" ]] || echo "com.system76.CosmicTheme.Mode/v1/is_dark" >> "$BACKUP_DIR/applied-files"
 if have gsettings; then
     for key in "${GSETTINGS_KEYS[@]}"; do
         echo "$key=$(gsettings get "$GSETTINGS_SCHEMA" "$key" 2>/dev/null || true)"
     done > "$BACKUP_DIR/gsettings"
+fi
+
+apply_layout() {
+    echo "Applying panel layout '$LAYOUT' ..."
+    cp -r "$LAYOUT_COSMIC_DIR/." "$COSMIC_DIR/"
+}
+
+if [[ -z "$RICE" ]]; then
+    apply_layout
+    restart_cosmic
+    prune_backups
+    echo "Done. Panel layout '$LAYOUT' applied."
+    echo "To undo it: $0 --restore"
+    exit 0
 fi
 
 # The wallpaper ships with the rice. Copy it to ~/Pictures unless a file
@@ -232,11 +278,13 @@ if [[ -f "$RICE_DIR/icon-theme" ]]; then
     fi
 fi
 
+[[ -z "$LAYOUT" ]] || apply_layout
+
 echo "$RICE" > "$CURRENT_FILE"
 
 restart_cosmic
 prune_backups
 
-echo "Done. Rice '$RICE' applied."
+echo "Done. Rice '$RICE' applied${LAYOUT:+ with panel layout '$LAYOUT'}."
 echo "To undo it: $0 --restore"
 echo "If the panel or wallpaper still look wrong, log out and back in."
