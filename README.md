@@ -157,10 +157,12 @@ change: `Super+T`, `Super+B` and `Super+F` still work as before.
 ./omarchy-keys.sh --remove    # take them away again
 ```
 
-COSMIC keeps all of your own shortcuts in one file, so the script only
-adds these if you have no custom shortcuts yet; otherwise it changes
-nothing and tells you. The rice switch and `--restore` do not touch
-them. If a key does nothing at first, log out and back in.
+Any shortcuts you set yourself are kept. If you already use one of
+these four keys for something else, the script changes nothing and
+tells you. `--remove` puts your shortcuts file back as it was, unless
+you changed shortcuts in Settings since; then remove the four keys
+there by hand. The rice switch and its `--restore` do not touch these
+keys. If a key does nothing at first, log out and back in.
 
 Not yet tested on a COSMIC desktop.
 

@@ -1,0 +1,6 @@
+{
+    (modifiers: [Super], key: "Return"): System(Terminal),
+    (modifiers: [Super, Shift], key: "Return"): System(WebBrowser),
+    (modifiers: [Super, Shift], key: "b"): System(WebBrowser),
+    (modifiers: [Super, Shift], key: "f"): System(HomeFolder),
+}
