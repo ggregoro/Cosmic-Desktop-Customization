@@ -11,9 +11,12 @@
   (`#FF3D6E`). The palette comes from the
   [Downtown](https://github.com/ggregoro/downtown) Omarchy theme.
 - **Corners:** square, on windows and controls.
+- **Icons:** Yaru in its purple, dark-mode version (`Yaru-purple-dark`),
+  so folders match the lavender accent. Needs Yaru installed (see
+  below); without it your icons stay as they are.
 - **Terminal:** COSMIC Terminal at 90% opacity.
-- **Layout:** unchanged. This rice sets colors, corners, wallpaper and
-  terminal opacity only, so your panel and dock stay as they are.
+- **Layout:** unchanged. This rice sets colors, corners, wallpaper, icons
+  and terminal opacity only, so your panel and dock stay as they are.
 
 The color shades were worked out by script from the palette, not
 produced by COSMIC. To have COSMIC work them out itself, open Settings >
@@ -27,7 +30,7 @@ yet.
 The wallpaper is busy along the bottom edge, so dock icons can be hard
 to see over it. The rice leaves the dock alone, but raising the dock's
 opacity helps: the screenshot above uses 75%, set in Settings >
-Desktop > Appearance.
+Desktop > Dock > Background opacity.
 
 The wallpaper was found on WallpaperSafari; its artist is unknown. If it
 is yours, open an issue and it will be credited or removed, as you
@@ -43,7 +46,20 @@ Terminal, choose View > Color schemes > Import, and pick
 
 ## Install
 
-From the repo folder (see the [main README](../../README.md#install) for the
+**Yaru icons** (for the purple folders):
+
+```bash
+# Pop!_OS
+sudo apt install yaru-theme-icon
+
+# Arch (from the AUR, so an AUR helper such as yay is needed)
+yay -S yaru-icon-theme
+
+# Fedora
+sudo dnf install yaru-icon-theme
+```
+
+Then, from the repo folder (see the [main README](../../README.md#install) for the
 full steps):
 
 ```bash

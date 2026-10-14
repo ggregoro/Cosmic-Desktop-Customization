@@ -106,7 +106,7 @@ The script:
 2. Copies the rice's wallpaper to `~/Pictures`.
 3. Copies the rice's settings into `~/.config/cosmic`.
 4. Turns on dark mode and sets the GTK theme (and the icon theme, for
-   `milky-way`).
+   `milky-way` and `downtown`).
 5. Restarts the panel and the wallpaper so the change shows at once. No
    logout is needed.
 

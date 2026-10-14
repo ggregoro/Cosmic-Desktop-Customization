@@ -179,18 +179,26 @@ if have gsettings; then
         echo "  flatpak install flathub org.gtk.Gtk3theme.$GTK_THEME_NAME" >&2
     fi
 
-    # Optional icon theme, named in rices/<name>/icon-theme.
-    if [[ -f "$RICE_DIR/icon-theme" ]]; then
-        ICON_THEME_NAME="$(tr -d '[:space:]' < "$RICE_DIR/icon-theme")"
-        if theme_installed "$ICON_THEME_NAME" icon; then
-            echo "Setting icon theme to '$ICON_THEME_NAME' ..."
-            gsettings set "$GSETTINGS_SCHEMA" icon-theme "$ICON_THEME_NAME" || true
-        else
-            echo "warning: icon theme '$ICON_THEME_NAME' isn't installed; leaving icon-theme unchanged" >&2
-        fi
-    fi
 else
-    echo "warning: gsettings not found; skipping the GTK dark mode, theme and icon settings" >&2
+    echo "warning: gsettings not found; skipping the GTK dark mode and theme settings" >&2
+fi
+
+# Optional icon theme, named in rices/<name>/icon-theme. COSMIC apps read
+# it from CosmicTk, GTK apps from gsettings. Only set a theme that is
+# installed: an unknown name leaves COSMIC with missing icons.
+if [[ -f "$RICE_DIR/icon-theme" ]]; then
+    ICON_THEME_NAME="$(tr -d '[:space:]' < "$RICE_DIR/icon-theme")"
+    if theme_installed "$ICON_THEME_NAME" icon; then
+        echo "Setting icon theme to '$ICON_THEME_NAME' ..."
+        mkdir -p "$COSMIC_DIR/com.system76.CosmicTk/v1"
+        echo "\"$ICON_THEME_NAME\"" > "$COSMIC_DIR/com.system76.CosmicTk/v1/icon_theme"
+        echo "com.system76.CosmicTk/v1/icon_theme" >> "$BACKUP_DIR/applied-files"
+        if have gsettings; then
+            gsettings set "$GSETTINGS_SCHEMA" icon-theme "$ICON_THEME_NAME" || true
+        fi
+    else
+        echo "warning: icon theme '$ICON_THEME_NAME' isn't installed; leaving the icon theme unchanged" >&2
+    fi
 fi
 
 restart_cosmic
