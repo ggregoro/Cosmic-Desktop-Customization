@@ -24,7 +24,7 @@ Tested on Pop!_OS. The terminal colors import has not been tried yet.
 The wallpaper is busy along the bottom edge, so dock icons can be hard
 to see over it. The rice leaves the dock alone, but raising the dock's
 opacity helps: the screenshot above uses 75%, set in Settings >
-Desktop > Dock.
+Desktop > Appearance.
 
 The wallpaper was found on WallpaperSafari; its artist is unknown. If it
 is yours, open an issue and it will be credited or removed, as you
