@@ -6,6 +6,8 @@
 #   Super+Shift+Return   web browser
 #   Super+Shift+B        web browser
 #   Super+Shift+F        file manager
+#   Super+Shift+Ctrl+Space   rice picker (Omarchy's theme menu key; needs
+#                            ./rice-picker.py --install first)
 #
 # Usage: ./omarchy-keys.sh --apply    add the shortcuts
 #        ./omarchy-keys.sh --remove   take them away again
@@ -29,8 +31,9 @@ KEY_PATTERNS=(
     'modifiers:[Super,Shift],key:"Return"'
     'modifiers:[Super,Shift],key:"b"'
     'modifiers:[Super,Shift],key:"f"'
+    'modifiers:[Super,Ctrl,Shift],key:"space"'
 )
-KEY_NAMES=(Super+Return Super+Shift+Return Super+Shift+B Super+Shift+F)
+KEY_NAMES=(Super+Return Super+Shift+Return Super+Shift+B Super+Shift+F Super+Shift+Ctrl+Space)
 
 usage() {
     echo "Usage: $0 --apply"
@@ -49,10 +52,29 @@ no_custom_shortcuts() {
     [[ -z "$(tr -d '[:space:]{}' < "$CUSTOM_FILE")" ]]
 }
 
+# Put the file back as it was before --apply.
+put_back() {
+    if [[ -f "$NONE_MARK" ]]; then
+        rm -f "$CUSTOM_FILE"
+    else
+        cp "$BEFORE_FILE" "$CUSTOM_FILE"
+    fi
+}
+
 apply() {
     if [[ -f "$AFTER_FILE" ]] && cmp -s "$AFTER_FILE" "$CUSTOM_FILE"; then
-        echo "The Omarchy-style shortcuts are already on. Nothing to do."
-        return
+        local p missing=0
+        for p in "${KEY_PATTERNS[@]}"; do
+            [[ "$(squash "$CUSTOM_FILE")" == *"$p"* ]] || missing=1
+        done
+        if (( ! missing )); then
+            echo "The Omarchy-style shortcuts are already on. Nothing to do."
+            return
+        fi
+        # An older set from this script is on; take it off, then add the
+        # current set below.
+        echo "Updating the Omarchy-style shortcuts to the current set ..."
+        put_back
     fi
 
     local squashed i clash=()
@@ -98,7 +120,8 @@ apply() {
     cp "$CUSTOM_FILE" "$AFTER_FILE"
 
     echo "Added: Super+Return (terminal), Super+Shift+Return and"
-    echo "Super+Shift+B (browser), Super+Shift+F (file manager)."
+    echo "Super+Shift+B (browser), Super+Shift+F (file manager),"
+    echo "Super+Shift+Ctrl+Space (rice picker, once ./rice-picker.py --install has run)."
     echo "Your own shortcuts are kept. If a key does nothing yet, log out"
     echo "and back in."
 }
@@ -114,15 +137,11 @@ remove() {
     if ! cmp -s "$AFTER_FILE" "$CUSTOM_FILE"; then
         echo "error: your shortcuts have changed since these were added" >&2
         echo "(perhaps in Settings), so they were left alone. Remove the" >&2
-        echo "four keys by hand in COSMIC's Settings, under the keyboard" >&2
+        echo "keys by hand in COSMIC's Settings, under the keyboard" >&2
         echo "shortcuts' custom section." >&2
         exit 1
     fi
-    if [[ -f "$NONE_MARK" ]]; then
-        rm -f "$CUSTOM_FILE"
-    else
-        cp "$BEFORE_FILE" "$CUSTOM_FILE"
-    fi
+    put_back
     rm -rf "$STATE_DIR"
     echo "Removed the Omarchy-style shortcuts. Your own shortcuts and"
     echo "COSMIC's keys are as they were. If a key still works, log out"

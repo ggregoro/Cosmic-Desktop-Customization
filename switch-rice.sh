@@ -16,6 +16,11 @@ BACKUPS_DIR="$HOME/.config/cosmic-backups"
 WALLPAPER_DIR="$HOME/Pictures"
 GSETTINGS_SCHEMA="org.gnome.desktop.interface"
 GSETTINGS_KEYS=(color-scheme gtk-theme icon-theme)
+# Name of the rice now applied, for the rice picker.
+CURRENT_FILE="$BACKUPS_DIR/current-rice"
+# Backups kept besides the oldest one, which holds your settings from
+# before the first rice and is never removed.
+KEEP_BACKUPS=10
 
 usage() {
     echo "Usage: $0 <rice-name>"
@@ -39,6 +44,25 @@ restart_cosmic() {
     sleep 2
 }
 
+# Backup folders only (named by date and time), oldest first. Other
+# folders under cosmic-backups, such as omarchy-keys, are not backups.
+list_backups() {
+    find "$BACKUPS_DIR" -mindepth 1 -maxdepth 1 -type d \
+        -name '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]' \
+        2>/dev/null | sort
+}
+
+# Keep the oldest backup and the newest $KEEP_BACKUPS; remove the rest.
+prune_backups() {
+    local all=() i
+    mapfile -t all < <(list_backups)
+    (( ${#all[@]} > KEEP_BACKUPS + 1 )) || return 0
+    for (( i = 1; i < ${#all[@]} - KEEP_BACKUPS; i++ )); do
+        rm -rf -- "${all[$i]}"
+    done
+    echo "Removed $(( ${#all[@]} - KEEP_BACKUPS - 1 )) old backup(s); kept the first one and the newest $KEEP_BACKUPS."
+}
+
 theme_installed() {
     # $1 = theme name, $2 = "gtk" or "icon"
     local d
@@ -59,7 +83,7 @@ restore() {
     if [[ -n "${1:-}" ]]; then
         backup="$BACKUPS_DIR/$1"
     else
-        backup="$(find "$BACKUPS_DIR" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort | tail -n 1)"
+        backup="$(list_backups | tail -n 1)"
     fi
     if [[ -z "$backup" || ! -d "$backup/cosmic" ]]; then
         echo "error: no backup to restore (looked in $BACKUPS_DIR)" >&2
@@ -83,6 +107,12 @@ restore() {
             [[ -n "$value" ]] || continue
             gsettings set "$GSETTINGS_SCHEMA" "$key" "$value" || true
         done < "$backup/gsettings"
+    fi
+
+    if [[ -s "$backup/previous-rice" ]]; then
+        cp "$backup/previous-rice" "$CURRENT_FILE"
+    else
+        rm -f "$CURRENT_FILE"
     fi
 
     restart_cosmic
@@ -118,6 +148,7 @@ BACKUP_DIR="$BACKUPS_DIR/$(date +%Y%m%d-%H%M%S)"
 echo "Backing up current config to $BACKUP_DIR ..."
 mkdir -p "$BACKUP_DIR/cosmic" "$COSMIC_DIR"
 cp -r "$COSMIC_DIR/." "$BACKUP_DIR/cosmic/"
+[[ -f "$CURRENT_FILE" ]] && cp "$CURRENT_FILE" "$BACKUP_DIR/previous-rice"
 (cd "$RICE_COSMIC_DIR" && find . -type f | sed 's|^\./||') > "$BACKUP_DIR/applied-files"
 echo "com.system76.CosmicTheme.Mode/v1/is_dark" >> "$BACKUP_DIR/applied-files"
 if have gsettings; then
@@ -201,7 +232,10 @@ if [[ -f "$RICE_DIR/icon-theme" ]]; then
     fi
 fi
 
+echo "$RICE" > "$CURRENT_FILE"
+
 restart_cosmic
+prune_backups
 
 echo "Done. Rice '$RICE' applied."
 echo "To undo it: $0 --restore"

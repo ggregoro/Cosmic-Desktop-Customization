@@ -1,5 +1,5 @@
-# Only the rices, the switcher script, the optional keys and the top-level
-# README are tracked.
+# Only the rices, the switcher script, the rice picker, the optional keys
+# and the top-level README are tracked.
 # Each rice's cosmic/ folder holds a subset of ~/.config/cosmic.
 
 # Ignore everything by default
@@ -10,6 +10,7 @@
 !/README.md
 !/switch-rice.sh
 !/omarchy-keys.sh
+!/rice-picker.py
 !/keys/
 !/keys/**
 !/rices/

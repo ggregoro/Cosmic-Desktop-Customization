@@ -3,4 +3,5 @@
     (modifiers: [Super, Shift], key: "Return"): System(WebBrowser),
     (modifiers: [Super, Shift], key: "b"): System(WebBrowser),
     (modifiers: [Super, Shift], key: "f"): System(HomeFolder),
+    (modifiers: [Super, Ctrl, Shift], key: "space"): Spawn("$HOME/.local/bin/rice-picker"),
 }

@@ -124,8 +124,9 @@ Put back the settings you had before the last switch:
 ./switch-rice.sh --restore
 ```
 
-Each switch makes its own backup. To go back further, name the backup
-folder (the oldest one holds your settings from before the first rice):
+Each switch makes its own backup. The script keeps the oldest one, which
+holds your settings from before the first rice, and the newest 10; older
+ones in between are removed. To go back further, name the backup folder:
 
 ```bash
 ls ~/.config/cosmic-backups
@@ -136,6 +137,42 @@ The restore puts back your COSMIC settings, dark-mode setting, GTK theme and
 icon theme. It leaves the wallpaper images in `~/Pictures` and any packages
 you installed; remove those yourself if you no longer want them. Package
 removal commands are in each rice's README.
+
+## Rice picker (optional)
+
+A window for choosing a rice, like Omarchy's theme menu: the rices are
+shown as cards with a screenshot; pick one to see it large with what it
+changes, then Apply. "Undo last switch" goes back to the settings from
+before the last switch (`./switch-rice.sh --restore`). Keys: arrows to
+move, Enter to apply, Esc to close.
+
+It needs GTK 4 for Python:
+
+```bash
+# Pop!_OS
+sudo apt install python3-gi gir1.2-gtk-4.0
+
+# Arch
+sudo pacman -S python-gobject gtk4
+
+# Fedora
+sudo dnf install python3-gobject gtk4
+```
+
+Then, from the repo folder:
+
+```bash
+./rice-picker.py --install    # adds Rice Picker to the app list
+./omarchy-keys.sh --apply     # optional: opens it with Super+Shift+Ctrl+Space
+./rice-picker.py --remove     # takes it out of the app list again
+```
+
+`--install` links `~/.local/bin/rice-picker` to this repo, so keep the
+repo where it is (or run `--install` again after moving it). The
+screenshots are previews: on Pop!_OS and Fedora some parts only show
+after logging out and back in, and the picker reminds you.
+
+Tried so far only outside COSMIC; not yet tested on a COSMIC desktop.
 
 ## Omarchy-style keys (optional)
 
@@ -148,6 +185,7 @@ the same keys work on both. They work with any rice, or none.
 | `Super+Shift+Return` | Web browser |
 | `Super+Shift+B` | Web browser |
 | `Super+Shift+F` | File manager |
+| `Super+Shift+Ctrl+Space` | Rice picker (see below; install it first) |
 
 COSMIC does not use any of these keys, so none of its own shortcuts
 change: `Super+T`, `Super+B` and `Super+F` still work as before.
@@ -158,10 +196,11 @@ change: `Super+T`, `Super+B` and `Super+F` still work as before.
 ```
 
 Any shortcuts you set yourself are kept. If you already use one of
-these four keys for something else, the script changes nothing and
+these keys for something else, the script changes nothing and
 tells you. `--remove` puts your shortcuts file back as it was, unless
-you changed shortcuts in Settings since; then remove the four keys
-there by hand. The rice switch and its `--restore` do not touch these
+you changed shortcuts in Settings since; then remove the keys there by
+hand. If you added the keys before the rice picker key existed,
+run `--apply` again to add it. The rice switch and its `--restore` do not touch these
 keys. If a key does nothing at first, log out and back in.
 
 Tested on Pop!_OS (with a shortcut of its own already set).
