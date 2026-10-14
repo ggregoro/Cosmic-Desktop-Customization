@@ -1,6 +1,6 @@
 # Cosmic Desktop Customization
 
-Five ready-made looks ("rices") for the [COSMIC](https://system76.com/cosmic)
+Six ready-made looks ("rices") for the [COSMIC](https://system76.com/cosmic)
 desktop, and one script that installs or removes any of them.
 
 | Milky Way | Osaka Jade | Onyx | Glowing City | Violet Tide |
@@ -14,6 +14,7 @@ desktop, and one script that installs or removes any of them.
 | [`onyx`](rices/onyx/README.md) | Pure black with grey accents, dark street wallpaper | Colors and wallpaper only |
 | [`glowing-city`](rices/glowing-city/README.md) | Pure black with grey accents, blue neon city wallpaper | Colors and wallpaper only |
 | [`violet-tide`](rices/violet-tide/README.md) | Dark slate-purple with a pink-lavender accent, purple sunset-over-water wallpaper, square corners, see-through terminal | Colors, corners, wallpaper and terminal opacity |
+| [`downtown`](rices/downtown/README.md) | Near-black with a lavender-blue accent, neon city at night wallpaper, pink-red and gold warnings, square corners | Colors, corners, wallpaper and terminal opacity |
 
 ## Requirements
 
@@ -29,6 +30,7 @@ desktop, and one script that installs or removes any of them.
 | `onyx` | tested | tested | tested |
 | `glowing-city` | tested | tested | not tested |
 | `violet-tide` | tested | tested | tested |
+| `downtown` | not tested | not tested | not tested |
 
 ## Install
 
@@ -86,7 +88,8 @@ also uses the Yaru theme. The commands are in each rice's own README:
 [`milky-way`](rices/milky-way/README.md#extras),
 [`osaka-jade`](rices/osaka-jade/README.md#extras).
 `onyx` and `glowing-city` need nothing extra.
-[`violet-tide`](rices/violet-tide/README.md#extras) has optional terminal
+[`violet-tide`](rices/violet-tide/README.md#extras) and
+[`downtown`](rices/downtown/README.md#extras) have optional terminal
 colors to import by hand.
 
 ### 4. Apply the rice
@@ -107,8 +110,8 @@ The script:
 5. Restarts the panel and the wallpaper so the change shows at once. No
    logout is needed.
 
-Run it again with another name to switch rices. `onyx`, `glowing-city` and
-`violet-tide` leave the panel and dock as they are, so apply them on top of whichever
+Run it again with another name to switch rices. `onyx`, `glowing-city`,
+`violet-tide` and `downtown` leave the panel and dock as they are, so apply them on top of whichever
 layout you want to keep.
 
 ## Uninstall
@@ -163,3 +166,5 @@ in place.
 - `glowing-city`: a blue-tinted edit of the `osaka-jade` wallpaper.
 - `violet-tide`: four photos from Unsplash (Unsplash License), by Engin
   Yapici, Artiom Vallat, Loris Boulinguez and Vishnu K R.
+- `downtown`: found on WallpaperSafari, artist unknown. If it is yours,
+  open an issue and it will be credited or removed, as you prefer.
