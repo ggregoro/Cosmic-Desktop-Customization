@@ -12,6 +12,7 @@ or a double-click) runs switch-rice.sh, and Undo runs its --restore.
 
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -105,7 +106,20 @@ def needs_logout():
     return not ("arch" in words)
 
 
+def in_vm():
+    """True inside a virtual machine (systemd-detect-virt --vm)."""
+    try:
+        return subprocess.run(["systemd-detect-virt", "--vm", "--quiet"]).returncode == 0
+    except OSError:
+        return False
+
+
 def run_app():
+    # VirtualBox and other VMs draw GTK 4 windows wrongly with the
+    # graphics card, so draw in software there. A GSK_RENDERER the
+    # user set themselves still wins.
+    if "GSK_RENDERER" not in os.environ and in_vm():
+        os.environ["GSK_RENDERER"] = "cairo"
     try:
         import gi
         gi.require_version("Gtk", "4.0")
