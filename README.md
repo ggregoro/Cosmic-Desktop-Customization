@@ -9,8 +9,8 @@ desktop, and one script that installs or removes any of them.
 
 | Rice | Look | Changes |
 |---|---|---|
-| [`milky-way`](rices/milky-way/README.md) | Milky Way wallpaper, blue accent, one full-width bottom dock and no top panel, Yaru theme and icons | Colors, wallpaper, panel and dock layout |
-| [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent, top panel plus a floating dock that hides itself | Colors, wallpaper, panel and dock layout |
+| [`milky-way`](rices/milky-way/README.md) | Milky Way wallpaper, blue accent, a half-transparent dock across the full width, Yaru theme and icons | Colors, wallpaper, panel and dock look |
+| [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent, slim top panel plus a floating dock that hides itself | Colors, wallpaper, panel and dock look |
 | [`onyx`](rices/onyx/README.md) | Pure black with grey accents, dark street wallpaper | Colors and wallpaper only |
 | [`glowing-city`](rices/glowing-city/README.md) | Pure black with grey accents, blue neon city wallpaper | Colors and wallpaper only |
 | [`violet-tide`](rices/violet-tide/README.md) | Dark slate-purple with a pink-lavender accent, purple sunset-over-water wallpaper, square corners, see-through terminal | Colors, corners, wallpaper and terminal opacity |
@@ -83,8 +83,8 @@ flatpak install flathub org.gtk.Gtk3theme.adw-gtk3-dark
 
 ### 3. Install the extras your rice needs
 
-`milky-way` and `osaka-jade` use three extra panel applets, and `milky-way`
-also uses the Yaru theme. The commands are in each rice's own README:
+`milky-way` also uses the Yaru theme, and `milky-way` and `osaka-jade`
+suggest three optional panel applets. The commands are in each rice's own README:
 [`milky-way`](rices/milky-way/README.md#extras),
 [`osaka-jade`](rices/osaka-jade/README.md#extras).
 `onyx` and `glowing-city` need nothing extra.
@@ -112,9 +112,10 @@ The script:
    (such as the accent color, corners or icons) may only show after
    logging out and back in.
 
-Run it again with another name to switch rices. `onyx`, `glowing-city`,
-`violet-tide` and `downtown` leave the panel and dock as they are, so apply them on top of whichever
-layout you want to keep.
+Run it again with another name to switch rices. No rice changes which
+applets are on your panel and dock. `milky-way` and `osaka-jade` change how
+the panel and dock look (size, transparency, corners, hiding); the other
+four leave them as they are.
 
 ## Uninstall
 
@@ -222,8 +223,9 @@ clears a saved window border color so the border follows the accent;
 log out and back in for it to show. `--restore` brings your old border
 color back.
 
-**A panel applet is missing.** The rice lists an applet that is not
-installed. Install it (see the rice's README) and restart the panel as above.
+**A panel applet is missing.** If you used a rice's original panel
+layout (see its README), it lists an applet that is not installed. Install
+it (see the rice's README) and restart the panel as above.
 
 **Do not delete or move `~/.config/cosmic` while COSMIC is running.** COSMIC
 rewrites the folder as you remove it and the result is a mix of old and

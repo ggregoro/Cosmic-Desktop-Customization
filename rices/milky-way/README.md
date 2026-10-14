@@ -5,11 +5,10 @@
 - **Wallpaper:** the Milky Way core.
 - **Colors:** dark mode, blue accent (`#A1C0EB`), rounded corners, a thin
   border on the active window.
-- **Layout:** no top panel. One half-transparent dock across the full width
-  of the bottom edge holds everything: launcher, workspaces and pinned apps
-  on the left, workspace icons in the center, and weather, clipboard,
-  tiling, sound, Bluetooth, tray, network, battery, notifications, clock and
-  power on the right.
+- **Panel and dock:** a half-transparent dock across the full width of the
+  bottom edge; your applets stay where they are. In the screenshot the top
+  panel is gone and the dock holds everything (see
+  [Original panel layout](#original-panel-layout-optional)).
 - **Theme and icons:** [Yaru](https://github.com/ubuntu/yaru).
 - **Windows:** tiling is on, one layout per workspace.
 - **Terminal:** COSMIC Terminal fully opaque, in JetBrainsMono Nerd Font if
@@ -35,7 +34,8 @@ yay -S yaru-gtk-theme yaru-icon-theme
 sudo dnf install yaru-gtk3-theme yaru-icon-theme
 ```
 
-**Panel applets** (weather, clipboard manager, workspace icons), from
+**Panel applets** (weather, clipboard manager, workspace icons), only needed
+for the [original panel layout](#original-panel-layout-optional), from
 Flathub on any distro:
 
 ```bash
@@ -46,6 +46,20 @@ flatpak install --user flathub io.github.crocodile.cosmic-ext-applet-workspace-i
 ```
 
 On Arch, install Flatpak first with `sudo pacman -S flatpak`.
+
+## Original panel layout (optional)
+
+The rice changes how your panel and dock look, but it leaves your applets
+where they are. To get the layout shown in the screenshot as well (no top panel, and everything in one dock across the bottom),
+install the applets above first, then run this from the repo folder:
+
+```bash
+cp -r rices/milky-way/panel-layout/. ~/.config/cosmic/
+pkill -x cosmic-panel
+```
+
+This replaces the applets on your panel and dock. `./switch-rice.sh --restore`
+puts your own back, as long as you have not switched rices since.
 
 ## Install
 

@@ -147,7 +147,8 @@ def run_app():
             self.flow = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.SINGLE,
                                     max_children_per_line=2, min_children_per_line=1,
                                     homogeneous=True, row_spacing=12, column_spacing=12,
-                                    valign=Gtk.Align.START)
+                                    valign=Gtk.Align.START,
+                                    activate_on_single_click=False)
             for m in ("top", "bottom", "start", "end"):
                 getattr(self.flow, f"set_margin_{m}")(12)
             self.cards = []
@@ -164,6 +165,7 @@ def run_app():
                 self.flow.append(box)
                 self.cards.append(label)
             self.flow.connect("selected-children-changed", self.on_select)
+            # One click only shows a rice; Apply, Enter or a double-click applies it.
             self.flow.connect("child-activated", lambda *_: self.apply())
             scroll = Gtk.ScrolledWindow(child=self.flow)
             scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -239,7 +241,7 @@ def run_app():
             self.look.set_text(r["look"])
             note = r["changes"]
             if "panel" in note.lower():
-                note += ". This one also changes your panel and dock."
+                note += ". The applets on your panel and dock stay as they are."
             self.changes.set_text(f"Changes: {note}" if note else "")
 
         def on_key(self, _ctrl, keyval, _code, _state):
