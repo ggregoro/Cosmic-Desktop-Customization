@@ -9,8 +9,8 @@ desktop, and one script that installs or removes any of them.
 
 | Rice | Look | Changes |
 |---|---|---|
-| [`milky-way`](rices/milky-way/README.md) | Milky Way wallpaper, blue accent, Yaru theme and icons; made for the One dock layout | Colors, wallpaper, theme and icons |
-| [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent; made for the Floating dock layout | Colors and wallpaper |
+| [`milky-way`](rices/milky-way/README.md) | Milky Way wallpaper, blue accent, Yaru theme and icons; made for the Bottom dock only layout | Colors, wallpaper, theme and icons |
+| [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent; made for the Top bar + fixed dock layout | Colors and wallpaper |
 | [`onyx`](rices/onyx/README.md) | Pure black with grey accents, dark street wallpaper | Colors and wallpaper only |
 | [`glowing-city`](rices/glowing-city/README.md) | Pure black with grey accents, blue neon city wallpaper | Colors and wallpaper only |
 | [`violet-tide`](rices/violet-tide/README.md) | Dark slate-purple with a pink-lavender accent, purple sunset-over-water wallpaper, square corners, see-through terminal | Colors, corners, wallpaper and terminal opacity |
@@ -119,24 +119,25 @@ dock stay exactly as they are.
 
 | Layout | What you get |
 |---|---|
-| `top-bar-dock` | Top bar + dock: a thin top bar and a dock at the bottom (75% opacity) that floats and hides when a window overlaps it |
-| `floating-dock` | Floating dock: the same top bar, and a see-through dock that floats and hides when a window overlaps it (made for `osaka-jade`) |
-| `one-dock` | One dock: no top bar; one half-transparent dock across the full width holds everything (made for `milky-way`) |
+| `top-bar-autohide-dock` | Top bar + autohide dock: a thin top bar and a dock at the bottom that hides when a window overlaps it |
+| `top-bar-fixed-dock` | Top bar + fixed dock: the same top bar, and a dock that always stays on screen; windows stop above it (made for `osaka-jade`) |
+| `bottom-dock` | Bottom dock only: no top bar; one dock across the full width holds everything, like KDE (made for `milky-way`) |
 
-The top bar never floats or hides in any layout; only the docks do. For
-other changes, use COSMIC Settings.
+Every dock floats a little above the bottom edge. With a top bar the dock
+is 75% opaque and normal size; Bottom dock only is 50% opaque and small. The top bar never floats or hides. For other changes, such
+as the dock's "Automatically hide" switch, use COSMIC Settings.
 
 Every layout puts the applets in the same order: workspaces, clipboard
 and workspace icons on the left, the clock and calendar in the middle, and
 weather, tray, tiling, sound, Bluetooth, network, battery, notifications
 and power on the right. On the docks the launcher and your pinned apps
-follow the workspace icons (One dock) or sit in the middle of the dock
-(the other two). Your pinned apps themselves are never changed.
+follow the workspace icons (Bottom dock only) or sit in the middle of the
+dock (the other two). Your pinned apps themselves are never changed.
 
 ```bash
-./switch-rice.sh milky-way --layout one-dock   # rice and layout together
-./switch-rice.sh --layout top-bar-dock         # layout only
-./switch-rice.sh --restore                     # undo either
+./switch-rice.sh milky-way --layout bottom-dock   # rice and layout together
+./switch-rice.sh --layout top-bar-fixed-dock      # layout only
+./switch-rice.sh --restore                        # undo either
 ```
 
 A layout replaces the applets on your panel and dock, so `--restore` is the
@@ -215,7 +216,7 @@ repo where it is (or run `--install` again after moving it). The
 screenshots are previews: on Pop!_OS and Fedora some parts only show
 after logging out and back in, and the picker reminds you.
 
-Tested on Arch Linux (COSMIC); the Layout menu not yet.
+Tested on Arch Linux (COSMIC), including the Layout menu.
 
 ## Omarchy-style keys (optional)
 

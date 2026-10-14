@@ -6,7 +6,7 @@
 - **Colors:** dark mode, blue accent (`#A1C0EB`), rounded corners, a thin
   border on the active window.
 - **Panel and dock:** left as they are. The rice is made for the
-  **One dock** layout (the screenshot shows an earlier version of it); add it with `--layout one-dock` or the picker's
+  **Bottom dock only** layout (the screenshot shows an earlier version of it); add it with `--layout bottom-dock` or the picker's
   Layout menu (see [Panel layouts](../../README.md#panel-layouts-optional)).
 - **Theme and icons:** [Yaru](https://github.com/ubuntu/yaru).
 - **Windows:** tiling is on, one layout per workspace.
@@ -40,7 +40,7 @@ full steps):
 
 ```bash
 ./switch-rice.sh milky-way
-./switch-rice.sh milky-way --layout one-dock   # with its layout
+./switch-rice.sh milky-way --layout bottom-dock   # with its layout
 ```
 
 ## Uninstall

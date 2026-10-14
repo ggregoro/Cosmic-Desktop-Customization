@@ -22,7 +22,7 @@ REPO_DIR = Path(__file__).resolve().parent
 RICES_DIR = REPO_DIR / "rices"
 LAYOUTS_DIR = REPO_DIR / "layouts"
 # Menu order; any other layout folder is listed after these.
-LAYOUT_ORDER = ["top-bar-dock", "floating-dock", "one-dock"]
+LAYOUT_ORDER = ["top-bar-autohide-dock", "top-bar-fixed-dock", "bottom-dock"]
 LAYOUT_FILE = Path.home() / ".config/rice-picker/layout"
 SWITCH = REPO_DIR / "switch-rice.sh"
 CURRENT_FILE = Path.home() / ".config/cosmic-backups/current-rice"

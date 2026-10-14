@@ -6,7 +6,7 @@
 - **Colors:** dark mode, jade accent (`#63D0DF`), COSMIC's standard rounded
   corners.
 - **Panel and dock:** left as they are. The rice is made for the
-  **Floating dock** layout (the screenshot shows an earlier version of it); add it with `--layout floating-dock` or the picker's
+  **Top bar + fixed dock** layout (the screenshot shows an earlier version of it); add it with `--layout top-bar-fixed-dock` or the picker's
   Layout menu (see [Panel layouts](../../README.md#panel-layouts-optional)).
 - **Theme and icons:** COSMIC's own.
 - **Windows:** floating (tiling is off).
@@ -26,7 +26,7 @@ full steps):
 
 ```bash
 ./switch-rice.sh osaka-jade
-./switch-rice.sh osaka-jade --layout floating-dock   # with its layout
+./switch-rice.sh osaka-jade --layout top-bar-fixed-dock   # with its layout
 ```
 
 ## Uninstall
