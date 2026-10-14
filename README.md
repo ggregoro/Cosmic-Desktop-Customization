@@ -30,7 +30,7 @@ desktop, and one script that installs or removes any of them.
 | `onyx` | tested | tested | tested |
 | `glowing-city` | tested | tested | not tested |
 | `violet-tide` | tested | tested | tested |
-| `downtown` | being tested | tested | not tested |
+| `downtown` | tested | tested | tested |
 
 ## Install
 
@@ -107,8 +107,10 @@ The script:
 3. Copies the rice's settings into `~/.config/cosmic`.
 4. Turns on dark mode and sets the GTK theme (and the icon theme, for
    `milky-way` and `downtown`).
-5. Restarts the panel and the wallpaper so the change shows at once. No
-   logout is needed.
+5. Restarts the panel and the wallpaper so the change shows at once.
+   Usually no logout is needed, but on Pop!_OS and Fedora some settings
+   (such as the accent color, corners or icons) may only show after
+   logging out and back in.
 
 Run it again with another name to switch rices. `onyx`, `glowing-city`,
 `violet-tide` and `downtown` leave the panel and dock as they are, so apply them on top of whichever
