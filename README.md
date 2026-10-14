@@ -119,16 +119,19 @@ dock stay exactly as they are.
 
 | Layout | What you get |
 |---|---|
-| `top-bar-dock` | Top bar + dock: a thin top bar and COSMIC's usual dock at the bottom (75% opacity) |
+| `top-bar-dock` | Top bar + dock: a thin top bar and a dock at the bottom (75% opacity) that floats and hides when a window overlaps it |
 | `floating-dock` | Floating dock: the same top bar, and a see-through dock that floats and hides when a window overlaps it (made for `osaka-jade`) |
 | `one-dock` | One dock: no top bar; one half-transparent dock across the full width holds everything (made for `milky-way`) |
 
-Every layout puts the applets in the same order: workspaces and clipboard
-on the left, the clock and calendar in the middle, and weather, tray,
-tiling, sound, Bluetooth, network, battery, notifications and power on the
-right. On the docks the launcher and your pinned apps follow the clipboard
-(One dock) or sit in the middle of the dock (the other two). Your pinned
-apps themselves are never changed.
+The top bar never floats or hides in any layout; only the docks do. For
+other changes, use COSMIC Settings.
+
+Every layout puts the applets in the same order: workspaces, clipboard
+and workspace icons on the left, the clock and calendar in the middle, and
+weather, tray, tiling, sound, Bluetooth, network, battery, notifications
+and power on the right. On the docks the launcher and your pinned apps
+follow the workspace icons (One dock) or sit in the middle of the dock
+(the other two). Your pinned apps themselves are never changed.
 
 ```bash
 ./switch-rice.sh milky-way --layout one-dock   # rice and layout together
@@ -137,12 +140,13 @@ apps themselves are never changed.
 ```
 
 A layout replaces the applets on your panel and dock, so `--restore` is the
-way back to your own. The clipboard and weather applets come from Flathub;
-any that are not installed are simply left out:
+way back to your own. The clipboard, workspace icons and weather applets
+come from Flathub; any that are not installed are simply left out:
 
 ```bash
 flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install --user flathub io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
+flatpak install --user flathub io.github.crocodile.cosmic-ext-applet-workspace-icons
 flatpak install --user flathub com.vintagetechie.CosmicExtAppletTempest
 ```
 
