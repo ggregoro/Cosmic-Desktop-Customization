@@ -164,7 +164,7 @@ you changed shortcuts in Settings since; then remove the four keys
 there by hand. The rice switch and its `--restore` do not touch these
 keys. If a key does nothing at first, log out and back in.
 
-Not yet tested on a COSMIC desktop.
+Tested on Pop!_OS (with a shortcut of its own already set).
 
 ## Troubleshooting
 
