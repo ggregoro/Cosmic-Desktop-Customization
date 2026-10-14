@@ -27,16 +27,20 @@ LAYOUT_FILE = Path.home() / ".config/rice-picker/layout"
 SWITCH = REPO_DIR / "switch-rice.sh"
 CURRENT_FILE = Path.home() / ".config/cosmic-backups/current-rice"
 BIN_LINK = Path.home() / ".local/bin/rice-picker"
-DESKTOP_FILE = Path.home() / ".local/share/applications/rice-picker.desktop"
 APP_ID = "io.github.ggregoro.RicePicker"
+# Named after the app id, so the dock matches the open window to it.
+DESKTOP_FILE = Path.home() / f".local/share/applications/{APP_ID}.desktop"
+OLD_DESKTOP_FILE = Path.home() / ".local/share/applications/rice-picker.desktop"
+ICON_SRC = REPO_DIR / "icons" / f"{APP_ID}.svg"
+ICON_FILE = Path.home() / f".local/share/icons/hicolor/scalable/apps/{APP_ID}.svg"
 
 DESKTOP_ENTRY = f"""[Desktop Entry]
 Type=Application
 Name=Rice Picker
 Comment=Preview and apply a COSMIC rice
 Exec={BIN_LINK}
-Icon=preferences-desktop-theme
-Categories=Settings;DesktopSettings;
+Icon={APP_ID}
+Categories=Utility;DesktopSettings;
 StartupWMClass={APP_ID}
 """
 
@@ -53,9 +57,14 @@ def install():
         BIN_LINK.symlink_to(Path(__file__).resolve())
     else:
         sys.exit(f"error: {BIN_LINK} exists and is not a link; left alone")
+    ICON_FILE.parent.mkdir(parents=True, exist_ok=True)
+    ICON_FILE.write_bytes(ICON_SRC.read_bytes())
     DESKTOP_FILE.parent.mkdir(parents=True, exist_ok=True)
     DESKTOP_FILE.write_text(DESKTOP_ENTRY)
-    print(f"Added {BIN_LINK} and Rice Picker to the app list.")
+    # Earlier versions used another file name; drop that entry if it is ours.
+    if OLD_DESKTOP_FILE.exists() and "Name=Rice Picker" in OLD_DESKTOP_FILE.read_text():
+        OLD_DESKTOP_FILE.unlink()
+    print(f"Added {BIN_LINK} and Rice Picker (with its icon) to the app list, under Utilities.")
     print("Open it from the app list, or add its key with ./omarchy-keys.sh --apply")
     print("(Super+Shift+Ctrl+Space, as in Omarchy).")
 
@@ -63,8 +72,11 @@ def install():
 def remove():
     if BIN_LINK.is_symlink() and BIN_LINK.resolve() == Path(__file__).resolve():
         BIN_LINK.unlink()
-    if DESKTOP_FILE.exists() and DESKTOP_FILE.read_text() == DESKTOP_ENTRY:
-        DESKTOP_FILE.unlink()
+    for f in (DESKTOP_FILE, OLD_DESKTOP_FILE):
+        if f.exists() and "Name=Rice Picker" in f.read_text():
+            f.unlink()
+    if ICON_FILE.exists() and ICON_FILE.read_bytes() == ICON_SRC.read_bytes():
+        ICON_FILE.unlink()
     print("Removed Rice Picker from the app list and ~/.local/bin.")
 
 
@@ -167,6 +179,8 @@ def run_app():
         from gi.repository import Gdk, Gio, GLib, Gtk
     except (ImportError, ValueError):
         sys.exit(INSTALL_HELP)
+
+    Gtk.Window.set_default_icon_name(APP_ID)
 
     class Picker(Gtk.ApplicationWindow):
         def __init__(self, app):

@@ -199,12 +199,14 @@ sudo dnf install python3-gobject gtk4
 Then, from the repo folder:
 
 ```bash
-./rice-picker.py --install    # adds Rice Picker to the app list
+./rice-picker.py --install    # adds Rice Picker, with its icon, to the app list (Utilities)
 ./omarchy-keys.sh --apply     # optional: opens it with Super+Shift+Ctrl+Space
 ./rice-picker.py --remove     # takes it out of the app list again
 ```
 
-`--install` links `~/.local/bin/rice-picker` to this repo, so keep the
+If you installed it before the icon existed, run `--install` again; the
+new icon may only show in the App Library and dock after logging out and
+back in. `--install` links `~/.local/bin/rice-picker` to this repo, so keep the
 repo where it is (or run `--install` again after moving it). The
 screenshots are previews: on Pop!_OS and Fedora some parts only show
 after logging out and back in, and the picker reminds you.

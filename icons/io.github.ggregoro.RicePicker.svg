@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!-- Rice Picker: a fan of colour cards, one per look. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2d2748"/>
+      <stop offset="1" stop-color="#15131f"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="116" height="116" rx="26" fill="url(#bg)"/>
+  <rect x="6.5" y="6.5" width="115" height="115" rx="25.5" fill="none" stroke="#ffffff" stroke-opacity="0.12"/>
+  <g transform="translate(64 98)">
+    <g transform="rotate(-28)">
+      <rect x="-15" y="-74" width="30" height="66" rx="6" fill="#63D0DF"/>
+      <rect x="-15" y="-26" width="30" height="18" rx="0" fill="#000" fill-opacity="0.18"/>
+    </g>
+    <g transform="rotate(28)">
+      <rect x="-15" y="-74" width="30" height="66" rx="6" fill="#E3779A"/>
+      <rect x="-15" y="-26" width="30" height="18" fill="#000" fill-opacity="0.18"/>
+    </g>
+    <g>
+      <rect x="-15" y="-80" width="30" height="72" rx="6" fill="#A99BEB"/>
+      <rect x="-15" y="-26" width="30" height="18" fill="#000" fill-opacity="0.18"/>
+      <rect x="-15" y="-80" width="30" height="72" rx="6" fill="none" stroke="#15131f" stroke-width="2"/>
+    </g>
+    <circle r="7" fill="#f2efe6"/>
+    <circle r="2.5" fill="#15131f"/>
+  </g>
+</svg>

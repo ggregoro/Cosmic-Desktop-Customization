@@ -17,6 +17,8 @@
 !/rices/**
 !/layouts/
 !/layouts/**
+!/icons/
+!/icons/**
 
 # Personal settings that are not part of a rice's look: Files sidebar
 # bookmarks, wallpaper history, weather location, clock format, keyboard
