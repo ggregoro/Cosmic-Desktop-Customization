@@ -176,6 +176,11 @@ pkill -x cosmic-bg
 COSMIC starts both again within a second. If that does not help, or if only
 the window borders are wrong, log out and back in.
 
+**The window border is a different color from the accent.** Every rice
+clears a saved window border color so the border follows the accent;
+log out and back in for it to show. `--restore` brings your old border
+color back.
+
 **A panel applet is missing.** The rice lists an applet that is not
 installed. Install it (see the rice's README) and restart the panel as above.
 

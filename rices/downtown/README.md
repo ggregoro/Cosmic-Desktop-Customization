@@ -27,9 +27,10 @@ once. On Pop!_OS and Fedora some parts (on Pop!_OS the accent color,
 corners and wallpaper; on Fedora the icons) only appeared after logging
 out and back in, so do that if the look does not change at once.
 
-Known issue: on Pop!_OS the border around the active window stayed blue
-instead of taking the lavender accent, even after a restart. Everything
-else worked.
+The border around the active window follows the accent. If you had
+picked your own window border color before, the rice clears it (in the
+first Pop!_OS test, a saved light blue border survived the rice; fixed
+since).
 
 The solid purple folders need Yaru 26.04 or newer (Arch has it). With
 older Yaru, such as 25.10 on Fedora 44, the folders are grey with a
