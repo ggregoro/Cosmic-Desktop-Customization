@@ -30,7 +30,7 @@ desktop, and one script that installs or removes any of them.
 | `onyx` | tested | tested | tested |
 | `glowing-city` | tested | tested | not tested |
 | `violet-tide` | tested | tested | tested |
-| `downtown` | tested | not tested | not tested |
+| `downtown` | being tested | tested | not tested |
 
 ## Install
 

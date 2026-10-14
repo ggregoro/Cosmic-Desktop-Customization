@@ -19,7 +19,10 @@ The color shades were worked out by script from the palette, not
 produced by COSMIC. To have COSMIC work them out itself, open Settings >
 Desktop > Appearance after applying and pick the accent color once.
 
-Tested on Pop!_OS. The terminal colors import has not been tried yet.
+Tested on Arch Linux. On Pop!_OS the accent color, square corners and
+wallpaper did not apply in the first test; that is being looked into.
+Not yet tested on Fedora. The terminal colors import has not been tried
+yet.
 
 The wallpaper is busy along the bottom edge, so dock icons can be hard
 to see over it. The rice leaves the dock alone, but raising the dock's
