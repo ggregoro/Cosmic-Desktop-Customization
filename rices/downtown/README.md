@@ -1,5 +1,7 @@
 # Downtown
 
+![Desktop](screenshots/desktop.png)
+
 - **Wallpaper:** a figure on a rooftop over a neon city at night, pink-red
   and gold signs and cyan light beams. It is ultra-wide (3840 x 1633), so
   on a 16:9 screen the sides are cropped and the middle is kept.
@@ -17,7 +19,12 @@ The color shades were worked out by script from the palette, not
 produced by COSMIC. To have COSMIC work them out itself, open Settings >
 Desktop > Appearance after applying and pick the accent color once.
 
-Not tested yet on any distro.
+Tested on Pop!_OS. The terminal colors import has not been tried yet.
+
+The wallpaper is busy along the bottom edge, so dock icons can be hard
+to see over it. The rice leaves the dock alone, but raising the dock's
+opacity helps: the screenshot above uses 75%, set in Settings >
+Desktop > Dock.
 
 The wallpaper was found on WallpaperSafari; its artist is unknown. If it
 is yours, open an issue and it will be credited or removed, as you
