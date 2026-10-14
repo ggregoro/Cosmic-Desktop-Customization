@@ -137,6 +137,33 @@ icon theme. It leaves the wallpaper images in `~/Pictures` and any packages
 you installed; remove those yourself if you no longer want them. Package
 removal commands are in each rice's README.
 
+## Omarchy-style keys (optional)
+
+If you also use Omarchy, these add a few of its shortcuts to COSMIC so
+the same keys work on both. They work with any rice, or none.
+
+| Key | Opens |
+|---|---|
+| `Super+Return` | Terminal |
+| `Super+Shift+Return` | Web browser |
+| `Super+Shift+B` | Web browser |
+| `Super+Shift+F` | File manager |
+
+COSMIC does not use any of these keys, so none of its own shortcuts
+change: `Super+T`, `Super+B` and `Super+F` still work as before.
+
+```bash
+./omarchy-keys.sh --apply     # add them
+./omarchy-keys.sh --remove    # take them away again
+```
+
+COSMIC keeps all of your own shortcuts in one file, so the script only
+adds these if you have no custom shortcuts yet; otherwise it changes
+nothing and tells you. The rice switch and `--restore` do not touch
+them. If a key does nothing at first, log out and back in.
+
+Not yet tested on a COSMIC desktop.
+
 ## Troubleshooting
 
 **The panel, dock or wallpaper still shows the old look.** Restart them:
