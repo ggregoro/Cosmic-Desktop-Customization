@@ -203,53 +203,11 @@ if have gsettings; then
     done > "$BACKUP_DIR/gsettings"
 fi
 
-applet_installed() {
-    local d
-    for d in "${XDG_DATA_HOME:-$HOME/.local/share}" \
-             "$HOME/.local/share/flatpak/exports/share" /var/lib/flatpak/exports/share \
-             ${XDG_DATA_DIRS//:/ } /usr/local/share /usr/share; do
-        [[ -f "$d/applications/$1.desktop" ]] && return 0
-    done
-    return 1
-}
-
-applet_title() {
-    case "$1" in
-        io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager) echo "Clipboard Manager" ;;
-        com.vintagetechie.CosmicExtAppletTempest) echo "Tempest (weather)" ;;
-        *) echo "$1" ;;
-    esac
-}
-
-# Layouts list add-on applets from the COSMIC Store. One that isn't
-# installed is left out of the copied panel and dock, so Settings doesn't
-# list it. (com.system76 applets ship with COSMIC; some,
-# like CosmicAppList, have no .desktop file, so they aren't checked.)
-fix_missing_applets() {
-    local f rel id missing=()
-    while IFS= read -r f; do
-        rel="${f#"$LAYOUT_COSMIC_DIR"/}"
-        for id in $(grep -o '"[^"]*"' "$f" | tr -d '"'); do
-            [[ "$id" == com.system76.* ]] && continue
-            applet_installed "$id" && continue
-            sed -i "/\"${id//./\\.}\"/d" "$COSMIC_DIR/$rel"
-            [[ " ${missing[*]} " == *" $id "* ]] || missing+=("$id")
-        done
-    done < <(find "$LAYOUT_COSMIC_DIR" -type f -name 'plugins_*')
-    for id in "${missing[@]}"; do
-        echo "note: $(applet_title "$id") isn't installed, so it was left out."
-    done
-    if (( ${#missing[@]} )); then
-        echo "note: to get the missing applets, install them from the COSMIC Store, then apply the layout again."
-    fi
-}
-
 apply_layout() {
     local had_bar=no
     top_bar_on && had_bar=yes
     echo "Applying panel layout '$LAYOUT' ..."
     cp -r "$LAYOUT_COSMIC_DIR/." "$COSMIC_DIR/"
-    fix_missing_applets
     top_bar_note "$had_bar"
 }
 

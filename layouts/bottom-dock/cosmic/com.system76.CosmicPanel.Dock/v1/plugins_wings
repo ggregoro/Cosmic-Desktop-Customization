@@ -4,8 +4,6 @@ Some(([
     "com.system76.CosmicAppList",
     "com.system76.CosmicAppletMinimize",
 ], [
-    "com.vintagetechie.CosmicExtAppletTempest",
-    "io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager",
     "com.system76.CosmicAppletStatusArea",
     "com.system76.CosmicAppletTiling",
     "com.system76.CosmicAppletAudio",

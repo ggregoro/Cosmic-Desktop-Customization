@@ -128,15 +128,14 @@ Every dock floats a little above the bottom edge. With a top bar the dock
 is 75% opaque and normal size; Bottom dock only is 50% opaque and small. The top bar never floats or hides. For other changes, such
 as the dock's "Automatically hide" switch, use COSMIC Settings.
 
-With a top bar, the bar has COSMIC's numbered workspaces and clipboard on
-the left,
-the clock and calendar in the middle, and weather, tray, tiling, sound,
-Bluetooth, network, battery, notifications and power on the right; the
-dock holds the launcher and your pinned apps. Bottom dock only has the app
-library, launcher, pinned apps and minimized windows on the left,
-numbered workspaces in the middle, and weather, clipboard, tray, tiling,
-sound, Bluetooth, network, battery, notifications, clock and power on the
-right. Your pinned apps themselves are never changed.
+With a top bar, the bar has COSMIC's numbered workspaces on the left, the
+clock and calendar in the middle, and tray, tiling, sound, Bluetooth,
+network, battery, notifications and power on the right; the dock holds the
+launcher and your pinned apps. Bottom dock only has the app library,
+launcher, pinned apps and minimized windows on the left, numbered
+workspaces in the middle, and tray, tiling, sound, Bluetooth, network,
+battery, notifications, clock and power on the right. Your pinned apps
+themselves are never changed.
 
 ```bash
 ./switch-rice.sh milky-way --layout bottom-dock   # rice and layout together
@@ -145,22 +144,13 @@ right. Your pinned apps themselves are never changed.
 ```
 
 A layout replaces the applets on your panel and dock, so `--restore` is the
-way back to your own. The clipboard and weather applets are add-ons from
-the COSMIC Store (COSMIC's own Flatpak repository, not Flathub). Any that
-are not installed are left out, and the switch says which. Install them
-and apply the layout again to get them:
+way back to your own.
 
-```bash
-flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
-flatpak install --user cosmic io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
-flatpak install --user cosmic com.vintagetechie.CosmicExtAppletTempest
-```
-
-On Arch, install Flatpak first with `sudo pacman -S flatpak`.
-
-The layouts use COSMIC's own numbered workspace switcher, not the Workspace
-Icons add-on: on COSMIC 1.9 that applet can crash as soon as it starts
-([issue #54](https://github.com/crocodile/cosmic-ext-applet-workspace-icons/issues/54)).
+The layouts use only the applets that come with COSMIC, so they work the
+same on every system. Add-on applets from the COSMIC Store (a clipboard
+manager, weather, workspace icons and others) are up to you. Note that
+COSMIC Settings cannot add or move most of them, because their packages
+do not mark them as panel applets.
 
 ## Uninstall
 
