@@ -182,12 +182,16 @@ shown as cards with a screenshot; pick one to see it large with what it
 changes, then Apply (or Enter, or a double-click; a single click only
 shows it). The Layout menu next to Apply picks a
 [panel layout](#panel-layouts-optional) to apply with the rice; it starts
-on "Keep mine", which leaves your panel and dock alone, remembers your
-last choice, and shows the layout each rice was made for. "Undo last
-switch" goes back to the settings from before the last switch
-(`./switch-rice.sh --restore`) and sets the Layout menu back to "Keep
-mine". Keys: arrows to move, Enter to apply, Esc
-to close.
+on "Keep mine", remembers your last choice, and shows the layout each
+rice was made for. "Keep mine" leaves the panel and dock as they are
+now, so after trying a layout it does not bring your own back: "Undo last
+switch" (`./switch-rice.sh --restore`) does that. It goes back to the
+settings from before the last switch and sets the Layout menu back to
+"Keep mine". Keys: arrows to move, Enter to apply, Esc to close.
+
+`milky-way` sets the Yaru theme for GTK apps, so the picker window itself
+turns Yaru's orange and green while it is applied. Any other rice sets the
+dark theme (`adw-gtk3-dark`) back.
 
 It needs GTK 4 for Python:
 
