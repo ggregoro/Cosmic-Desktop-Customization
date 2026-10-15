@@ -274,7 +274,11 @@ def run_app():
             status_scroll.set_propagate_natural_height(True)
             for w in (self.preview, self.title, self.look, self.changes, layout_row, buttons, status_scroll):
                 side.append(w)
-            paned.set_end_child(side)
+            # The side scrolls too, so Apply and Undo stay reachable when the
+            # window is short (for example tiled).
+            side_scroll = Gtk.ScrolledWindow(child=side)
+            side_scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+            paned.set_end_child(side_scroll)
             paned.set_shrink_end_child(False)
 
             self.refresh_cards()
