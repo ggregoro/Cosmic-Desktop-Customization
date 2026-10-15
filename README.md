@@ -128,12 +128,14 @@ Every dock floats a little above the bottom edge. With a top bar the dock
 is 75% opaque and normal size; Bottom dock only is 50% opaque and small. The top bar never floats or hides. For other changes, such
 as the dock's "Automatically hide" switch, use COSMIC Settings.
 
-Every layout puts the applets in the same order: workspaces, clipboard
-and workspace icons on the left, the clock and calendar in the middle, and
-weather, tray, tiling, sound, Bluetooth, network, battery, notifications
-and power on the right. On the docks the launcher and your pinned apps
-follow the workspace icons (Bottom dock only) or sit in the middle of the
-dock (the other two). Your pinned apps themselves are never changed.
+With a top bar, the bar has workspace icons and clipboard on the left,
+the clock and calendar in the middle, and weather, tray, tiling, sound,
+Bluetooth, network, battery, notifications and power on the right; the
+dock holds the launcher and your pinned apps. Bottom dock only has the app
+library, launcher, pinned apps and minimized windows on the left,
+workspace icons in the middle, and weather, clipboard, tray, tiling,
+sound, Bluetooth, network, battery, notifications, clock and power on the
+right. Your pinned apps themselves are never changed.
 
 ```bash
 ./switch-rice.sh milky-way --layout bottom-dock   # rice and layout together
@@ -143,7 +145,10 @@ dock (the other two). Your pinned apps themselves are never changed.
 
 A layout replaces the applets on your panel and dock, so `--restore` is the
 way back to your own. The clipboard, workspace icons and weather applets
-come from Flathub; any that are not installed are simply left out:
+are add-ons from the COSMIC Store (Flathub). Any that are not installed
+are left out, and without workspace icons you get COSMIC's own numbered
+workspace switcher instead; the switch says which. Install them and apply
+the layout again to get them:
 
 ```bash
 flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -270,14 +275,19 @@ wallpaper can stay grey for a minute or more. Logging out and back in is
 the better fix, and also the one to use if only the window borders are
 wrong.
 
+**The top bar is still there after switching to Bottom dock only** (or
+after an Undo that removed it). On Pop!_OS the panel keeps drawing a
+removed top bar until you log out and back in; the switch reminds you.
+The dock is already right.
+
 **The window border is a different color from the accent.** Every rice
 clears a saved window border color so the border follows the accent;
 log out and back in for it to show. `--restore` brings your old border
 color back.
 
 **A panel applet is missing.** The panel layout lists an applet that is
-not installed. Install it (see [Panel layouts](#panel-layouts-optional))
-and restart the panel as above.
+not installed, so it was left out. Install it (see
+[Panel layouts](#panel-layouts-optional)) and apply the layout again.
 
 **Do not delete or move `~/.config/cosmic` while COSMIC is running.** COSMIC
 rewrites the folder as you remove it and the result is a mix of old and

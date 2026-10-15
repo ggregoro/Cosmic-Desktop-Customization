@@ -88,6 +88,18 @@ theme_installed() {
     return 1
 }
 
+top_bar_on() {
+    grep -q '"Panel"' "$COSMIC_DIR/com.system76.CosmicPanel/v1/entries" 2>/dev/null
+}
+
+# cosmic-panel on Pop!_OS (COSMIC 1.10) notices a removed top bar but
+# keeps drawing it until the next login. $1 = whether it was on before.
+top_bar_note() {
+    if [[ "$1" == yes ]] && ! top_bar_on; then
+        echo "note: the top bar was removed. If it is still showing, log out and back in (Pop!_OS needs this)."
+    fi
+}
+
 restore() {
     local backup
     if [[ -n "${1:-}" ]]; then
@@ -101,6 +113,8 @@ restore() {
     fi
 
     echo "Restoring the config saved in $backup ..."
+    local had_bar=no
+    top_bar_on && had_bar=yes
     # Files the rice added that did not exist before: remove them one by
     # one so COSMIC goes back to its default for each. Never remove the
     # whole directory while COSMIC is running.
@@ -125,6 +139,7 @@ restore() {
         rm -f "$CURRENT_FILE"
     fi
 
+    top_bar_note "$had_bar"
     restart_cosmic
     echo "Done. Restored the config from $backup."
     echo "If the panel or wallpaper still look wrong, log out and back in."
@@ -243,9 +258,12 @@ fix_missing_applets() {
 }
 
 apply_layout() {
+    local had_bar=no
+    top_bar_on && had_bar=yes
     echo "Applying panel layout '$LAYOUT' ..."
     cp -r "$LAYOUT_COSMIC_DIR/." "$COSMIC_DIR/"
     fix_missing_applets
+    top_bar_note "$had_bar"
 }
 
 if [[ -z "$RICE" ]]; then
