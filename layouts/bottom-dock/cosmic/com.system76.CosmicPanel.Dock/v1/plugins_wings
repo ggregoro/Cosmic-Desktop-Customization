@@ -1,13 +1,11 @@
 Some(([
-    "com.system76.CosmicAppletWorkspaces",
-    "io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager",
-    "io.github.crocodile.cosmic-ext-applet-workspace-icons",
-    "com.system76.CosmicPanelLauncherButton",
     "com.system76.CosmicPanelAppButton",
+    "com.system76.CosmicPanelLauncherButton",
     "com.system76.CosmicAppList",
     "com.system76.CosmicAppletMinimize",
 ], [
     "com.vintagetechie.CosmicExtAppletTempest",
+    "io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager",
     "com.system76.CosmicAppletStatusArea",
     "com.system76.CosmicAppletTiling",
     "com.system76.CosmicAppletAudio",
@@ -15,5 +13,6 @@ Some(([
     "com.system76.CosmicAppletNetwork",
     "com.system76.CosmicAppletBattery",
     "com.system76.CosmicAppletNotifications",
+    "com.system76.CosmicAppletTime",
     "com.system76.CosmicAppletPower",
 ]))
