@@ -185,7 +185,8 @@ shows it). The Layout menu next to Apply picks a
 on "Keep mine", which leaves your panel and dock alone, remembers your
 last choice, and shows the layout each rice was made for. "Undo last
 switch" goes back to the settings from before the last switch
-(`./switch-rice.sh --restore`). Keys: arrows to move, Enter to apply, Esc
+(`./switch-rice.sh --restore`) and sets the Layout menu back to "Keep
+mine". Keys: arrows to move, Enter to apply, Esc
 to close.
 
 It needs GTK 4 for Python:

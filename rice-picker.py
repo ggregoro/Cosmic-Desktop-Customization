@@ -325,7 +325,7 @@ def run_app():
                 return True
             return False
 
-        def run_switch(self, args, done_text):
+        def run_switch(self, args, done_text, on_success=None):
             if self.busy:
                 return
             self.busy = True
@@ -348,6 +348,8 @@ def run_app():
                          if l.startswith(("warning", "error", "note", "  "))]
                 if p.get_successful():
                     msg = done_text
+                    if on_success:
+                        on_success()
                     if needs_logout():
                         msg += "\nIf something has not changed, log out and back in."
                 else:
@@ -368,7 +370,11 @@ def run_app():
                 self.run_switch(args, done + ".")
 
         def undo(self):
-            self.run_switch(["--restore"], "Went back to the settings from before the last switch.")
+            # The panel and dock are now whatever they were before, so the
+            # menu goes back to "Keep mine" (saved too) instead of naming
+            # the layout that was just undone.
+            self.run_switch(["--restore"], "Went back to the settings from before the last switch.",
+                            lambda: self.layout_menu.set_selected(0))
 
     app = Gtk.Application(application_id=APP_ID, flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
 
