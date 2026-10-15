@@ -227,7 +227,9 @@ repo where it is (or run `--install` again after moving it). The
 screenshots are previews: on Pop!_OS and Fedora some parts only show
 after logging out and back in, and the picker reminds you.
 
-Tested on Arch Linux (COSMIC), including the Layout menu.
+Tested on Arch Linux and Pop!_OS (COSMIC), including the Layout menu. On
+Pop!_OS, a layout that removes the top bar needs a log out before the bar
+goes away.
 
 ## Omarchy-style keys (optional)
 
