@@ -46,13 +46,12 @@ usage() {
 
 have() { command -v "$1" >/dev/null 2>&1; }
 
-# cosmic-session restarts both within about a second, and the new
-# processes read the config that is on disk now.
+# cosmic-panel and cosmic-bg watch their config and redraw on their own,
+# as they do for COSMIC Settings. Do not kill them: cosmic-session takes
+# that for a crash and doubles its restart delay each time until logout
+# (over a minute after a dozen switches), leaving the wallpaper grey.
 restart_cosmic() {
-    echo "Restarting cosmic-panel and cosmic-bg ..."
-    pkill -x cosmic-panel || true
-    pkill -x cosmic-bg || true
-    sleep 2
+    sleep 1
 }
 
 # Backup folders only (named by date and time), oldest first. Other

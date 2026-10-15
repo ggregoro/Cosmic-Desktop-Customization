@@ -104,7 +104,8 @@ The script:
 3. Copies the rice's settings into `~/.config/cosmic`.
 4. Turns on dark mode and sets the GTK theme (and the icon theme, for
    `milky-way` and `downtown`).
-5. Restarts the panel and the wallpaper so the change shows at once.
+5. Leaves the panel, dock and wallpaper to redraw themselves: they watch
+   their settings, so the change shows at once without restarting them.
    Usually no logout is needed, but on Pop!_OS and Fedora some settings
    (such as the accent color, corners or icons) may only show after
    logging out and back in.
@@ -263,8 +264,11 @@ pkill -x cosmic-panel
 pkill -x cosmic-bg
 ```
 
-COSMIC starts both again within a second. If that does not help, or if only
-the window borders are wrong, log out and back in.
+COSMIC starts both again, but it counts each restart as a crash and waits
+twice as long every time until you log out, so after a few restarts the
+wallpaper can stay grey for a minute or more. Logging out and back in is
+the better fix, and also the one to use if only the window borders are
+wrong.
 
 **The window border is a different color from the accent.** Every rice
 clears a saved window border color so the border follows the accent;
