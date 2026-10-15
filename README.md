@@ -160,6 +160,14 @@ flatpak install --user cosmic com.vintagetechie.CosmicExtAppletTempest
 
 On Arch, install Flatpak first with `sudo pacman -S flatpak`.
 
+**Workspace Icons and COSMIC 1.9.** On COSMIC 1.9, Workspace Icons can
+crash as soon as it starts, leaving an empty gap on the top bar (a known
+bug in the applet:
+[issue #54](https://github.com/crocodile/cosmic-ext-applet-workspace-icons/issues/54)).
+COSMIC 1.10 runs it fine. Until it is fixed, COSMIC's own numbered
+workspace switcher does the same job; add it in Settings > Desktop >
+Panel > Applets.
+
 ## Uninstall
 
 Put back the settings you had before the last switch:
