@@ -220,9 +220,9 @@ repo where it is (or run `--install` again after moving it). The
 screenshots are previews: on Pop!_OS and Fedora some parts only show
 after logging out and back in, and the picker reminds you.
 
-Tested on Arch Linux and Pop!_OS (COSMIC), including the Layout menu. On
-Pop!_OS, a layout that removes the top bar needs a log out before the bar
-goes away.
+Tested on Arch Linux and Pop!_OS (COSMIC), including the Layout menu.
+After a layout change or an Undo, the panel sometimes needs a log out to
+look right; the picker reminds you.
 
 ## Omarchy-style keys (optional)
 
@@ -270,10 +270,11 @@ wallpaper can stay grey for a minute or more. Logging out and back in is
 the better fix, and also the one to use if only the window borders are
 wrong.
 
-**The top bar is still there after switching to Bottom dock only** (or
-after an Undo that removed it). On Pop!_OS the panel keeps drawing a
-removed top bar until you log out and back in; the switch reminds you.
-The dock is already right.
+**The top bar or dock looks wrong after a layout change or an Undo.** The
+panel does not always redraw cleanly: on Pop!_OS a removed top bar can
+stay on screen, and on Arch an old bar has stayed next to the new one.
+Your settings are already right; log out and back in and the panel
+draws them properly. The switch reminds you whenever the panel changed.
 
 **The window border is a different color from the accent.** Every rice
 clears a saved window border color so the border follows the accent;

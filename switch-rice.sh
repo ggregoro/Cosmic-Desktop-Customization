@@ -88,15 +88,17 @@ theme_installed() {
     return 1
 }
 
-top_bar_on() {
-    grep -q '"Panel"' "$COSMIC_DIR/com.system76.CosmicPanel/v1/entries" 2>/dev/null
+panel_state() {
+    cat "$COSMIC_DIR"/com.system76.CosmicPanel*/v1/* 2>/dev/null | md5sum
 }
 
-# cosmic-panel on Pop!_OS (COSMIC 1.10) notices a removed top bar but
-# keeps drawing it until the next login. $1 = whether it was on before.
-top_bar_note() {
-    if [[ "$1" == yes ]] && ! top_bar_on; then
-        echo "note: the top bar was removed. If it is still showing, log out and back in (Pop!_OS needs this)."
+# cosmic-panel picks up a changed panel or dock by itself, but not always
+# cleanly: Pop!_OS (COSMIC 1.10) keeps drawing a removed top bar, and Arch
+# (COSMIC 1.9) has left an old bar next to the new one after an undo, until
+# the next login. $1 = panel_state from before the change.
+panel_note() {
+    if [[ "$1" != "$(panel_state)" ]]; then
+        echo "note: the panel changed. If the top bar or dock looks wrong (still there, missing or doubled), log out and back in."
     fi
 }
 
@@ -113,8 +115,8 @@ restore() {
     fi
 
     echo "Restoring the config saved in $backup ..."
-    local had_bar=no
-    top_bar_on && had_bar=yes
+    local before
+    before="$(panel_state)"
     # Files the rice added that did not exist before: remove them one by
     # one so COSMIC goes back to its default for each. Never remove the
     # whole directory while COSMIC is running.
@@ -139,7 +141,7 @@ restore() {
         rm -f "$CURRENT_FILE"
     fi
 
-    top_bar_note "$had_bar"
+    panel_note "$before"
     restart_cosmic
     echo "Done. Restored the config from $backup."
     echo "If the panel or wallpaper still look wrong, log out and back in."
@@ -204,11 +206,11 @@ if have gsettings; then
 fi
 
 apply_layout() {
-    local had_bar=no
-    top_bar_on && had_bar=yes
+    local before
+    before="$(panel_state)"
     echo "Applying panel layout '$LAYOUT' ..."
     cp -r "$LAYOUT_COSMIC_DIR/." "$COSMIC_DIR/"
-    top_bar_note "$had_bar"
+    panel_note "$before"
 }
 
 if [[ -z "$RICE" ]]; then
