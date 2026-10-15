@@ -145,16 +145,17 @@ right. Your pinned apps themselves are never changed.
 
 A layout replaces the applets on your panel and dock, so `--restore` is the
 way back to your own. The clipboard, workspace icons and weather applets
-are add-ons from the COSMIC Store (Flathub). Any that are not installed
+are add-ons from the COSMIC Store (COSMIC's own Flatpak repository, not
+Flathub). Any that are not installed
 are left out, and without workspace icons you get COSMIC's own numbered
 workspace switcher instead; the switch says which. Install them and apply
 the layout again to get them:
 
 ```bash
-flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install --user flathub io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
-flatpak install --user flathub io.github.crocodile.cosmic-ext-applet-workspace-icons
-flatpak install --user flathub com.vintagetechie.CosmicExtAppletTempest
+flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
+flatpak install --user cosmic io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
+flatpak install --user cosmic io.github.crocodile.cosmic-ext-applet-workspace-icons
+flatpak install --user cosmic com.vintagetechie.CosmicExtAppletTempest
 ```
 
 On Arch, install Flatpak first with `sudo pacman -S flatpak`.
