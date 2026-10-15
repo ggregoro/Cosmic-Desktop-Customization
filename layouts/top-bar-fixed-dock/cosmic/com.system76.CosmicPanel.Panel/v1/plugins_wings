@@ -1,5 +1,5 @@
 Some(([
-    "io.github.crocodile.cosmic-ext-applet-workspace-icons",
+    "com.system76.CosmicAppletWorkspaces",
     "io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager",
 ], [
     "com.vintagetechie.CosmicExtAppletTempest",

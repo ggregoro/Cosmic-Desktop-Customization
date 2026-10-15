@@ -128,12 +128,13 @@ Every dock floats a little above the bottom edge. With a top bar the dock
 is 75% opaque and normal size; Bottom dock only is 50% opaque and small. The top bar never floats or hides. For other changes, such
 as the dock's "Automatically hide" switch, use COSMIC Settings.
 
-With a top bar, the bar has workspace icons and clipboard on the left,
+With a top bar, the bar has COSMIC's numbered workspaces and clipboard on
+the left,
 the clock and calendar in the middle, and weather, tray, tiling, sound,
 Bluetooth, network, battery, notifications and power on the right; the
 dock holds the launcher and your pinned apps. Bottom dock only has the app
 library, launcher, pinned apps and minimized windows on the left,
-workspace icons in the middle, and weather, clipboard, tray, tiling,
+numbered workspaces in the middle, and weather, clipboard, tray, tiling,
 sound, Bluetooth, network, battery, notifications, clock and power on the
 right. Your pinned apps themselves are never changed.
 
@@ -144,29 +145,22 @@ right. Your pinned apps themselves are never changed.
 ```
 
 A layout replaces the applets on your panel and dock, so `--restore` is the
-way back to your own. The clipboard, workspace icons and weather applets
-are add-ons from the COSMIC Store (COSMIC's own Flatpak repository, not
-Flathub). Any that are not installed
-are left out, and without workspace icons you get COSMIC's own numbered
-workspace switcher instead; the switch says which. Install them and apply
-the layout again to get them:
+way back to your own. The clipboard and weather applets are add-ons from
+the COSMIC Store (COSMIC's own Flatpak repository, not Flathub). Any that
+are not installed are left out, and the switch says which. Install them
+and apply the layout again to get them:
 
 ```bash
 flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
 flatpak install --user cosmic io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
-flatpak install --user cosmic io.github.crocodile.cosmic-ext-applet-workspace-icons
 flatpak install --user cosmic com.vintagetechie.CosmicExtAppletTempest
 ```
 
 On Arch, install Flatpak first with `sudo pacman -S flatpak`.
 
-**Workspace Icons and COSMIC 1.9.** On COSMIC 1.9, Workspace Icons can
-crash as soon as it starts, leaving an empty gap on the top bar (a known
-bug in the applet:
-[issue #54](https://github.com/crocodile/cosmic-ext-applet-workspace-icons/issues/54)).
-COSMIC 1.10 runs it fine. Until it is fixed, COSMIC's own numbered
-workspace switcher does the same job; add it in Settings > Desktop >
-Panel > Applets.
+The layouts use COSMIC's own numbered workspace switcher, not the Workspace
+Icons add-on: on COSMIC 1.9 that applet can crash as soon as it starts
+([issue #54](https://github.com/crocodile/cosmic-ext-applet-workspace-icons/issues/54)).
 
 ## Uninstall
 

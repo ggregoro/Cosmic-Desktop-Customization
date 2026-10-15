@@ -203,9 +203,6 @@ if have gsettings; then
     done > "$BACKUP_DIR/gsettings"
 fi
 
-WORKSPACE_ICONS="io.github.crocodile.cosmic-ext-applet-workspace-icons"
-STOCK_WORKSPACES="com.system76.CosmicAppletWorkspaces"
-
 applet_installed() {
     local d
     for d in "${XDG_DATA_HOME:-$HOME/.local/share}" \
@@ -218,7 +215,6 @@ applet_installed() {
 
 applet_title() {
     case "$1" in
-        "$WORKSPACE_ICONS") echo "Workspace Icons" ;;
         io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager) echo "Clipboard Manager" ;;
         com.vintagetechie.CosmicExtAppletTempest) echo "Tempest (weather)" ;;
         *) echo "$1" ;;
@@ -227,8 +223,7 @@ applet_title() {
 
 # Layouts list add-on applets from the COSMIC Store. One that isn't
 # installed is left out of the copied panel and dock, so Settings doesn't
-# list it; Workspace Icons is swapped for COSMIC's own workspace switcher,
-# so there is always one. (com.system76 applets ship with COSMIC; some,
+# list it. (com.system76 applets ship with COSMIC; some,
 # like CosmicAppList, have no .desktop file, so they aren't checked.)
 fix_missing_applets() {
     local f rel id missing=()
@@ -237,20 +232,12 @@ fix_missing_applets() {
         for id in $(grep -o '"[^"]*"' "$f" | tr -d '"'); do
             [[ "$id" == com.system76.* ]] && continue
             applet_installed "$id" && continue
-            if [[ "$id" == "$WORKSPACE_ICONS" ]]; then
-                sed -i "s|\"$id\"|\"$STOCK_WORKSPACES\"|" "$COSMIC_DIR/$rel"
-            else
-                sed -i "/\"${id//./\\.}\"/d" "$COSMIC_DIR/$rel"
-            fi
+            sed -i "/\"${id//./\\.}\"/d" "$COSMIC_DIR/$rel"
             [[ " ${missing[*]} " == *" $id "* ]] || missing+=("$id")
         done
     done < <(find "$LAYOUT_COSMIC_DIR" -type f -name 'plugins_*')
     for id in "${missing[@]}"; do
-        if [[ "$id" == "$WORKSPACE_ICONS" ]]; then
-            echo "note: Workspace Icons isn't installed, so COSMIC's own workspace switcher is used instead."
-        else
-            echo "note: $(applet_title "$id") isn't installed, so it was left out."
-        fi
+        echo "note: $(applet_title "$id") isn't installed, so it was left out."
     done
     if (( ${#missing[@]} )); then
         echo "note: to get the missing applets, install them from the COSMIC Store, then apply the layout again."
