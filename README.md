@@ -290,6 +290,20 @@ rewrites the folder as you remove it and the result is a mix of old and
 default settings. Use `./switch-rice.sh --restore`, which copies files back
 in place.
 
+## How this was made
+
+This project is AI-assisted. The idea, the testing and the decisions are
+mine; the code and most of the documentation were written by Claude,
+Anthropic's AI assistant, using Claude Code. I tested it on my own
+machines before publishing, but I'm not a professional software
+developer, so please read any script before you run it, and open an
+issue if something is wrong.
+
+My own work here is under the license in `LICENSE`. Third-party material
+(wallpapers, fonts, code from other projects) keeps its own license and
+is credited in this README where the source is known. If something isn't
+credited correctly, open an issue and I'll fix or remove it.
+
 ## Wallpaper credits
 
 - `milky-way`: photo by
@@ -303,3 +317,8 @@ in place.
   Yapici, Artiom Vallat, Loris Boulinguez and Vishnu K R.
 - `downtown`: found on WallpaperSafari, artist unknown. If it is yours,
   open an issue and it will be credited or removed, as you prefer.
+
+## License
+
+MIT — see [`LICENSE`](LICENSE). The wallpapers keep their own licenses
+(see Wallpaper credits above).
