@@ -88,6 +88,59 @@ theme_installed() {
     return 1
 }
 
+is_opensuse() {
+    [[ -r /etc/os-release ]] && grep -qiE '^(ID|ID_LIKE)=.*suse' /etc/os-release
+}
+
+# openSUSE ships older panel applets (cosmic-applets 1.0.14 next to
+# cosmic-panel 1.7.0 on Tumbleweed) that read the theme from v1, with
+# colors as (red:, green:, blue:, alpha:) instead of "#RRGGBBAA". With
+# only v2 written they fall back to the default cyan accent and round
+# workspace buttons. Write a v1 copy of every v2 theme key the rice ships,
+# with the colors converted, except keys the rice ships in v1 itself.
+# Also add list_button, which the old loader needs to load the theme.
+write_legacy_theme() {
+    if ! have python3; then
+        echo "warning: python3 not found; the panel applets may keep the default accent color" >&2
+        return 0
+    fi
+    echo "Writing the theme for openSUSE's older panel applets ..."
+    python3 -I - "$RICE_COSMIC_DIR" "$COSMIC_DIR" "$BACKUP_DIR/applied-files" <<'EOF'
+import pathlib, re, sys
+rice, cosmic, applied = (pathlib.Path(a) for a in sys.argv[1:])
+hexcolor = re.compile(r'"#([0-9A-Fa-f]{6})([0-9A-Fa-f]{2})?"')
+
+def to_v1(text):
+    out = []
+    for line in text.splitlines(keepends=True):
+        ind = re.match(r'\s*', line).group(0)
+        def conv(m):
+            h, a = m.group(1), m.group(2) or "FF"
+            vals = [int(x, 16) / 255 for x in (h[0:2], h[2:4], h[4:6], a)]
+            i = ind + "    "
+            body = "".join(f"{i}{k}: {v:.7f},\n" for k, v in zip(("red", "green", "blue", "alpha"), vals))
+            return f"(\n{body}{ind})"
+        out.append(hexcolor.sub(conv, line))
+    return "".join(out)
+
+written = []
+for v2 in sorted(rice.glob("com.system76.CosmicTheme.*/v2")):
+    comp = v2.parent.name
+    dest = cosmic / comp / "v1"
+    dest.mkdir(parents=True, exist_ok=True)
+    for f in sorted(v2.iterdir()):
+        if not f.is_file() or (rice / comp / "v1" / f.name).exists():
+            continue
+        (dest / f.name).write_text(to_v1(f.read_text()))
+        written.append(f"{comp}/v1/{f.name}")
+    if not comp.endswith(".Builder") and (dest / "button").exists() and not (rice / comp / "v1" / "list_button").exists():
+        (dest / "list_button").write_text((dest / "button").read_text())
+        written.append(f"{comp}/v1/list_button")
+with applied.open("a") as fh:
+    fh.writelines(w + "\n" for w in written)
+EOF
+}
+
 panel_state() {
     cat "$COSMIC_DIR"/com.system76.CosmicPanel*/v1/* 2>/dev/null | md5sum
 }
@@ -205,11 +258,42 @@ if have gsettings; then
     done > "$BACKUP_DIR/gsettings"
 fi
 
+applet_installed() {
+    local d
+    for d in "${XDG_DATA_HOME:-$HOME/.local/share}" \
+             "$HOME/.local/share/flatpak/exports/share" /var/lib/flatpak/exports/share \
+             ${XDG_DATA_DIRS//:/ } /usr/local/share /usr/share; do
+        [[ -f "$d/applications/$1.desktop" ]] && return 0
+    done
+    return 1
+}
+
+# Layouts can list add-on applets from the COSMIC Store, such as the
+# clipboard manager. One that isn't installed is left out of the copied
+# panel and dock. (com.system76 applets ship with COSMIC; some, like
+# CosmicAppList, have no .desktop file, so they aren't checked.)
+drop_missing_applets() {
+    local f rel id missing=()
+    while IFS= read -r f; do
+        rel="${f#"$LAYOUT_COSMIC_DIR"/}"
+        for id in $(grep -o '"[^"]*"' "$f" | tr -d '"'); do
+            [[ "$id" == com.system76.* ]] && continue
+            applet_installed "$id" && continue
+            sed -i "/\"${id//./\\.}\"/d" "$COSMIC_DIR/$rel"
+            [[ " ${missing[*]} " == *" $id "* ]] || missing+=("$id")
+        done
+    done < <(find "$LAYOUT_COSMIC_DIR" -type f -name 'plugins_*')
+    for id in "${missing[@]}"; do
+        echo "note: $id isn't installed, so it was left out. Install it from the COSMIC Store and apply the layout again to get it."
+    done
+}
+
 apply_layout() {
     local before
     before="$(panel_state)"
     echo "Applying panel layout '$LAYOUT' ..."
     cp -r "$LAYOUT_COSMIC_DIR/." "$COSMIC_DIR/"
+    drop_missing_applets
     panel_note "$before"
 }
 
@@ -241,6 +325,8 @@ BG_FILE="$COSMIC_DIR/com.system76.CosmicBackground/v1/all"
 if [[ -f "$BG_FILE" ]]; then
     sed -i "s|__HOME__|$HOME|g" "$BG_FILE"
 fi
+
+is_opensuse && write_legacy_theme
 
 # Every rice here is a dark-mode design.
 mkdir -p "$COSMIC_DIR/com.system76.CosmicTheme.Mode/v1"

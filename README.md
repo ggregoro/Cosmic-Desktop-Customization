@@ -20,7 +20,10 @@ desktop, and one script that installs or removes any of them.
 
 - A working COSMIC desktop on Pop!_OS, Arch Linux or Fedora (COSMIC Spin).
   Any other distro that uses `apt`, `pacman` or `dnf` should work the same
-  way.
+  way. On openSUSE Tumbleweed the panel applets are an older version that
+  reads an older theme format, so the script also writes that format there
+  (it needs `python3`). Without it the top bar keeps COSMIC's default cyan
+  accent and round workspace buttons.
 - `git`, to download this repo.
 
 | Rice | Pop!_OS (`apt`) | Arch (`pacman`) | Fedora (`dnf`) |
@@ -128,12 +131,12 @@ Every dock floats a little above the bottom edge. With a top bar the dock
 is 75% opaque and normal size; Bottom dock only is 50% opaque and small. The top bar never floats or hides. For other changes, such
 as the dock's "Automatically hide" switch, use COSMIC Settings.
 
-With a top bar, the bar has COSMIC's numbered workspaces on the left, the
-clock and calendar in the middle, and tray, tiling, sound, Bluetooth,
+With a top bar, the bar has COSMIC's numbered workspaces and clipboard on
+the left, the clock and calendar in the middle, and tray, tiling, sound, Bluetooth,
 network, battery, notifications and power on the right; the dock holds the
 launcher and your pinned apps. Bottom dock only has the app library,
 launcher, pinned apps and minimized windows on the left, numbered
-workspaces in the middle, and tray, tiling, sound, Bluetooth, network,
+workspaces in the middle, and clipboard, tray, tiling, sound, Bluetooth, network,
 battery, notifications, clock and power on the right. Your pinned apps
 themselves are never changed.
 
@@ -146,9 +149,18 @@ themselves are never changed.
 A layout replaces the applets on your panel and dock, so `--restore` is the
 way back to your own.
 
-The layouts use only the applets that come with COSMIC, so they work the
-same on every system. Add-on applets from the COSMIC Store (a clipboard
-manager, weather, workspace icons and others) are up to you. Note that
+The clipboard is the Clipboard Manager add-on from the COSMIC Store
+(COSMIC's own Flatpak repository, not Flathub). If it isn't installed, it
+is left out and the switch says so. Install it and apply the layout again
+to get it:
+
+```bash
+flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
+flatpak install --user cosmic io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
+```
+
+Every other applet in the layouts comes with COSMIC. Other add-ons from the
+COSMIC Store (weather, workspace icons and others) are up to you. Note that
 COSMIC Settings cannot add or move most of them, because their packages
 do not mark them as panel applets.
 
