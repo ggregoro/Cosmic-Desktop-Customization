@@ -238,7 +238,8 @@ repo where it is (or run `--install` again after moving it). The
 screenshots are previews: on Pop!_OS and Fedora some parts only show
 after logging out and back in, and the picker reminds you.
 
-Tested on Arch Linux and Pop!_OS (COSMIC), including the Layout menu.
+Tested on Arch Linux, Pop!_OS and openSUSE Tumbleweed (COSMIC), including the
+Layout menu.
 After a layout change or an Undo, the panel sometimes needs a log out to
 look right; the picker reminds you.
 
