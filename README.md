@@ -28,10 +28,10 @@ desktop, and one script that installs or removes any of them.
 
 | Rice | Pop!_OS (`apt`) | Arch (`pacman`) | Fedora (`dnf`) | openSUSE (`zypper`) |
 |---|---|---|---|---|
-| `milky-way` | tested | tested | not tested | tested |
+| `milky-way` | tested | tested | tested | tested |
 | `osaka-jade` | tested | tested | tested | tested |
 | `onyx` | tested | tested | tested | tested |
-| `glowing-city` | tested | tested | not tested | tested |
+| `glowing-city` | tested | tested | tested | tested |
 | `violet-tide` | tested | tested | tested | tested |
 | `downtown` | tested | tested | tested | tested |
 
