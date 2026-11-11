@@ -18,22 +18,22 @@ desktop, and one script that installs or removes any of them.
 
 ## Requirements
 
-- A working COSMIC desktop on Pop!_OS, Arch Linux or Fedora (COSMIC Spin).
-  Any other distro that uses `apt`, `pacman` or `dnf` should work the same
-  way. On openSUSE Tumbleweed the panel applets are an older version that
+- A working COSMIC desktop on Pop!_OS, Arch Linux, Fedora (COSMIC Spin) or
+  openSUSE Tumbleweed. Any other distro that uses `apt`, `pacman`, `dnf` or
+  `zypper` should work the same way. On openSUSE Tumbleweed the panel applets are an older version that
   reads an older theme format, so the script also writes that format there
   (it needs `python3`). Without it the top bar keeps COSMIC's default cyan
   accent and round workspace buttons.
 - `git`, to download this repo.
 
-| Rice | Pop!_OS (`apt`) | Arch (`pacman`) | Fedora (`dnf`) |
-|---|---|---|---|
-| `milky-way` | tested | tested | not tested |
-| `osaka-jade` | tested | tested | tested |
-| `onyx` | tested | tested | tested |
-| `glowing-city` | tested | tested | not tested |
-| `violet-tide` | tested | tested | tested |
-| `downtown` | tested | tested | tested |
+| Rice | Pop!_OS (`apt`) | Arch (`pacman`) | Fedora (`dnf`) | openSUSE (`zypper`) |
+|---|---|---|---|---|
+| `milky-way` | tested | tested | not tested | tested |
+| `osaka-jade` | tested | tested | tested | tested |
+| `onyx` | tested | tested | tested | tested |
+| `glowing-city` | tested | tested | not tested | tested |
+| `violet-tide` | tested | tested | tested | tested |
+| `downtown` | tested | tested | tested | tested |
 
 ## Install
 
@@ -48,6 +48,9 @@ sudo pacman -S git
 
 # Fedora
 sudo dnf install git
+
+# openSUSE
+sudo zypper install git
 ```
 
 ```bash
@@ -68,7 +71,7 @@ sudo pacman -S adw-gtk-theme
 sudo dnf install adw-gtk3-theme
 ```
 
-Pop!_OS has no `apt` package for it. Download the latest `adw-gtk3v*.tar.xz`
+Pop!_OS and openSUSE have no package for it. Download the latest `adw-gtk3v*.tar.xz`
 from the [adw-gtk3 releases page](https://github.com/lassekongo83/adw-gtk3/releases)
 and unpack it into your themes folder:
 
@@ -215,6 +218,9 @@ sudo pacman -S python-gobject gtk4
 
 # Fedora
 sudo dnf install python3-gobject gtk4
+
+# openSUSE
+sudo zypper install python3-gobject typelib-1_0-Gtk-4_0
 ```
 
 Then, from the repo folder:
@@ -284,7 +290,8 @@ wrong.
 
 **The top bar or dock looks wrong after a layout change or an Undo.** The
 panel does not always redraw cleanly: on Pop!_OS a removed top bar can
-stay on screen, and on Arch an old bar has stayed next to the new one.
+stay on screen, and on Arch and openSUSE an old bar has stayed next to
+the new one.
 Your settings are already right; log out and back in and the panel
 draws them properly. The switch reminds you whenever the panel changed.
 
