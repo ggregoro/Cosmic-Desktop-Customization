@@ -19,11 +19,12 @@ desktop, and one script that installs or removes any of them.
 ## Requirements
 
 - A working COSMIC desktop on Pop!_OS, Arch Linux, Fedora (COSMIC Spin) or
-  openSUSE Tumbleweed. Any other distro that uses `apt`, `pacman`, `dnf` or
-  `zypper` should work the same way. On openSUSE Tumbleweed the panel applets are an older version that
-  reads an older theme format, so the script also writes that format there
-  (it needs `python3`). Without it the top bar keeps COSMIC's default cyan
-  accent and round workspace buttons.
+  openSUSE Tumbleweed. On openSUSE Tumbleweed the panel applets are an older
+  version that reads an older theme format, so the script also writes that
+  format there (it needs `python3`). Without it the top bar keeps COSMIC's
+  default cyan accent and round workspace buttons.
+  Other distros running COSMIC should work too; if the top bar keeps the
+  default cyan accent, [open an issue](https://github.com/ggregoro/Cosmic-Desktop-Customization/issues).
 - `git`, to download this repo.
 
 | Rice | Pop!_OS (`apt`) | Arch (`pacman`) | Fedora (`dnf`) | openSUSE (`zypper`) |
