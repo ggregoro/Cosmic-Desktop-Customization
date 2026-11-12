@@ -236,11 +236,11 @@ If you installed it before the icon existed, run `--install` again; the
 new icon may only show in the App Library and dock after logging out and
 back in. `--install` links `~/.local/bin/rice-picker` to this repo, so keep the
 repo where it is (or run `--install` again after moving it). The
-screenshots are previews: on Pop!_OS and Fedora some parts only show
+screenshots are previews: on every system some parts may only show
 after logging out and back in, and the picker reminds you.
 
-Tested on Arch Linux, Pop!_OS and openSUSE Tumbleweed (COSMIC), including the
-Layout menu.
+Tested on Arch Linux, Pop!_OS, Fedora, openSUSE Tumbleweed and CachyOS
+(COSMIC), including the Layout menu.
 After a layout change or an Undo, the panel sometimes needs a log out to
 look right; the picker reminds you.
 
