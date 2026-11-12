@@ -159,9 +159,16 @@ is left out and the switch says so. Install it and apply the layout again
 to get it:
 
 ```bash
+flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
 flatpak install --user cosmic io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager
 ```
+
+The first line is needed where Flathub is set up for the whole system
+only (as on CachyOS): the add-on needs a base runtime from Flathub, and
+without a Flathub for your user the install stops with "requires the
+runtime org.freedesktop.Platform ... which was not found". Where Flathub
+is already there for your user, the line does nothing.
 
 Every other applet in the layouts comes with COSMIC. Other add-ons from the
 COSMIC Store (weather, workspace icons and others) are up to you. Note that
