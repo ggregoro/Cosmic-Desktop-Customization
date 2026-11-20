@@ -9,12 +9,16 @@ desktop, and one script that installs or removes any of them.
 
 | Rice | Look | Changes |
 |---|---|---|
-| [`milky-way`](rices/milky-way/README.md) | Milky Way wallpaper, blue accent, Yaru theme and icons; made for the Bottom dock only layout | Colors, wallpaper, theme and icons |
-| [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent; made for the Top bar + fixed dock layout | Colors and wallpaper |
-| [`onyx`](rices/onyx/README.md) | Pure black with a purple accent, dark street wallpaper | Colors and wallpaper only |
-| [`glowing-city`](rices/glowing-city/README.md) | Pure black with grey accents, blue neon city wallpaper | Colors and wallpaper only |
-| [`violet-tide`](rices/violet-tide/README.md) | Dark slate-purple with a pink-lavender accent, purple sunset-over-water wallpaper, square corners, see-through terminal | Colors, corners, wallpaper and terminal opacity |
-| [`downtown`](rices/downtown/README.md) | Near-black with a lavender-blue accent, neon city at night wallpaper, pink-red and gold warnings, square corners | Colors, corners, wallpaper and terminal opacity |
+| [`milky-way`](rices/milky-way/README.md) | Milky Way wallpaper, blue accent, Yaru theme and icons; made for the Bottom dock only layout | Colors, corners, wallpaper, theme and icons |
+| [`osaka-jade`](rices/osaka-jade/README.md) | Green neon city wallpaper, jade accent; made for the Top bar + fixed dock layout | Colors, corners and wallpaper |
+| [`onyx`](rices/onyx/README.md) | Pure black with a purple accent, dark street wallpaper | Colors, corners and wallpaper |
+| [`glowing-city`](rices/glowing-city/README.md) | Pure black with grey accents, blue neon city wallpaper | Colors, corners and wallpaper |
+| [`violet-tide`](rices/violet-tide/README.md) | Dark slate-purple with a pink-lavender accent, purple sunset-over-water wallpaper, see-through terminal | Colors, corners, wallpaper and terminal opacity |
+| [`downtown`](rices/downtown/README.md) | Near-black with a lavender-blue accent, neon city at night wallpaper, pink-red and gold warnings | Colors, corners, wallpaper and terminal opacity |
+
+Every rice uses the same 2 px corners on windows and controls, so switching
+rices never changes the shape. For rounder corners, pick another roundness in
+Settings > Desktop > Appearance after applying a rice.
 
 ## Requirements
 

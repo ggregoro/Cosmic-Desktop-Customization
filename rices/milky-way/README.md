@@ -3,7 +3,7 @@
 ![Desktop](screenshots/desktop.png)
 
 - **Wallpaper:** the Milky Way core.
-- **Colors:** dark mode, blue accent (`#A1C0EB`), rounded corners, a thin
+- **Colors:** dark mode, blue accent (`#A1C0EB`), 2 px corners, a thin
   border on the active window.
 - **Panel and dock:** left as they are. The rice is made for the
   **Bottom dock only** layout (the screenshot shows an earlier version of it); add it with `--layout bottom-dock` or the picker's

@@ -10,7 +10,7 @@
   tower sign (`#F5B13B`), errors in the pink-red of the signs
   (`#FF3D6E`). The palette comes from the
   [Downtown](https://github.com/ggregoro/downtown) Omarchy theme.
-- **Corners:** square, on windows and controls.
+- **Corners:** 2 px, on windows and controls (the same in every rice).
 - **Icons:** Yaru in its purple, dark-mode version (`Yaru-purple-dark`),
   so folders match the lavender accent. Needs Yaru installed (see
   below); without it your icons stay as they are.

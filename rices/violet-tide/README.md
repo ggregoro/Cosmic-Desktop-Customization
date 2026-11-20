@@ -9,7 +9,7 @@
   grey-white text, pink-lavender accent (`#E8A6F5`). The palette comes
   from the [Violet Tide](https://github.com/ggregoro/violet-tide) Omarchy
   theme.
-- **Corners:** square, on windows and controls.
+- **Corners:** 2 px, on windows and controls (the same in every rice).
 - **Terminal:** COSMIC Terminal at 60% opacity, so the wallpaper shows
   through. COSMIC does not blur what is behind a window, so the
   wallpaper is seen sharp, not frosted as in the Omarchy theme.

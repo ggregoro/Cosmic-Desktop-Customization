@@ -6,7 +6,7 @@
 - **Colors:** dark mode, pure black background, white text, grey accent
   (`#8D8D8D`). The same palette as [`onyx`](../onyx/README.md), with every
   shade produced by COSMIC's own color picker.
-- **Layout:** unchanged. This rice sets colors and wallpaper only, so your
+- **Layout:** unchanged. This rice sets colors, 2 px corners and wallpaper only, so your
   panel and dock stay as they are.
 
 Tested on Pop!_OS and Arch Linux. Not tested on Fedora.

@@ -6,7 +6,7 @@
 - **Colors:** dark mode, pure black background, white text, purple accent
   (`#7A77BA`, the same as Downtown). The rest of the palette comes from the
   [Onyx](https://github.com/ggregoro/onyx) theme.
-- **Layout:** unchanged. This rice sets colors and wallpaper only, so your
+- **Layout:** unchanged. This rice sets colors, 2 px corners and wallpaper only, so your
   panel and dock stay as they are.
 
 The color shades were written by hand, not produced by COSMIC; the purple

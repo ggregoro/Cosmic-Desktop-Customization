@@ -3,8 +3,7 @@
 ![Desktop](screenshots/desktop.png)
 
 - **Wallpaper:** a green neon city at night.
-- **Colors:** dark mode, jade accent (`#63D0DF`), COSMIC's standard rounded
-  corners.
+- **Colors:** dark mode, jade accent (`#63D0DF`), 2 px corners.
 - **Panel and dock:** left as they are. The rice is made for the
   **Top bar + fixed dock** layout (the screenshot shows an earlier version of it); add it with `--layout top-bar-fixed-dock` or the picker's
   Layout menu (see [Panel layouts](../../README.md#panel-layouts-optional)).
