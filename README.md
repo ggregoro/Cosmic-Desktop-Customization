@@ -31,14 +31,17 @@ Settings > Desktop > Appearance after applying a rice.
   default cyan accent, [open an issue](https://github.com/ggregoro/Cosmic-Desktop-Customization/issues).
 - `git`, to download this repo.
 
-| Rice | Pop!_OS (`apt`) | Arch (`pacman`) | Fedora (`dnf`) | openSUSE (`zypper`) |
-|---|---|---|---|---|
-| `milky-way` | tested | tested | tested | tested |
-| `osaka-jade` | tested | tested | tested | tested |
-| `onyx` | tested | tested | tested | tested |
-| `glowing-city` | tested | tested | tested | tested |
-| `violet-tide` | tested | tested | tested | tested |
-| `downtown` | tested | tested | tested | tested |
+| Rice | Pop!_OS (`apt`) | Arch (`pacman`) | Fedora (`dnf`) | openSUSE (`zypper`) | Newer Settings (Pop!_OS) |
+|---|---|---|---|---|---|
+| `milky-way` | tested | tested | tested | tested | tested |
+| `osaka-jade` | tested | tested | tested | tested | tested |
+| `onyx` | tested | tested | tested | tested | tested |
+| `glowing-city` | tested | tested | tested | tested | tested |
+| `violet-tide` | tested | tested | tested | tested | tested |
+| `downtown` | tested | tested | tested | tested | tested |
+
+"Newer Settings" means COSMIC Settings with theme bundles; see
+[Newer COSMIC Settings](#newer-cosmic-settings-theme-bundles).
 
 ## Install
 
@@ -123,6 +126,45 @@ The script:
 
 Run it again with another name to switch rices. A rice never touches your
 panel, dock, applets or pinned apps; for those, see Panel layouts below.
+
+### Newer COSMIC Settings (theme bundles)
+
+Newer versions of COSMIC Settings (on Pop!_OS since November 2026, and
+coming to the other distros) keep each look as a **theme**: a card under
+Settings > Appearance that holds the colours, corners, icon theme and
+wallpaper. The script notices these versions and also:
+
+- installs the rice as a theme card and switches to it, so you can go back
+  to it from Settings > Appearance at any time (if Settings is open, close
+  and reopen it to see the new card);
+- sets the wallpaper and icon theme where the newer COSMIC reads them;
+- leaves **your own settings** alone: window border size, gaps between
+  tiled windows and frosted glass (see below).
+
+On older versions (COSMIC 1.11.0 and earlier) nothing changes.
+
+You can also install just the look, without the script: build the theme
+files and import one in Settings > Appearance > **Import**:
+
+```bash
+./build-bundles.py            # writes bundles/<rice>.zip (and <rice>-light.zip)
+```
+
+A theme file carries the colours, corners, icon theme name and wallpaper.
+It does not carry panel layouts, the GTK theme, terminal colours or keys;
+use the script for those.
+
+#### Your own settings
+
+With the newer Settings, these stay as you set them, whichever rice or
+theme you switch to. Change them in Settings > Appearance:
+
+- **Active window hint size** (the border around the focused window) and
+  **Gaps around tiled windows**: under *Window management*.
+- **Frosted glass** (blur behind the panel, applets, launcher and windows):
+  under *Frosted glass*. It is on by default on new installs and uses
+  more graphics power; on older hardware, switch the parts off if the
+  desktop feels slow.
 
 ## Panel layouts (optional)
 

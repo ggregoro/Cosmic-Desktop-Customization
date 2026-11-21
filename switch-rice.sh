@@ -92,6 +92,45 @@ is_opensuse() {
     [[ -r /etc/os-release ]] && grep -qiE '^(ID|ID_LIKE)=.*suse' /etc/os-release
 }
 
+# Newer COSMIC Settings keep each look as a "theme bundle" and ship the
+# built-in ones in /usr/share/cosmic. With them the wallpaper is read per
+# mode (CosmicBackground.Dark/.Light), COSMIC apps take the icon theme from
+# the theme itself, and Settings finds the active look by its name.
+# COSMIC 1.11.0 has none of this and keeps the old path.
+# RICE_BUNDLES=1 or 0 forces the choice.
+has_theme_bundles() {
+    case "${RICE_BUNDLES:-auto}" in
+        1) return 0 ;;
+        0) return 1 ;;
+    esac
+    compgen -G "/usr/share/cosmic/com.system76.CosmicThemeBundle.*" >/dev/null
+}
+
+# On newer COSMIC Settings, window border size, gaps and frosted glass are
+# the user's own settings, so put back the values the rice just overwrote.
+# Then install the rice as a theme in Settings > Appearance and switch it
+# on, with its wallpaper. The files it adds go into applied-files, so
+# --restore removes them again.
+apply_bundles() {
+    local rel
+    if ! have python3; then
+        echo "warning: python3 not found; the rice won't appear in Settings > Appearance and its wallpaper may not apply" >&2
+        return 0
+    fi
+    while IFS= read -r rel; do
+        if [[ -e "$BACKUP_DIR/cosmic/$rel" ]]; then
+            cp "$BACKUP_DIR/cosmic/$rel" "$COSMIC_DIR/$rel"
+        else
+            rm -f "$COSMIC_DIR/$rel"
+        fi
+    done < <(cd "$RICE_COSMIC_DIR" && find . -path './com.system76.CosmicTheme.*' -type f \
+                 \( -name active_hint -o -name gaps -o -name spacing -o -name 'frosted*' -o -name alpha_map \) \
+                 | sed 's|^\./||')
+    echo "Installing '$RICE' as a theme in Settings > Appearance ..."
+    python3 "$REPO_DIR/build-bundles.py" --install "$RICE" >> "$BACKUP_DIR/applied-files"
+    echo "note: if COSMIC Settings is open, close and reopen it to see the new theme."
+}
+
 # openSUSE ships older panel applets (cosmic-applets 1.0.14 next to
 # cosmic-panel 1.7.0 on Tumbleweed) that read the theme from v1, with
 # colors as (red:, green:, blue:, alpha:) instead of "#RRGGBBAA". With
@@ -177,6 +216,9 @@ restore() {
         while IFS= read -r rel; do
             [[ -e "$backup/cosmic/$rel" ]] || rm -f "$COSMIC_DIR/$rel"
         done < "$backup/applied-files"
+        # A theme bundle the rice installed leaves empty folders behind.
+        find "$COSMIC_DIR" -mindepth 1 -maxdepth 1 -type d -name 'com.system76.CosmicThemeBundle.*' \
+            -exec find {} -depth -type d -empty -delete \;
     fi
     mkdir -p "$COSMIC_DIR"
     cp -r "$backup/cosmic/." "$COSMIC_DIR/"
@@ -327,6 +369,8 @@ if [[ -f "$BG_FILE" ]]; then
 fi
 
 is_opensuse && write_legacy_theme
+
+has_theme_bundles && apply_bundles
 
 # Every rice here is a dark-mode design.
 mkdir -p "$COSMIC_DIR/com.system76.CosmicTheme.Mode/v1"
