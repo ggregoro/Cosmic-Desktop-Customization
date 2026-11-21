@@ -5,6 +5,10 @@
 # Usage: ./switch-rice.sh <rice-name>   apply a rice
 #        ./switch-rice.sh <rice-name> --layout <layout>
 #                                       apply a rice and a panel layout
+#        ./switch-rice.sh <rice-name> --frosted-off
+#                                       apply a rice and switch off
+#                                       frosted glass (lighter on older
+#                                       hardware)
 #        ./switch-rice.sh --layout <layout>
 #                                       change only the panel layout
 #        ./switch-rice.sh --list        list the rices and layouts
@@ -28,7 +32,7 @@ CURRENT_FILE="$BACKUPS_DIR/current-rice"
 KEEP_BACKUPS=10
 
 usage() {
-    echo "Usage: $0 <rice-name> [--layout <layout>]"
+    echo "Usage: $0 <rice-name> [--layout <layout>] [--frosted-off]"
     echo "       $0 --layout <layout>"
     echo "       $0 --list"
     echo "       $0 --restore [backup-folder-name]"
@@ -37,6 +41,9 @@ usage() {
     for d in "$RICES_DIR"/*/; do
         echo "  - $(basename "$d")"
     done
+    echo
+    echo "--frosted-off switches off frosted glass (blur behind the panel, applets,"
+    echo "launcher and windows), which is heavy on older graphics."
     echo
     echo "Panel layouts (without --layout, your panel and dock are left as they are):"
     for d in "$LAYOUTS_DIR"/*/; do
@@ -129,6 +136,26 @@ apply_bundles() {
     echo "Installing '$RICE' as a theme in Settings > Appearance ..."
     python3 "$REPO_DIR/build-bundles.py" --install "$RICE" >> "$BACKUP_DIR/applied-files"
     echo "note: if COSMIC Settings is open, close and reopen it to see the new theme."
+}
+
+# Switch off every part of frosted glass, in the theme and in the
+# settings COSMIC Settings edits, for dark and light mode. The blur
+# strength is left alone. The files go into applied-files, so --restore
+# puts back what was there.
+frosted_off() {
+    local mode part key rel
+    echo "Switching off frosted glass ..."
+    for mode in Dark Light; do
+        for part in "" .Builder; do
+            for key in frosted_panel frosted_applets frosted_system_interface \
+                       frosted_windows frosted_maximized_apps; do
+                rel="com.system76.CosmicTheme.$mode$part/v2/$key"
+                mkdir -p "$COSMIC_DIR/${rel%/*}"
+                echo false > "$COSMIC_DIR/$rel"
+                echo "$rel" >> "$BACKUP_DIR/applied-files"
+            done
+        done
+    done
 }
 
 # openSUSE ships older panel applets (cosmic-applets 1.0.14 next to
@@ -254,11 +281,13 @@ esac
 
 RICE=""
 LAYOUT=""
+FROSTED_OFF=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --layout)
             [[ -n "${2:-}" ]] || { usage; exit 1; }
             LAYOUT="$2"; shift 2 ;;
+        --frosted-off) FROSTED_OFF=1; shift ;;
         -*) usage; exit 1 ;;
         *)  [[ -z "$RICE" ]] || { usage; exit 1; }
             RICE="$1"; shift ;;
@@ -268,6 +297,12 @@ done
 RICE_DIR="$RICES_DIR/$RICE"
 RICE_COSMIC_DIR="$RICE_DIR/cosmic"
 LAYOUT_COSMIC_DIR="$LAYOUTS_DIR/$LAYOUT/cosmic"
+
+if [[ -n "$FROSTED_OFF" && -z "$RICE" ]]; then
+    echo "error: --frosted-off goes with a rice name" >&2
+    usage
+    exit 1
+fi
 
 if [[ -n "$RICE" && ! -d "$RICE_COSMIC_DIR" ]]; then
     echo "error: no rice named '$RICE' (looked for $RICE_COSMIC_DIR)" >&2
@@ -426,6 +461,8 @@ if [[ -f "$RICE_DIR/icon-theme" ]]; then
         echo "warning: icon theme '$ICON_THEME_NAME' isn't installed; leaving the icon theme unchanged" >&2
     fi
 fi
+
+[[ -z "$FROSTED_OFF" ]] || frosted_off
 
 [[ -z "$LAYOUT" ]] || apply_layout
 

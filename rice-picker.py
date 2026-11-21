@@ -9,7 +9,8 @@ Usage: ./rice-picker.py             open the picker
 Pick a rice on the left to see it large on the right; Apply (or Enter,
 or a double-click) runs switch-rice.sh, and Undo runs its --restore.
 The Layout menu picks a panel layout to apply with the rice; "Keep mine"
-leaves the panel and dock alone. The choice is remembered.
+leaves the panel and dock alone. "Frosted glass off" also switches off
+frosted glass (--frosted-off). Both choices are remembered.
 """
 
 import os
@@ -24,6 +25,7 @@ LAYOUTS_DIR = REPO_DIR / "layouts"
 # Menu order; any other layout folder is listed after these.
 LAYOUT_ORDER = ["top-bar-autohide-dock", "top-bar-fixed-dock", "bottom-dock"]
 LAYOUT_FILE = Path.home() / ".config/rice-picker/layout"
+FROSTED_FILE = Path.home() / ".config/rice-picker/frosted-off"
 SWITCH = REPO_DIR / "switch-rice.sh"
 CURRENT_FILE = Path.home() / ".config/cosmic-backups/current-rice"
 BIN_LINK = Path.home() / ".local/bin/rice-picker"
@@ -136,6 +138,21 @@ def save_layout(name):
     try:
         LAYOUT_FILE.parent.mkdir(parents=True, exist_ok=True)
         LAYOUT_FILE.write_text(name + "\n")
+    except OSError:
+        pass
+
+
+def saved_frosted_off():
+    return FROSTED_FILE.is_file()
+
+
+def save_frosted_off(on):
+    try:
+        if on:
+            FROSTED_FILE.parent.mkdir(parents=True, exist_ok=True)
+            FROSTED_FILE.touch()
+        else:
+            FROSTED_FILE.unlink(missing_ok=True)
     except OSError:
         pass
 
@@ -255,6 +272,15 @@ def run_app():
             layout_row.append(self.layout_menu)
             layout_row.append(self.layout_hint)
 
+            # Frosted glass is heavy on older graphics; off when ticked,
+            # left as the user set it when not.
+            self.frosted_check = Gtk.CheckButton(label="Frosted glass off")
+            self.frosted_check.set_tooltip_text(
+                "Also switch off the blur behind the panel, applets, launcher and windows. "
+                "Lighter on older hardware. Unticked, frosted glass is left as you set it.")
+            self.frosted_check.set_active(saved_frosted_off())
+            self.frosted_check.connect("toggled", lambda b: save_frosted_off(b.get_active()))
+
             buttons = Gtk.Box(spacing=8)
             self.apply_btn = Gtk.Button(label="Apply")
             self.apply_btn.add_css_class("suggested-action")
@@ -272,7 +298,8 @@ def run_app():
             status_scroll.set_min_content_height(70)
             status_scroll.set_max_content_height(110)
             status_scroll.set_propagate_natural_height(True)
-            for w in (self.preview, self.title, self.look, self.changes, layout_row, buttons, status_scroll):
+            for w in (self.preview, self.title, self.look, self.changes, layout_row,
+                      self.frosted_check, buttons, status_scroll):
                 side.append(w)
             # The side scrolls too, so Apply and Undo stay reachable when the
             # window is short (for example tiled).
@@ -368,9 +395,14 @@ def run_app():
             if r:
                 layout = self.layout_name()
                 args = [r["name"]] + (["--layout", layout] if layout else [])
+                frosted_off = self.frosted_check.get_active()
+                if frosted_off:
+                    args.append("--frosted-off")
                 done = f"{r['title']} applied"
                 if layout:
                     done += f" with the {dict(self.layouts)[layout]} layout"
+                if frosted_off:
+                    done += ", frosted glass off"
                 self.run_switch(args, done + ".")
 
         def undo(self):

@@ -164,7 +164,8 @@ theme you switch to. Change them in Settings > Appearance:
 - **Frosted glass** (blur behind the panel, applets, launcher and windows):
   under *Frosted glass*. It is on by default on new installs and uses
   more graphics power; on older hardware, switch the parts off if the
-  desktop feels slow.
+  desktop feels slow, or tick **Frosted glass off** in the rice picker
+  (`./switch-rice.sh <rice> --frosted-off`) to switch them all off.
 
 ## Panel layouts (optional)
 
@@ -255,7 +256,11 @@ rice was made for. "Keep mine" leaves the panel and dock as they are
 now, so after trying a layout it does not bring your own back: "Undo last
 switch" (`./switch-rice.sh --restore`) does that. It goes back to the
 settings from before the last switch and sets the Layout menu back to
-"Keep mine". Keys: arrows to move, Enter to apply, Esc to close.
+"Keep mine". Ticking **Frosted glass off** also switches off the blur
+behind the panel, applets, launcher and windows when you apply (lighter
+on older hardware); it is remembered too, and Undo puts back what you
+had. Left unticked, frosted glass stays as you set it.
+Keys: arrows to move, Enter to apply, Esc to close.
 
 `milky-way` sets the Yaru theme for GTK apps, so the picker window itself
 turns Yaru's orange and green while it is applied. Any other rice sets the
