@@ -227,7 +227,7 @@ EOF
 }
 
 panel_state() {
-    cat "$COSMIC_DIR"/com.system76.CosmicPanel*/v1/* 2>/dev/null | md5sum
+    cat "$COSMIC_DIR"/com.system76.CosmicPanel*/v1/* 2>/dev/null | md5sum || true
 }
 
 # cosmic-panel picks up a changed panel or dock by itself, but not always
@@ -358,7 +358,7 @@ applet_installed() {
     local d
     for d in "${XDG_DATA_HOME:-$HOME/.local/share}" \
              "$HOME/.local/share/flatpak/exports/share" /var/lib/flatpak/exports/share \
-             ${XDG_DATA_DIRS//:/ } /usr/local/share /usr/share; do
+             $(tr : " " <<<"${XDG_DATA_DIRS:-}") /usr/local/share /usr/share; do
         [[ -f "$d/applications/$1.desktop" ]] && return 0
     done
     return 1
