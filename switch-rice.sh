@@ -138,6 +138,25 @@ apply_bundles() {
     echo "note: if COSMIC Settings is open, close and reopen it to see the new theme."
 }
 
+# The bundle step writes the rice's icon theme without checking that it
+# is installed. Put back the live value from before, and leave the name
+# out of the rice's card in Settings so clicking it can't set it either.
+undo_bundle_icons() {
+    local rel
+    while IFS= read -r rel; do
+        case "$rel" in
+            com.system76.CosmicThemeBundle.*/icon_theme)
+                rm -f "$COSMIC_DIR/$rel" ;;
+            com.system76.CosmicTheme.*/icon_theme)
+                if [[ -e "$BACKUP_DIR/cosmic/$rel" ]]; then
+                    cp "$BACKUP_DIR/cosmic/$rel" "$COSMIC_DIR/$rel"
+                else
+                    rm -f "$COSMIC_DIR/$rel"
+                fi ;;
+        esac
+    done < "$BACKUP_DIR/applied-files"
+}
+
 # Switch off every part of frosted glass, in the theme and in the
 # settings COSMIC Settings edits, for dark and light mode. The blur
 # strength is left alone. The files go into applied-files, so --restore
@@ -394,8 +413,10 @@ fi
 
 echo "Applying rice '$RICE' ..."
 # Overlay, never replace: removing ~/.config/cosmic while COSMIC is
-# running races its settings daemon.
-cp -r "$RICE_COSMIC_DIR/." "$COSMIC_DIR/"
+# running races its settings daemon. The icon theme is not copied: it is
+# set further down, and only if it is installed.
+(cd "$RICE_COSMIC_DIR" && find . -type f ! -path './com.system76.CosmicTk/v1/icon_theme' \
+    -exec cp --parents -t "$COSMIC_DIR" {} +)
 
 # The tracked wallpaper path uses __HOME__ in place of a real home folder.
 BG_FILE="$COSMIC_DIR/com.system76.CosmicBackground/v1/all"
@@ -459,6 +480,7 @@ if [[ -f "$RICE_DIR/icon-theme" ]]; then
         fi
     else
         echo "warning: icon theme '$ICON_THEME_NAME' isn't installed; leaving the icon theme unchanged" >&2
+        undo_bundle_icons
     fi
 fi
 
