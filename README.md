@@ -174,7 +174,7 @@ dock stay exactly as they are.
 
 | Layout | What you get |
 |---|---|
-| `top-bar-autohide-dock` | Top bar + autohide dock: a thin top bar and a dock at the bottom that hides when a window overlaps it |
+| `top-bar-autohide-dock` | Top bar + autohide dock: a thin top bar and a dock at the bottom that hides when a window overlaps it; both see-through (30% opacity), dock stretched to the screen edges |
 | `top-bar-fixed-dock` | Top bar + fixed dock: the same top bar, and a dock that always stays on screen; windows stop above it (made for `osaka-jade`) |
 | `bottom-dock` | Bottom dock only: no top bar; one dock across the full width holds everything, like KDE (made for `milky-way`) |
 
