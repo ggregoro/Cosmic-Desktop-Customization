@@ -1,4 +1,7 @@
-# Cosmic Desktop Customization
+# COSMIC Rice Toolkit
+
+*Looks and tools for the COSMIC™ desktop (repository:
+`Cosmic-Desktop-Customization`).*
 
 Six ready-made looks ("rices") for the [COSMIC](https://system76.com/cosmic)
 desktop, and one script that installs or removes any of them.
@@ -402,6 +405,6 @@ credited correctly, open an issue and I'll fix or remove it.
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE). The wallpapers keep their own licenses
-(see Wallpaper credits above); the Omarchy one is covered by
-[`LICENSE-OMARCHY`](LICENSE-OMARCHY).
+COSMIC Rice Toolkit is MIT licensed — see [`LICENSE`](LICENSE). The
+wallpapers keep their own licenses (see Wallpaper credits above); the
+Omarchy one is covered by [`LICENSE-OMARCHY`](LICENSE-OMARCHY).
