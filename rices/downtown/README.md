@@ -1,30 +1,27 @@
 # Downtown
 
-![Desktop](screenshots/desktop.png)
-
-- **Wallpaper:** a figure on a rooftop over a neon city at night, pink-red
-  and gold signs and cyan light beams. It is ultra-wide (3840 x 1633), so
-  on a 16:9 screen the sides are cropped and the middle is kept.
+- **Wallpaper:** none; the rice keeps the wallpaper you have. It was
+  made for a neon city at night, so a dark, neon-lit city picture suits
+  it best.
 - **Colors:** dark mode, near-black background (`#07070C`), warm grey-white
-  text, lavender-blue accent (`#7A77BA`); warnings in the gold of the
-  tower sign (`#F5B13B`), errors in the pink-red of the signs
-  (`#FF3D6E`). The palette comes from the
+  text, lavender-blue accent (`#7A77BA`); warnings in gold
+  (`#F5B13B`), errors in pink-red (`#FF3D6E`). The palette comes from the
   [Downtown](https://github.com/ggregoro/downtown) theme.
 - **Corners:** 2 px, on windows and controls (the same in every rice).
 - **Icons:** Yaru in its purple, dark-mode version (`Yaru-purple-dark`),
   so folders match the lavender accent. Needs Yaru installed (see
   below); without it your icons stay as they are.
 - **Terminal:** COSMIC Terminal at 90% opacity.
-- **Layout:** unchanged. This rice sets colors, corners, wallpaper, icons
-  and terminal opacity only, so your panel and dock stay as they are.
+- **Layout:** unchanged. This rice sets colors, corners, icons and
+  terminal opacity only, so your panel and dock stay as they are.
 
 The color shades were worked out by script from the palette, not
 produced by COSMIC. To have COSMIC work them out itself, open Settings >
 Desktop > Appearance after applying and pick the accent color once.
 
 Tested on Arch Linux, Pop!_OS and Fedora 44. On Arch everything shows at
-once. On Pop!_OS and Fedora some parts (on Pop!_OS the accent color,
-corners and wallpaper; on Fedora the icons) only appeared after logging
+once. On Pop!_OS and Fedora some parts (on Pop!_OS the accent color
+and corners; on Fedora the icons) only appeared after logging
 out and back in, so do that if the look does not change at once.
 
 The border around the active window follows the accent. If you had
@@ -35,15 +32,6 @@ since).
 The solid purple folders need Yaru 26.04 or newer (Arch has it). With
 older Yaru, such as 25.10 on Fedora 44, the folders are grey with a
 purple flap at the back.
-
-The wallpaper is busy along the bottom edge, so dock icons can be hard
-to see over it. The rice leaves the dock alone, but raising the dock's
-opacity helps: the screenshot above uses 75%, set in Settings >
-Desktop > Dock > Background opacity.
-
-The wallpaper was found on WallpaperSafari; its artist is unknown. If it
-is yours, open an issue and it will be credited or removed, as you
-prefer.
 
 ## Extras
 

@@ -5,7 +5,7 @@ desktop, and one script that installs or removes any of them.
 
 | Milky Way | Osaka Jade | Onyx | Glowing City | Violet Tide | Downtown |
 |---|---|---|---|---|---|
-| ![Milky Way desktop](rices/milky-way/screenshots/desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) | ![Glowing City desktop](rices/glowing-city/screenshots/desktop.png) | ![Violet Tide desktop](rices/violet-tide/screenshots/desktop.png) | ![Downtown desktop](rices/downtown/screenshots/desktop.png) |
+| ![Milky Way desktop](rices/milky-way/screenshots/desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) | ![Glowing City desktop](rices/glowing-city/screenshots/desktop.png) | ![Violet Tide desktop](rices/violet-tide/screenshots/desktop.png) | *No screenshot yet* |
 
 | Rice | Look | Changes |
 |---|---|---|
@@ -14,7 +14,7 @@ desktop, and one script that installs or removes any of them.
 | [`onyx`](rices/onyx/README.md) | Pure black with a purple accent, dark street wallpaper | Colors, corners and wallpaper |
 | [`glowing-city`](rices/glowing-city/README.md) | Pure black with grey accents, blue neon city wallpaper | Colors, corners and wallpaper |
 | [`violet-tide`](rices/violet-tide/README.md) | Dark slate-purple with a pink-lavender accent, purple sunset-over-water wallpaper, see-through terminal | Colors, corners, wallpaper and terminal opacity |
-| [`downtown`](rices/downtown/README.md) | Near-black with a lavender-blue accent, neon city at night wallpaper, pink-red and gold warnings | Colors, corners, wallpaper and terminal opacity |
+| [`downtown`](rices/downtown/README.md) | Near-black with a lavender-blue accent, pink-red and gold warnings, Yaru purple icons; keeps your own wallpaper | Colors, corners, icons and terminal opacity |
 
 Every rice uses the same 2 px corners on windows and controls, so switching
 rices never changes the shape. For rounder corners, pick another roundness in
@@ -114,7 +114,7 @@ The script:
 
 1. Saves your current COSMIC settings to a dated folder under
    `~/.config/cosmic-backups/`.
-2. Copies the rice's wallpaper to `~/Pictures`.
+2. Copies the rice's wallpaper, if it has one, to `~/Pictures`.
 3. Copies the rice's settings into `~/.config/cosmic`.
 4. Turns on dark mode and sets the GTK theme (and the icon theme, for
    `milky-way` and `downtown`).
@@ -396,8 +396,6 @@ credited correctly, open an issue and I'll fix or remove it.
 - `glowing-city`: a blue-tinted edit of the `osaka-jade` wallpaper.
 - `violet-tide`: four photos from Unsplash (Unsplash License), by Engin
   Yapici, Artiom Vallat, Loris Boulinguez and Vishnu K R.
-- `downtown`: found on WallpaperSafari, artist unknown. If it is yours,
-  open an issue and it will be credited or removed, as you prefer.
 
 ## License
 

@@ -73,7 +73,8 @@ def key_files(folder):
     return {f.name: f.read_text() for f in sorted(folder.iterdir()) if f.is_file()}
 
 
-def metainfo(slug, name, mode, wallpaper_dir):
+def metainfo(slug, name, mode, wallpaper_dir, has_background=True):
+    parts = "Theme,Builder,Background" if has_background else "Theme,Builder"
     asset = ""
     if wallpaper_dir:
         asset = (f'[(id:"{BUNDLE}.{slug}.wallpapers",kind:Wallpaper,'
@@ -95,7 +96,7 @@ def metainfo(slug, name, mode, wallpaper_dir):
     <value key="x-cosmic-version">1.0.0</value>
     <value key="x-cosmic-slug">{slug}</value>
     <value key="x-cosmic-mode">{mode.lower()}</value>
-    <value key="x-cosmic-parts">Theme,Builder,Background</value>
+    <value key="x-cosmic-parts">{parts}</value>
     <value key="x-cosmic-assets">{escape(asset)}</value>
   </custom>
 </component>
@@ -173,7 +174,7 @@ def write_zip(b, out_dir):
             info.external_attr = 0o644 << 16
             z.writestr(info, body)
 
-        add(f"{BUNDLE}.{slug}.metainfo.xml", metainfo(slug, b["name"], b["mode"], wallpaper_dir))
+        add(f"{BUNDLE}.{slug}.metainfo.xml", metainfo(slug, b["name"], b["mode"], wallpaper_dir, bool(background)))
         for key, value in sorted(b["theme"].items()):
             add(f"{root}.Theme/v2/{key}", value)
         for key, value in sorted(b["builder"].items()):
