@@ -1,8 +1,9 @@
 # Downtown
 
-- **Wallpaper:** none; the rice keeps the wallpaper you have. It was
-  made for a neon city at night, so a dark, neon-lit city picture suits
-  it best.
+- **Wallpaper:** Shanghai at night from high above: blue-lit towers,
+  magenta signs and a gold riverfront under a purple-black sky. Photo by
+  [Francois Hoang on Unsplash](https://unsplash.com/photos/high-angle-photography-of-city-during-nighttime-MFYlCoSm-0o)
+  (Unsplash License).
 - **Colors:** dark mode, near-black background (`#07070C`), warm grey-white
   text, lavender-blue accent (`#7A77BA`); warnings in gold
   (`#F5B13B`), errors in pink-red (`#FF3D6E`). The palette comes from the
@@ -12,16 +13,16 @@
   so folders match the lavender accent. Needs Yaru installed (see
   below); without it your icons stay as they are.
 - **Terminal:** COSMIC Terminal at 90% opacity.
-- **Layout:** unchanged. This rice sets colors, corners, icons and
-  terminal opacity only, so your panel and dock stay as they are.
+- **Layout:** unchanged. This rice sets colors, corners, wallpaper,
+  icons and terminal opacity only, so your panel and dock stay as they are.
 
 The color shades were worked out by script from the palette, not
 produced by COSMIC. To have COSMIC work them out itself, open Settings >
 Desktop > Appearance after applying and pick the accent color once.
 
 Tested on Arch Linux, Pop!_OS and Fedora 44. On Arch everything shows at
-once. On Pop!_OS and Fedora some parts (on Pop!_OS the accent color
-and corners; on Fedora the icons) only appeared after logging
+once. On Pop!_OS and Fedora some parts (on Pop!_OS the accent color,
+corners and wallpaper; on Fedora the icons) only appeared after logging
 out and back in, so do that if the look does not change at once.
 
 The border around the active window follows the accent. If you had
