@@ -1,5 +1,7 @@
 # Downtown
 
+![Desktop](screenshots/desktop.png)
+
 - **Wallpaper:** Shanghai at night from high above: blue-lit towers,
   magenta signs and a gold riverfront under a purple-black sky. Photo by
   [Francois Hoang on Unsplash](https://unsplash.com/photos/high-angle-photography-of-city-during-nighttime-MFYlCoSm-0o)

@@ -5,7 +5,7 @@ desktop, and one script that installs or removes any of them.
 
 | Milky Way | Osaka Jade | Onyx | Glowing City | Violet Tide | Downtown |
 |---|---|---|---|---|---|
-| ![Milky Way desktop](rices/milky-way/screenshots/desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) | ![Glowing City desktop](rices/glowing-city/screenshots/desktop.png) | ![Violet Tide desktop](rices/violet-tide/screenshots/desktop.png) | *Screenshot coming* |
+| ![Milky Way desktop](rices/milky-way/screenshots/desktop.png) | ![Osaka Jade desktop](rices/osaka-jade/screenshots/desktop.png) | ![Onyx desktop](rices/onyx/screenshots/desktop.png) | ![Glowing City desktop](rices/glowing-city/screenshots/desktop.png) | ![Violet Tide desktop](rices/violet-tide/screenshots/desktop.png) | ![Downtown desktop](rices/downtown/screenshots/desktop.png) |
 
 | Rice | Look | Changes |
 |---|---|---|
