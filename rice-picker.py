@@ -67,8 +67,8 @@ def install():
     if OLD_DESKTOP_FILE.exists() and "Name=Rice Picker" in OLD_DESKTOP_FILE.read_text():
         OLD_DESKTOP_FILE.unlink()
     print(f"Added {BIN_LINK} and Rice Picker (with its icon) to the app list, under Utilities.")
-    print("Open it from the app list, or add its key with ./omarchy-keys.sh --apply")
-    print("(Super+Shift+Ctrl+Space, as in Omarchy).")
+    print("Open it from the app list, or add its key (Super+Shift+Ctrl+Space)")
+    print("with ./extra-keys.sh --apply.")
 
 
 def remove():

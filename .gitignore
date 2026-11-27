@@ -8,8 +8,10 @@
 # ...except these
 !/.gitignore
 !/README.md
+!/LICENSE
+!/LICENSE-OMARCHY
 !/switch-rice.sh
-!/omarchy-keys.sh
+!/extra-keys.sh
 !/rice-picker.py
 !/build-bundles.py
 !/keys/

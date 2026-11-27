@@ -62,7 +62,7 @@ restart_cosmic() {
 }
 
 # Backup folders only (named by date and time), oldest first. Other
-# folders under cosmic-backups, such as omarchy-keys, are not backups.
+# folders under cosmic-backups, such as extra-keys, are not backups.
 list_backups() {
     find "$BACKUPS_DIR" -mindepth 1 -maxdepth 1 -type d \
         -name '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]' \

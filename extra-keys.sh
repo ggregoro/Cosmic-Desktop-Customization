@@ -1,30 +1,33 @@
 #!/usr/bin/env bash
-# Add a few Omarchy-style keyboard shortcuts to COSMIC, or take them
+# Add a few extra keyboard shortcuts to COSMIC, or take them
 # away again. Only keys COSMIC does not already use are added, so no
 # COSMIC shortcut changes:
 #   Super+Return         terminal
 #   Super+Shift+Return   web browser
 #   Super+Shift+B        web browser
 #   Super+Shift+F        file manager
-#   Super+Shift+Ctrl+Space   rice picker (Omarchy's theme menu key; needs
+#   Super+Shift+Ctrl+Space   rice picker (needs
 #                            ./rice-picker.py --install first)
 #
-# Usage: ./omarchy-keys.sh --apply    add the shortcuts
-#        ./omarchy-keys.sh --remove   take them away again
+# Usage: ./extra-keys.sh --apply    add the shortcuts
+#        ./extra-keys.sh --remove   take them away again
 
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-KEYS_FILE="$REPO_DIR/keys/omarchy.ron"
+KEYS_FILE="$REPO_DIR/keys/extra.ron"
 CUSTOM_DIR="$HOME/.config/cosmic/com.system76.CosmicSettings.Shortcuts/v1"
 CUSTOM_FILE="$CUSTOM_DIR/custom"
 # Kept outside ~/.config/cosmic so COSMIC never reads them.
-STATE_DIR="$HOME/.config/cosmic-backups/omarchy-keys"
+STATE_DIR="$HOME/.config/cosmic-backups/extra-keys"
+# Earlier versions of this script were called omarchy-keys.sh and kept
+# their state here; it is moved to STATE_DIR on first use.
+OLD_STATE_DIR="$HOME/.config/cosmic-backups/omarchy-keys"
 BEFORE_FILE="$STATE_DIR/custom.before"
 AFTER_FILE="$STATE_DIR/custom.applied"
 NONE_MARK="$STATE_DIR/no-custom-file-before"
 
-# The shortcuts in keys/omarchy.ron, as COSMIC writes them once spaces,
+# The shortcuts in keys/extra.ron, as COSMIC writes them once spaces,
 # line breaks and trailing commas are dropped.
 KEY_PATTERNS=(
     'modifiers:[Super],key:"Return"'
@@ -68,12 +71,12 @@ apply() {
             [[ "$(squash "$CUSTOM_FILE")" == *"$p"* ]] || missing=1
         done
         if (( ! missing )); then
-            echo "The Omarchy-style shortcuts are already on. Nothing to do."
+            echo "The extra shortcuts are already on. Nothing to do."
             return
         fi
         # An older set from this script is on; take it off, then add the
         # current set below.
-        echo "Updating the Omarchy-style shortcuts to the current set ..."
+        echo "Updating the extra shortcuts to the current set ..."
         put_back
     fi
 
@@ -128,7 +131,7 @@ apply() {
 
 remove() {
     if [[ ! -f "$AFTER_FILE" ]]; then
-        echo "The Omarchy-style shortcuts were not added by this script."
+        echo "The extra shortcuts were not added by this script."
         echo "Nothing to do."
         return
     fi
@@ -143,10 +146,14 @@ remove() {
     fi
     put_back
     rm -rf "$STATE_DIR"
-    echo "Removed the Omarchy-style shortcuts. Your own shortcuts and"
+    echo "Removed the extra shortcuts. Your own shortcuts and"
     echo "COSMIC's keys are as they were. If a key still works, log out"
     echo "and back in."
 }
+
+if [[ -d "$OLD_STATE_DIR" && ! -e "$STATE_DIR" ]]; then
+    mv "$OLD_STATE_DIR" "$STATE_DIR"
+fi
 
 case "${1:-}" in
     --apply) apply ;;

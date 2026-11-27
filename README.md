@@ -246,7 +246,7 @@ removal commands are in each rice's README.
 
 ## Rice picker (optional)
 
-A window for choosing a rice, like Omarchy's theme menu: the rices are
+A window for choosing a rice: the rices are
 shown as cards with a screenshot; pick one to see it large with what it
 changes, then Apply (or Enter, or a double-click; a single click only
 shows it). The Layout menu next to Apply picks a
@@ -286,7 +286,7 @@ Then, from the repo folder:
 
 ```bash
 ./rice-picker.py --install    # adds Rice Picker, with its icon, to the app list (Utilities)
-./omarchy-keys.sh --apply     # optional: opens it with Super+Shift+Ctrl+Space
+./extra-keys.sh --apply     # optional: opens it with Super+Shift+Ctrl+Space
 ./rice-picker.py --remove     # takes it out of the app list again
 ```
 
@@ -302,10 +302,10 @@ Tested on Arch Linux, Pop!_OS, Fedora, openSUSE Tumbleweed and CachyOS
 After a layout change or an Undo, the panel sometimes needs a log out to
 look right; the picker reminds you.
 
-## Omarchy-style keys (optional)
+## Extra shortcuts (optional)
 
-If you also use Omarchy, these add a few of its shortcuts to COSMIC so
-the same keys work on both. They work with any rice, or none.
+A few extra keyboard shortcuts for opening apps and the rice picker.
+They work with any rice, or none.
 
 | Key | Opens |
 |---|---|
@@ -319,8 +319,8 @@ COSMIC does not use any of these keys, so none of its own shortcuts
 change: `Super+T`, `Super+B` and `Super+F` still work as before.
 
 ```bash
-./omarchy-keys.sh --apply     # add them
-./omarchy-keys.sh --remove    # take them away again
+./extra-keys.sh --apply     # add them
+./extra-keys.sh --remove    # take them away again
 ```
 
 Any shortcuts you set yourself are kept. If you already use one of
@@ -389,7 +389,9 @@ credited correctly, open an issue and I'll fix or remove it.
   [Jeremy Thomas on Unsplash](https://unsplash.com/photos/blue-and-purple-galaxy-digital-wallpaper-E0AHdsENmDg)
   (Unsplash License).
 - `osaka-jade`: from the Osaka Jade theme in
-  [Omarchy](https://github.com/omacom/omarchy) (MIT License).
+  [Omarchy](https://github.com/omacom/omarchy) (MIT License, copyright
+  David Heinemeier Hansson; its license text is in
+  [`LICENSE-OMARCHY`](LICENSE-OMARCHY)).
 - `onyx`: from the [Onyx](https://github.com/ggregoro/onyx) theme.
 - `glowing-city`: a blue-tinted edit of the `osaka-jade` wallpaper.
 - `violet-tide`: four photos from Unsplash (Unsplash License), by Engin
@@ -400,4 +402,5 @@ credited correctly, open an issue and I'll fix or remove it.
 ## License
 
 MIT — see [`LICENSE`](LICENSE). The wallpapers keep their own licenses
-(see Wallpaper credits above).
+(see Wallpaper credits above); the Omarchy one is covered by
+[`LICENSE-OMARCHY`](LICENSE-OMARCHY).

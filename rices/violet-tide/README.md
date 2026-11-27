@@ -7,12 +7,12 @@
   later (a dark purple dusk, islands at twilight, pink and purple surf).
 - **Colors:** dark mode, dark slate-purple background (`#1B1A24`), soft
   grey-white text, pink-lavender accent (`#E8A6F5`). The palette comes
-  from the [Violet Tide](https://github.com/ggregoro/violet-tide) Omarchy
+  from the [Violet Tide](https://github.com/ggregoro/violet-tide)
   theme.
 - **Corners:** 2 px, on windows and controls (the same in every rice).
 - **Terminal:** COSMIC Terminal at 60% opacity, so the wallpaper shows
   through. COSMIC does not blur what is behind a window, so the
-  wallpaper is seen sharp, not frosted as in the Omarchy theme.
+  wallpaper is seen sharp, not frosted.
 - **Layout:** unchanged. This rice sets colors, corners, wallpaper and
   terminal opacity only, so your panel and dock stay as they are.
 
